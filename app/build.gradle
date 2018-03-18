@@ -1,0 +1,88 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+
+
+android {
+    compileSdkVersion 26
+    defaultConfig {
+        applicationId "com.gbmainframe.learnersindia"
+        minSdkVersion 19
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            buildConfigField "String", "BASE_URL", "\"http://api.vzerve.com/\""
+        }
+        debug {
+            buildConfigField "String", "BASE_URL", "\"http://api.vzerve.com/\""
+        }
+    }
+    sourceSets {
+        main.java.srcDirs = ['src/main/kotlin'] //Java is not currently a source set, Java is dead.
+    }
+
+    flavorDimensions 'api'
+
+    productFlavors {
+        min21 {
+            minSdkVersion 21
+            dimension 'api'
+        }
+
+        min19 {
+            minSdkVersion 19
+            dimension 'api'
+        }
+    }
+}
+
+ext {
+    DAGGER_VERSION = '2.11'
+    RETROFIT_VERSION = '2.3.0'
+    ARCH_COMPONENTS_VERSION = '1.0.0'
+    SUPPORT_VERSION = '26.1.0'
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.android.support:appcompat-v7:26.1.0'
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.1'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    //Retrofit
+    implementation "com.squareup.retrofit2:retrofit:$RETROFIT_VERSION"
+    implementation "com.squareup.retrofit2:converter-jackson:$RETROFIT_VERSION"
+    implementation "com.squareup.retrofit2:converter-gson:$RETROFIT_VERSION"
+    implementation "com.squareup.retrofit2:adapter-rxjava:$RETROFIT_VERSION"
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.8.1'
+    //Rx
+    implementation 'io.reactivex.rxjava2:rxkotlin:2.2.0'
+    implementation 'io.reactivex:rxandroid:1.2.1'
+    //Gson
+    implementation 'com.google.code.gson:gson:2.8.2'
+    //Dagger
+    implementation "com.google.dagger:dagger:$DAGGER_VERSION"
+    implementation 'com.squareup.picasso:picasso:2.5.2'
+    implementation 'com.facebook.stetho:stetho-okhttp3:1.5.0'
+    //Logger
+    implementation 'com.jakewharton.timber:timber:4.6.0'
+    //Easy permissions
+    implementation 'pub.devrel:easypermissions:1.0.1'
+    implementation 'com.android.support:support-v4:26.1.0'
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    //Location
+    implementation 'com.google.android.gms:play-services-location:11.6.2'
+    //Annotations
+    kapt "com.google.dagger:dagger-compiler:$DAGGER_VERSION"
+}
+repositories {
+    mavenCentral()
+}

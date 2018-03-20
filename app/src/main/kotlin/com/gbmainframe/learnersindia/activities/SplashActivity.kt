@@ -6,10 +6,6 @@ import android.os.Handler
 import android.support.v7.app.AppCompatActivity
 import com.gbmainframe.learnersindia.R
 import com.gbmainframe.learnersindia.utils.sharedPrefManager
-import rx.Single
-import rx.android.schedulers.AndroidSchedulers
-import rx.schedulers.Schedulers
-import timber.log.Timber
 
 /**
  * Created by ambareeshb on 18/03/18.
@@ -45,10 +41,11 @@ class SplashActivity : AppCompatActivity() {
      */
     private fun toHomeOrSignUp(): Runnable = Runnable {
         if (sharedPrefManager.ifloggedIn(this)) {
-
-        }
-        else{
-
+            startActivity(Intent(this, Home::class.java))
+            finish()
+        } else {
+            startActivity(Intent(this, SignIn::class.java))
+            finish()
         }
     }
 

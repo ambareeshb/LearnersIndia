@@ -5,6 +5,7 @@ import android.support.v4.app.FragmentTransaction
 
 /**
  * Created by ambareeshb on 18/03/18.
+ * Utility class for fragment related actions.
  */
 class FragmentUtils(private val fragmentManager: android.support.v4.app.FragmentManager) {
     private lateinit var fragmentTransaction: FragmentTransaction

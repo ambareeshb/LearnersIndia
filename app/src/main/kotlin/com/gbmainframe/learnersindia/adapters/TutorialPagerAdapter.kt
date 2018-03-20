@@ -9,7 +9,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import com.gbmainframe.learnersindia.R
+import com.gbmainframe.learnersindia.constants.Constants
 import kotlinx.android.synthetic.main.layout_tutoria_single_item.view.*
+import kotlinx.android.synthetic.main.layout_tutorial.view.*
+import pl.droidsonroids.gif.GifDrawable
 import java.io.ByteArrayOutputStream
 
 /**
@@ -18,7 +21,9 @@ import java.io.ByteArrayOutputStream
  */
 class TutorialPagerAdapter(val context: Context) : PagerAdapter() {
 
-    val resource = intArrayOf(R.drawable.gif_tutoria, R.drawable.gif_tutoria, R.drawable.gif_tutoria, R.drawable.gif_tutoria)
+    val resource = intArrayOf(R.drawable.gif_one, R.drawable.gif_two, R.drawable.gif_three, R.drawable.gif_four)
+    val quotesPairs = arrayOf(Pair(Constants.FIRST_QUOTE,Constants.FIRST_AUTHOR),Pair(Constants.SECOND_QUOTE,Constants.SECOND_AUTHOR)
+    ,Pair(Constants.THIRD_QUOTE,Constants.THIRD_AUTHOR), Pair(Constants.FOURTH_QUOTE,Constants.FOURTH_AUTHOR))
 
     override fun getCount(): Int = resource.size
 
@@ -30,7 +35,10 @@ class TutorialPagerAdapter(val context: Context) : PagerAdapter() {
     override fun instantiateItem(container: ViewGroup, position: Int): Any {
         val inflater: LayoutInflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val view = inflater.inflate(R.layout.layout_tutoria_single_item, container, false)
-        view.itemImage.setImageDrawable(ContextCompat.getDrawable(context,resource[position]))
+        val gifFromResource = GifDrawable(context.resources, resource[position])
+        view.itemImage.setImageDrawable(gifFromResource)
+        view.textQuote.text = quotesPairs[position].first
+        view.textAuthor.text = quotesPairs[position].second
         container.addView(view)
         return view
     }

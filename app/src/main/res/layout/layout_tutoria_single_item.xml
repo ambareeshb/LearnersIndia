@@ -1,10 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <TextView
+        android:id="@+id/textQuote"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:fontFamily="@font/nawabiat"
+        android:gravity="center"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:textColor="@color/colorPrimary"
+        android:textSize="25sp" />
+
+    <TextView
+        android:id="@+id/textAuthor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:fontFamily="@font/nawabiat"
+        android:gravity="right"
+        android:textColor="@color/colorPrimary"
+        android:textSize="25sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="30dp" />
+
     <pl.droidsonroids.gif.GifImageView
         android:id="@+id/itemImage"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="400dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:orientation="horizontal"
+        android:padding="2dp">
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/buttonSignIn"
+            style="@style/Login"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Sign In" />
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/buttonSignUp"
+            style="@style/Login"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Sign Up" />
+
+    </LinearLayout>
+
 
 </LinearLayout>

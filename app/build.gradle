@@ -64,6 +64,7 @@ dependencies {
     //Gif image view
     implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.+'
 
+
     //Retrofit
     implementation "com.squareup.retrofit2:retrofit:$RETROFIT_VERSION"
     implementation "com.squareup.retrofit2:converter-jackson:$RETROFIT_VERSION"

@@ -6,14 +6,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.gbmainframe.learnersindia.R
+import com.gbmainframe.learnersindia.activities.SignIn
 import com.gbmainframe.learnersindia.adapters.TutorialPagerAdapter
+import com.gbmainframe.learnersindia.utils.FragmentUtils
+import kotlinx.android.synthetic.main.layout_tutoria_single_item.*
 import kotlinx.android.synthetic.main.layout_tutorial.*
 import kotlinx.android.synthetic.main.layout_tutorial.view.*
 
 /**
  * Created by ambareesh on 20/3/18.
  */
-class TutorialFragment : Fragment() {
+class TutorialFragment : Fragment(),TutorialPagerAdapter.InteractionInterface {
+    override fun selectRoleFragment() {
+        (activity as SignIn).loadSelectRoleFragment()
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -24,7 +31,7 @@ class TutorialFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         context?.apply {
-            tutorialViewPager.adapter = TutorialPagerAdapter(this)
+            tutorialViewPager.adapter = TutorialPagerAdapter(this,this@TutorialFragment)
             indicator.setViewPager(tutorialViewPager)
             tutorialViewPager.adapter?.registerDataSetObserver(indicator.dataSetObserver)
         }

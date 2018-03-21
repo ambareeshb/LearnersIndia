@@ -63,6 +63,8 @@ dependencies {
     implementation 'com.daimajia.androidanimations:library:2.3@aar'
     //Gif image view
     implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.+'
+    //Carousal view
+    implementation 'fr.rolandl:carousel:1.0.1@aar'
 
 
     //Retrofit
@@ -85,7 +87,6 @@ dependencies {
     //Easy permissions
     implementation 'pub.devrel:easypermissions:1.1.1'
     implementation 'com.android.support:support-v4:26.1.0'
-    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
     //Location
     implementation 'com.google.android.gms:play-services-location:11.8.0'
     //Annotations

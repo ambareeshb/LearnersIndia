@@ -2,16 +2,15 @@ package com.gbmainframe.learnersindia.adapters
 
 import android.content.Context
 import android.graphics.Bitmap
-import android.support.v4.content.ContextCompat
 import android.support.v4.view.PagerAdapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import com.gbmainframe.learnersindia.R
+import com.gbmainframe.learnersindia.activities.SignIn
 import com.gbmainframe.learnersindia.constants.Constants
 import kotlinx.android.synthetic.main.layout_tutoria_single_item.view.*
-import kotlinx.android.synthetic.main.layout_tutorial.view.*
 import pl.droidsonroids.gif.GifDrawable
 import java.io.ByteArrayOutputStream
 
@@ -19,11 +18,11 @@ import java.io.ByteArrayOutputStream
  * Created by ambareesh on 20/3/18.
  *
  */
-class TutorialPagerAdapter(val context: Context) : PagerAdapter() {
+class TutorialPagerAdapter(private val context: Context, private val listener: InteractionInterface) : PagerAdapter() {
 
     val resource = intArrayOf(R.drawable.gif_one, R.drawable.gif_two, R.drawable.gif_three, R.drawable.gif_four)
-    val quotesPairs = arrayOf(Pair(Constants.FIRST_QUOTE,Constants.FIRST_AUTHOR),Pair(Constants.SECOND_QUOTE,Constants.SECOND_AUTHOR)
-    ,Pair(Constants.THIRD_QUOTE,Constants.THIRD_AUTHOR), Pair(Constants.FOURTH_QUOTE,Constants.FOURTH_AUTHOR))
+    private val quotesPairs = arrayOf(Pair(Constants.FIRST_QUOTE, Constants.FIRST_AUTHOR), Pair(Constants.SECOND_QUOTE, Constants.SECOND_AUTHOR)
+            , Pair(Constants.THIRD_QUOTE, Constants.THIRD_AUTHOR), Pair(Constants.FOURTH_QUOTE, Constants.FOURTH_AUTHOR))
 
     override fun getCount(): Int = resource.size
 
@@ -39,6 +38,8 @@ class TutorialPagerAdapter(val context: Context) : PagerAdapter() {
         view.itemImage.setImageDrawable(gifFromResource)
         view.textQuote.text = quotesPairs[position].first
         view.textAuthor.text = quotesPairs[position].second
+        view.buttonSignIn.setOnClickListener { _ -> listener.selectRoleFragment() }
+        view.buttonSignUp.setOnClickListener { _ -> listener.selectRoleFragment() }
         container.addView(view)
         return view
     }
@@ -51,5 +52,9 @@ class TutorialPagerAdapter(val context: Context) : PagerAdapter() {
         val stream = ByteArrayOutputStream()
         this.compress(Bitmap.CompressFormat.PNG, 100, stream)
         return stream.toByteArray()
+    }
+
+    public interface InteractionInterface {
+        fun selectRoleFragment()
     }
 }

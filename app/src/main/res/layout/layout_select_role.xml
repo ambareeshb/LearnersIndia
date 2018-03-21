@@ -1,6 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="30dp">
 
-</android.support.constraint.ConstraintLayout>
+    <!--<LinearLayout-->
+    <!--android:id="@+id/roleStudent"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:gravity="center"-->
+    <!--android:orientation="vertical">-->
+
+    <!--<ImageView-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:src="@drawable/role_student" />-->
+
+    <!--<TextView-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_marginTop="5dp"-->
+    <!--android:fontFamily="@font/nawabiat"-->
+    <!--android:text="Student"-->
+    <!--android:textSize="25sp"-->
+    <!--android:textStyle="bold" />-->
+    <!--</LinearLayout>-->
+
+    <!--<LinearLayout-->
+    <!--android:id="@+id/roleTeacher"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_alignParentRight="true"-->
+    <!--android:layout_below="@+id/roleStudent"-->
+    <!--android:layout_margin="20dp"-->
+    <!--android:gravity="center"-->
+    <!--android:orientation="vertical">-->
+
+    <!--<ImageView-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:src="@drawable/role_techer" />-->
+
+    <!--<TextView-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_marginTop="5dp"-->
+    <!--android:fontFamily="@font/nawabiat"-->
+    <!--android:text="Teacher"-->
+    <!--android:textSize="25sp"-->
+    <!--android:textStyle="bold" />-->
+    <!--</LinearLayout>-->
+
+    <!--<LinearLayout-->
+    <!--android:id="@+id/roleParent"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_alignParentLeft="true"-->
+    <!--android:layout_below="@+id/roleTeacher"-->
+    <!--android:layout_margin="20dp"-->
+    <!--android:gravity="center"-->
+    <!--android:background="@drawable/selected_bg"-->
+    <!--android:clickable="true"-->
+    <!--android:focusable="true"-->
+    <!--android:orientation="vertical">-->
+
+    <!--<ImageView-->
+    <!--android:layout_width="200dp"-->
+    <!--android:layout_height="200dp"-->
+    <!--android:src="@drawable/role_parent" />-->
+
+    <!--<TextView-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_marginTop="5dp"-->
+    <!--android:fontFamily="@font/nawabiat"-->
+    <!--android:text="Parent"-->
+    <!--android:textSize="25sp"-->
+    <!--android:textStyle="bold" />-->
+    <!--</LinearLayout>-->
+    <fr.rolandl.carousel.Carousel xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/carousalRoles"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:animationDuration="200" />
+
+    <android.support.v7.widget.AppCompatButton
+        style="@style/Login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:text="Next" />
+</RelativeLayout>

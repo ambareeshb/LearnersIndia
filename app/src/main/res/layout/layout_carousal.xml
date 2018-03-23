@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:gravity="center"
     android:orientation="vertical"
     android:padding="30dp">
@@ -9,10 +9,14 @@
     <ImageView
         android:id="@+id/carousalRoleImage"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+       android:scaleType="fitXY"
+        android:layout_height="130dp" />
 
     <TextView
         android:id="@+id/carousalRoleText"
         android:layout_width="wrap_content"
+        android:layout_margin="4dp"
+        android:textSize="30sp"
+        android:fontFamily="@font/nawabiat"
         android:layout_height="wrap_content" />
 </LinearLayout>

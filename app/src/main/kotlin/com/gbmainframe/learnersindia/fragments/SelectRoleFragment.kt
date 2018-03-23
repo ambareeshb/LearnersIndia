@@ -27,15 +27,7 @@ class SelectRoleFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val rolesList = arrayListOf<Role>(Role("Student",R.drawable.role_student),
-                Role("Teacher",R.drawable.role_techer),Role("Parent",R.drawable.role_parent))
-        val adapter = CarousalAdapter(context!!,rolesList)
-       carousalRoles.adapter = adapter
-        carousalRoles.setSelection(1,true)
-        adapter.notifyDataSetChanged()
-        carousalRoles.onItemClickListener = object :  CarouselBaseAdapter.OnItemClickListener {
-            override fun onItemClick(parent: CarouselBaseAdapter<*>?, view: View?, position: Int, id: Long) {
-            }
-        }
+        val rolesList = arrayListOf<Role>(Role("Student",R.drawable.student),
+                Role("Teacher",R.drawable.teacher),Role("Parent",R.drawable.parent))
     }
 }

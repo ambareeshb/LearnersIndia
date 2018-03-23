@@ -15,5 +15,10 @@
         <item name="android:background">@drawable/button_login_bg</item>
         <item name="android:fontFamily">@font/nawabiat</item>
     </style>
+    <style name="SignUpText">
+        <item name="android:fontFamily">@font/nawabiat</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
+    </style>
 
 </resources>

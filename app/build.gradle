@@ -12,16 +12,17 @@ android {
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
+        multiDexEnabled true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         release {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            buildConfigField "String", "BASE_URL", "\"http://api.vzerve.com/\""
+            buildConfigField "String", "BASE_URL", "\"http://appapi.learnersindia.com/get-board\""
         }
         debug {
-            buildConfigField "String", "BASE_URL", "\"http://api.vzerve.com/\""
+            buildConfigField "String", "BASE_URL", "\"http://appapi.learnersindia.com/get-board\""
         }
     }
     sourceSets {
@@ -53,7 +54,6 @@ ext {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'com.android.support:appcompat-v7:26.1.0'
-    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
@@ -65,7 +65,6 @@ dependencies {
     implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.+'
     //Carousal view
     implementation 'fr.rolandl:carousel:1.0.1@aar'
-
 
     //Retrofit
     implementation "com.squareup.retrofit2:retrofit:$RETROFIT_VERSION"
@@ -89,8 +88,15 @@ dependencies {
     implementation 'com.android.support:support-v4:26.1.0'
     //Location
     implementation 'com.google.android.gms:play-services-location:11.8.0'
+
+    //multi dex support
+    implementation 'com.android.support:multidex:1.0.2'
     //Annotations
     kapt "com.google.dagger:dagger-compiler:$DAGGER_VERSION"
+    //phone number
+
+    implementation 'com.ambareeshb:easy-phone-picker:0.9.0'
+    implementation 'com.android.support:design:26.1.0'
 }
 repositories {
     mavenCentral()

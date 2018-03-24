@@ -1,23 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="40dp">
+    android:orientation="vertical"
+    android:gravity="center"
+    android:divider="@drawable/divider_vertical"
+    android:showDividers="middle"
+    android:padding="30dp"
+    android:layout_height="match_parent">
 
     <TextView
         android:id="@+id/selectroleText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/nawabiat"
+        android:gravity="center"
         android:padding="16dp"
         android:text="Select Role"
-        android:layout_width="match_parent"
-        android:fontFamily="@font/nawabiat"
-        android:textSize="35sp"
-        android:gravity="center"
-        android:layout_height="wrap_content" />
+        android:textSize="35sp" />
+    <ImageView
+        android:id="@+id/arrowLeft"
+        android:layout_width="40dp"
+        android:src="@drawable/ic_left"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:scaleType="fitXY"
+        android:layout_height="40dp" />
+    <ImageView
+        android:id="@+id/arrowRight"
+        android:layout_width="40dp"
+        android:src="@drawable/ic_right"
+        android:layout_alignParentRight="true"
+        android:scaleType="fitXY"
+        android:layout_centerVertical="true"
+        android:layout_height="40dp" />
 
     <android.support.v4.view.ViewPager
-        android:id="@+id/tutorialViewPager"
+        android:id="@+id/selectroleViewPager"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"/>
 
     <android.support.v7.widget.AppCompatButton
         style="@style/Login"

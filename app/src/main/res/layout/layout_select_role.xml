@@ -5,7 +5,7 @@
     android:divider="@drawable/divider_vertical"
     android:gravity="center"
     android:orientation="vertical"
-    android:padding="30dp"
+    android:padding="20dp"
     android:showDividers="middle">
 
     <TextView
@@ -18,16 +18,25 @@
         android:text="Select Role"
         android:textSize="35sp" />
 
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/selectroleViewPager"
+        android:layout_width="wrap_content"
+        android:layout_centerInParent="true"
+        android:paddingRight="70dp"
+        android:paddingLeft="75dp"
+        android:layout_height="wrap_content" />
+
     <ImageView
         android:id="@+id/arrowLeft"
-        android:layout_width="70dp"
-        android:layout_height="100dp"
+        android:layout_width="60dp"
+        android:layout_height="90dp"
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
-        android:alpha=".5"
         android:clickable="true"
         android:scaleType="fitXY"
-        android:src="@drawable/ic_left" />
+        android:layout_margin="10dp"
+        android:src="@drawable/ic_back" />
 
     <ImageView
         android:id="@+id/arrowRight"
@@ -35,20 +44,14 @@
         android:layout_height="100dp"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
-        android:alpha=".5"
+        android:layout_margin="10dp"
         android:clickable="true"
         android:scaleType="fitXY"
-        android:src="@drawable/ic_right" />
-
-    <android.support.v4.view.ViewPager
-        android:id="@+id/selectroleViewPager"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="60dp"
-        android:layout_marginRight="60dp" />
+        android:src="@drawable/ic_next" />
 
     <android.support.v7.widget.AppCompatButton
-        style="@style/Login"
+        android:id="@+id/buttonNext"
+        style="@style/StyleLoginButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"

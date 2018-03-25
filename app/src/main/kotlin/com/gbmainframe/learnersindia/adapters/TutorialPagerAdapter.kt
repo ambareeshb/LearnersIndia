@@ -40,8 +40,8 @@ class TutorialPagerAdapter(private val context: Context,
         view.itemImage.setImageDrawable(gifFromResource)
         view.textQuote.text = quotesPairs[position].first
         view.textAuthor.text = quotesPairs[position].second
-        view.buttonSignIn.setOnClickListener { _ -> listener.selectRoleFragment() }
-        view.buttonSignUp.setOnClickListener { _ -> listener.selectRoleFragment() }
+        view.buttonSignIn.setOnClickListener { _ -> listener.selectRoleFragment(Constants.LOGIN_DECISION.LOGIN) }
+        view.buttonSignUp.setOnClickListener { _ -> listener.selectRoleFragment(Constants.LOGIN_DECISION.SIGN_UP) }
         container.addView(view)
         return view
     }
@@ -57,6 +57,6 @@ class TutorialPagerAdapter(private val context: Context,
     }
 
     public interface InteractionInterface {
-        fun selectRoleFragment()
+        fun selectRoleFragment(decision : Constants.LOGIN_DECISION)
     }
 }

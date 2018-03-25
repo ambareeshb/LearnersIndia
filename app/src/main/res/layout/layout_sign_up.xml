@@ -1,62 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:padding="10dp"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:divider="@drawable/divider_vertical"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:padding="16dp"
-        android:showDividers="middle">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/fullName"
-            style="@style/SignUpText"
-            android:hint="Full name" />
 
-        <EditText
-            android:id="@+id/emailText"
-            style="@style/SignUpText"
-            android:hint="Email"
-            android:inputType="textEmailAddress" />
+        <include layout="@layout/toolbar" />
 
-        <EditText
-            android:id="@+id/passwordText"
-            style="@style/SignUpText"
-            android:hint="password"
-            android:inputType="textPassword" />
-
-        <EditText
-            android:id="@+id/passwordRetype"
-            style="@style/SignUpText"
-            android:hint="Retype password"
-            android:inputType="textPassword" />
-
-        <EditText
-            android:id="@+id/boardText"
-            style="@style/SignUpText"
-            android:hint="Board" />
-
-        <EditText
-            android:id="@+id/classText"
-            style="@style/SignUpText"
-            android:hint="Class" />
-        <ambareesh.com.easyphoneformat.EasyPhoneText
-            android:id="@+id/textPhoneNumber"
+        <LinearLayout
             android:layout_width="match_parent"
-            app:selected_country="IN"
-            android:layout_height="wrap_content"/>
+            android:layout_height="match_parent"
+            android:divider="@drawable/divider_vertical"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:showDividers="middle">
 
-        <android.support.v7.widget.AppCompatButton
-            android:id="@+id/buttonSignUp"
-            style="@style/Login"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Sign Up" />
+
+            <EditText
+                android:id="@+id/fullName"
+                style="@style/SignUpText"
+                android:hint="Full name" />
+
+            <EditText
+                android:id="@+id/emailText"
+                style="@style/SignUpText"
+                android:hint="@string/email"
+                android:inputType="textEmailAddress" />
+
+            <EditText
+                android:id="@+id/passwordText"
+                style="@style/SignUpText"
+                android:hint="@string/password"
+                android:inputType="textPassword" />
+
+            <EditText
+                android:id="@+id/passwordRetype"
+                style="@style/SignUpText"
+                android:hint="@string/retype_password"
+                android:inputType="textPassword" />
+
+            <EditText
+                android:id="@+id/boardText"
+                style="@style/SignUpText"
+                android:hint="@string/board" />
+
+            <EditText
+                android:id="@+id/classText"
+                style="@style/SignUpText"
+                android:hint="@string/student_class" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.hbb20.CountryCodePicker
+                    android:id="@+id/countryPhoneNumber"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:ccp_autoDetectCountry="true"
+                    app:ccp_countryPreference="KW" />
+
+                <EditText
+                    android:id="@+id/textPhoneNumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+            <!--<Pic implementation 'com.hbb20:ccp:2.1.2'k-->
+            <!--android:id="@+id/textPhoneNumber"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--/>-->
+
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/buttonSignUp"
+                style="@style/StyleLoginButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/sign_up" />
+        </LinearLayout>
     </LinearLayout>
 </ScrollView>

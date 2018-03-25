@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import com.gbmainframe.learnersindia.R
 import com.gbmainframe.learnersindia.activities.SignIn
 import com.gbmainframe.learnersindia.adapters.TutorialPagerAdapter
+import com.gbmainframe.learnersindia.constants.Constants
 import com.gbmainframe.learnersindia.utils.FragmentUtils
 import kotlinx.android.synthetic.main.layout_tutoria_single_item.*
 import kotlinx.android.synthetic.main.layout_tutorial.*
@@ -17,8 +18,8 @@ import kotlinx.android.synthetic.main.layout_tutorial.view.*
  * Created by ambareesh on 20/3/18.
  */
 class TutorialFragment : Fragment(),TutorialPagerAdapter.InteractionInterface {
-    override fun selectRoleFragment() {
-        (activity as SignIn).loadSelectRoleFragment()
+    override fun selectRoleFragment(decision:Constants.LOGIN_DECISION) {
+        (activity as SignIn).loadSelectRoleFragment(decision)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

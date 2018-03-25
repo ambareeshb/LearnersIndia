@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">LearnersIndia</string>
+    <string name="password">Password</string>
+    <string name="retype_password">Retype password</string>
+    <string name="email">Email</string>
+    <string name="board">Board</string>
+    <string name="student_class">Class</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="login">Login</string>
+    <string name="error_fields_empty">All fields must be filled</string>
+    <string name="something_went_wrong">Something went wrong</string>
 </resources>

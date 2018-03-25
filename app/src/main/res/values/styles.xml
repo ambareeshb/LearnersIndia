@@ -8,7 +8,7 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="Login">
+    <style name="StyleLoginButton">
         <item name="android:textAllCaps">false</item>
         <item name="android:textSize">22sp</item>
         <item name="android:layout_margin">5dp</item>
@@ -19,6 +19,7 @@
         <item name="android:fontFamily">@font/nawabiat</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">match_parent</item>
+        <item name="android:lines">1</item>
     </style>
 
 </resources>

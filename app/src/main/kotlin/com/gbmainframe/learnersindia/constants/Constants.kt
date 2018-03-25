@@ -9,6 +9,7 @@ object Constants {
     const val SHARED_PREF_SIGNED_IN = "SIGNED_IN"
     const val PERMISSION_LOCATION_RATIONALE = "Need your location to find service around you"
     const val PERMISSION_LOCATION_RC = 1729
+    enum class LOGIN_DECISION{LOGIN,SIGN_UP}
     const val FIRST_QUOTE = "Mathematics is the art of giving same name to different things"
     const val FIRST_AUTHOR = "- Henry Poincare"
     const val SECOND_QUOTE = "Pure mathematics is, in its way the poetry of logical ideas"

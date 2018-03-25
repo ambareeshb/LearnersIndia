@@ -2,13 +2,14 @@ package com.gbmainframe.learnersindia.fragments
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.gbmainframe.learnersindia.R
 import com.gbmainframe.learnersindia.Role
+import com.gbmainframe.learnersindia.activities.SignIn
 import com.gbmainframe.learnersindia.adapters.RoleSelectAdapter
+import com.gbmainframe.learnersindia.constants.Constants
 import kotlinx.android.synthetic.main.layout_select_role.*
 
 /**
@@ -41,6 +42,13 @@ class SelectRoleFragment : Fragment(), RoleSelectAdapter.RoleSelectListener {
                 selectroleViewPager.currentItem = selectroleViewPager.currentItem + 1
             }
         }
+        buttonNext.setOnClickListener {
+            if (arguments?.getInt(SignIn.Companion.LOGIN_DECISION_KEY)?.equals(Constants.LOGIN_DECISION.LOGIN.ordinal)!!) {
+                (activity as SignIn).loadSignInFragment()
+            } else {
+                (activity as SignIn).toSignUpFragment()
+            }
 
+        }
     }
 }

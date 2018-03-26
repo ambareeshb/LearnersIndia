@@ -5,13 +5,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.gbmainframe.learnersindia.R
+import com.gbmainframe.learnersindia.models.Board
 import com.gbmainframe.learnersindia.models.ClassInfo
 import kotlinx.android.synthetic.main.layout_class_single_item.view.*
 
 /**
  * Created by ambareeshb on 25/03/18.
  */
-class ClassRecyclerAdapter(private val classList: ArrayList<ClassInfo>) : RecyclerView.Adapter<ClassRecyclerAdapter.ViewHolder>() {
+class ClassRecyclerAdapter(private val classList: ArrayList<ClassInfo>,
+                           private val onClassSelect:(classInfo: ClassInfo) -> Unit) : RecyclerView.Adapter<ClassRecyclerAdapter.ViewHolder>() {
     override fun onBindViewHolder(holder: ViewHolder?, position: Int) {
         holder?.bindView(classList[position])
     }
@@ -23,9 +25,13 @@ class ClassRecyclerAdapter(private val classList: ArrayList<ClassInfo>) : Recycl
 
     override fun getItemCount(): Int = classList.size
 
-    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         fun bindView(classInfo: ClassInfo) {
             itemView.classText.text = classInfo.grade
+            itemView.setOnClickListener {
+                onClassSelect(classInfo)
+            }
         }
     }
+
 }

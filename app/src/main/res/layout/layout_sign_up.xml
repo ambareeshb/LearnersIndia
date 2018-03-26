@@ -25,7 +25,8 @@
             <EditText
                 android:id="@+id/fullName"
                 style="@style/SignUpText"
-                android:hint="Full name" />
+                android:hint="Full name"
+                android:inputType="text" />
 
             <EditText
                 android:id="@+id/emailText"
@@ -43,26 +44,29 @@
                 android:id="@+id/passwordRetype"
                 style="@style/SignUpText"
                 android:hint="@string/retype_password"
+                android:layout_marginBottom="3dp"
                 android:inputType="textPassword" />
 
-            <EditText
+            <TextView
                 android:id="@+id/boardText"
-                style="@style/SignUpText"
-                android:hint="@string/board" />
+                android:textSize="25sp"
+                android:layout_marginBottom="3dp"
+                style="@style/SignUpText" />
 
-            <EditText
+            <TextView
                 android:id="@+id/classText"
-                style="@style/SignUpText"
-                android:hint="@string/student_class" />
+                android:textSize="25sp"
+                android:layout_marginBottom="3dp"
+                style="@style/SignUpText" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="vertical">
 
                 <com.hbb20.CountryCodePicker
                     android:id="@+id/countryPhoneNumber"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:ccp_autoDetectCountry="true"
                     app:ccp_countryPreference="KW" />
@@ -70,15 +74,12 @@
                 <EditText
                     android:id="@+id/textPhoneNumber"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:hint="@string/mobile"
+                    android:inputType="phone" />
 
             </LinearLayout>
 
-            <!--<Pic implementation 'com.hbb20:ccp:2.1.2'k-->
-            <!--android:id="@+id/textPhoneNumber"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--/>-->
 
             <android.support.v7.widget.AppCompatButton
                 android:id="@+id/buttonSignUp"

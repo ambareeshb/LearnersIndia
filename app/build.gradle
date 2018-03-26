@@ -42,6 +42,9 @@ android {
             dimension 'api'
         }
     }
+    androidExtensions {
+        experimental = true
+    }
 }
 
 ext {

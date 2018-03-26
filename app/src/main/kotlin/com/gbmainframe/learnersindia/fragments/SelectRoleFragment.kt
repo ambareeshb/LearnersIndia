@@ -1,6 +1,7 @@
 package com.gbmainframe.learnersindia.fragments
 
 import android.os.Bundle
+import android.support.design.widget.Snackbar
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -43,10 +44,14 @@ class SelectRoleFragment : Fragment(), RoleSelectAdapter.RoleSelectListener {
             }
         }
         buttonNext.setOnClickListener {
+            if(selectroleViewPager?.currentItem != 0){
+                Snackbar.make(view,"Only student login available",Snackbar.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
             if (arguments?.getInt(SignIn.Companion.LOGIN_DECISION_KEY)?.equals(Constants.LOGIN_DECISION.LOGIN.ordinal)!!) {
                 (activity as SignIn).loadSignInFragment()
             } else {
-                (activity as SignIn).toSignUpFragment()
+                (activity as SignIn).loadSelectBoardFragment()
             }
 
         }

@@ -10,7 +10,7 @@ import android.support.v4.app.FragmentTransaction
 class FragmentUtils(private val fragmentManager: android.support.v4.app.FragmentManager) {
     private lateinit var fragmentTransaction: FragmentTransaction
 
-    fun beginTransaction():FragmentUtils {
+    fun beginTransaction(): FragmentUtils {
         fragmentTransaction = fragmentManager.beginTransaction()
         return this
     }
@@ -40,6 +40,16 @@ class FragmentUtils(private val fragmentManager: android.support.v4.app.Fragment
         fragmentTransaction.replace(containerId, fragment)
         return this
     }
+
+    /**
+     *
+     * Same as replace method but has a replace with tag option.
+     */
+    fun replaceWithTag(containerId: Int, fragment: Fragment, tag: String): FragmentUtils {
+        fragmentTransaction.replace(containerId, fragment, tag)
+        return this
+    }
+
 
     /**
      * Commit a fragment transaction.

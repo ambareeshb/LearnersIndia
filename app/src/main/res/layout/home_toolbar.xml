@@ -13,19 +13,25 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
-        android:clickable="true"
-        android:tint="@color/offWhite"
         android:alpha=".6"
-        android:src="@drawable/ic_arrow_back"/>
+        android:clickable="true"
+        android:src="@drawable/ic_arrow_back"
+        android:visibility="gone" />
 
-    <Button
-        android:id="@+id/toolbarButton"
-        style="@style/StyleLoginButton"
+    <TextView
+        android:id="@+id/toolbarTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true" />
+
+    <ImageView
+        android:id="@+id/toolbarSearch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
-        android:text="Login" />
+        android:src="@drawable/ic_search"
+        android:tint="@color/offWhite" />
 
 
 </RelativeLayout>

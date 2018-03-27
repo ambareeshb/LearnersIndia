@@ -20,14 +20,49 @@
         <item name="android:fontFamily">@font/nawabiat</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">match_parent</item>
-        <item name="android:textSize">22sp</item>
+        <item name="android:textSize">25sp</item>
+        <item name="android:lines">1</item>
+    </style>
+
+    <style name="SignInText">
+        <item name="android:fontFamily">@font/nawabiat</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:textSize">25sp</item>
+        <item name="android:layout_marginBottom">10dp</item>
         <item name="android:lines">1</item>
     </style>
 
     <style name="ProgressBarStyle">
+        <item name="android:visibility">gone</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_centerInParent">true</item>
     </style>
 
+    <style name="HintAppearance" parent="Widget.Design.TextInputLayout">
+        <item name="android:fontFamily">@font/nawabiat</item>
+    </style>
+
+    <style name="HomeItemStyle">
+        <item name="android:layout_margin">5dp</item>
+        <item name="android:layout_width">100dp</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="UserProfileBottomButtonsStyle">
+        <item name="android:textStyle">bold</item>
+        <item name="android:fontFamily">@font/nawabiat</item>
+        <item name="android:textSize">21sp</item>
+        <item name="android:textColor">@color/colorBlue</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+    </style>
+
+    <style name="UserProfileTextStyles">
+        <item name="android:textColor">@color/colorBlue</item>
+        <item name="android:fontFamily">@font/nawabiat</item>
+        <item name="android:layout_marginLeft">10dp</item>
+        <item name="android:textSize">20sp</item>
+    </style>
 </resources>

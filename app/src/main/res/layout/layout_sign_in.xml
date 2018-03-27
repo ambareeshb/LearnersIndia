@@ -3,23 +3,38 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:divider="@drawable/divider_vertical"
         android:orientation="vertical"
-        android:layout_height="wrap_content">
+        android:showDividers="middle">
 
         <include layout="@layout/toolbar" />
 
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_below="@+id/toolbar"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
             android:divider="@drawable/divider_vertical"
             android:gravity="center"
-            android:layout_gravity="center"
             android:orientation="vertical"
             android:padding="16dp"
-            android:layout_marginTop="30dp"
             android:showDividers="middle">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/profile_o" />
+
+            <TextView
+                style="@style/SignInText"
+                android:layout_marginBottom="5dp"
+                android:gravity="center"
+                android:lines="2"
+                android:text="Login with your \n Learners India Account details" />
 
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/userNameLayout"
@@ -29,8 +44,8 @@
 
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/userName"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    style="@style/SignInText"
+                    android:inputType="textEmailAddress|phone" />
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
@@ -41,13 +56,12 @@
 
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/password"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="textPassword" />
+                    style="@style/SignInText" />
             </android.support.design.widget.TextInputLayout>
 
             <android.support.v7.widget.AppCompatTextView
                 android:id="@+id/forgotPassword"
+                style="@style/SignInText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Forgot Password ?"
@@ -58,8 +72,13 @@
                 style="@style/StyleLoginButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:text="Sign In" />
 
         </LinearLayout>
-    </LinearLayout>
+
+        <ProgressBar
+            android:id="@+id/progress"
+            style="@style/ProgressBarStyle" />
+    </RelativeLayout>
 </ScrollView>

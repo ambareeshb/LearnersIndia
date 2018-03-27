@@ -57,6 +57,8 @@ ext {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'com.android.support:appcompat-v7:26.1.0'
+    implementation 'com.android.support:design:26.1.0'
+    implementation 'com.android.support:cardview-v7:26.1.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
@@ -68,6 +70,14 @@ dependencies {
     implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.+'
     //Carousal view
     implementation 'fr.rolandl:carousel:1.0.1@aar'
+    //Search view
+    implementation 'com.quinny898.library.persistentsearch:library:1.1.0-SNAPSHOT'
+    //Progress
+    implementation 'com.github.castorflex.smoothprogressbar:library:1.0.1-SNAPSHOT@aar'
+    //Circular image view.
+    implementation 'de.hdodenhof:circleimageview:2.2.0'
+    //phone number
+    implementation 'com.hbb20:ccp:2.1.2'
 
     //Retrofit
     implementation "com.squareup.retrofit2:retrofit:$RETROFIT_VERSION"
@@ -96,9 +106,6 @@ dependencies {
     implementation 'com.android.support:multidex:1.0.2'
     //Annotations
     kapt "com.google.dagger:dagger-compiler:$DAGGER_VERSION"
-    //phone number
-    implementation 'com.hbb20:ccp:2.1.2'
-    implementation 'com.android.support:design:26.1.0'
 }
 repositories {
     mavenCentral()

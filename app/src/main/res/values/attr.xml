@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="HomeItem">
+        <attr name="headerColor" format="reference" />
+        <attr name="homeItemImage" format="reference" />
+        <attr name="homeItemText" format="string" />
+    </declare-styleable>
+</resources>

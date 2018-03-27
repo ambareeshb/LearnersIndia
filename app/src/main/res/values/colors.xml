@@ -4,4 +4,17 @@
     <color name="colorPrimaryDark">#F46621</color>
     <color name="colorAccent">#F97F27</color>
     <color name="colorBlue">#0E2F44</color>
+    <color name="offWhite">#f0f0f0</color>
+    <!--Home Item colors-->
+    <color name="paleViolet">#ae94cc</color>
+    <color name="paleGreen">#53ae82</color>
+    <color name="paleBrown">#942828</color>
+    <!--Extra colors for class pointers-->
+    <color name="palePink">#eaa2c8</color>
+    <color name="ivory">#b4cb64</color>
+    <color name="parrotGreen">#66CD00</color>
+    <color name="yellow">#f2e807</color>
+    <color name="skyBlue">#cee7ff</color>
+    <color name="darkViolet">#8b4789</color>
+    <color name="paleYellow">#FFE965</color>
 </resources>

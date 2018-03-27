@@ -18,14 +18,11 @@
         android:alpha=".6"
         android:src="@drawable/ic_arrow_back"/>
 
-    <Button
-        android:id="@+id/toolbarButton"
-        style="@style/StyleLoginButton"
+    <TextView
+        android:id="@+id/toolbarTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"
-        android:text="Login" />
+        android:layout_centerInParent="true" />
 
 
 </RelativeLayout>

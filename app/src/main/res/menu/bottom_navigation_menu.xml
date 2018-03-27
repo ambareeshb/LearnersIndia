@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/premium"
+        android:icon="@drawable/premium_o"
+        app:showAsAction="always|withText"
+        android:title="Premium" />
+
+    <item
+        android:id="@+id/progress"
+        app:showAsAction="always|withText"
+        android:icon="@drawable/progress_o"
+        android:title="Progress" />
+    <item
+        android:id="@+id/feed"
+        app:showAsAction="always|withText"
+        android:icon="@drawable/ic_feed"
+        android:title="Feed" />
+    <item
+        android:id="@+id/ask"
+        app:showAsAction="always|withText"
+        android:icon="@drawable/ic_question_answer_black"
+        android:title="Ask &amp; Ans" />
+    <item
+        android:id="@+id/profile"
+        app:showAsAction="always|withText"
+        android:icon="@drawable/profile_o"
+        android:title="Profile" />
+</menu>

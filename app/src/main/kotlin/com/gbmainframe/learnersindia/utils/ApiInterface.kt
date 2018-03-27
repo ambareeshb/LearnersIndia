@@ -1,9 +1,6 @@
 package com.gbmainframe.learnersindia.utils
 
-import com.gbmainframe.learnersindia.models.Board
-import com.gbmainframe.learnersindia.models.ClassInfo
-import com.gbmainframe.learnersindia.models.SignInResponse
-import com.gbmainframe.learnersindia.models.SignUpResponse
+import com.gbmainframe.learnersindia.models.*
 import retrofit2.http.GET
 import retrofit2.http.Query
 import rx.Observable
@@ -32,8 +29,28 @@ interface ApiInterface {
     fun signIn(@Query("usertype") userType: String,
                @Query("loginid") loginId: String,
                @Query("password") password: String
-    ):Observable<SignInResponse>
+    ): Observable<SignInResponse>
+
+    @GET("reccomented-questions")
+    fun getRecommendedQuestions(): Observable<ArrayList<RecommendedQuestions>>
 
     @GET("get-free-videos")
     fun getFreeVideos()
+
+
+    @GET("ask-question")
+    fun askQuestion(@Query("tocken") token: String,
+                    @Query("syl_id") sylId: Int,
+                    @Query("class_id") classId: Int,
+                    @Query("sub_id") subId: Int = 1,
+                    @Query("chap_id") chapId: Int = 1,
+                    @Query("q_title") title: String = "Mathematics",
+                    @Query("q_details") details: String): Observable<BaseApiModel>
+
+    @GET("get-chapters")
+    fun getChapters(@Query("tocken") token: String,
+                    @Query("syl_id") sylId: Int,
+                    @Query("class_id") classId: Int,
+                    @Query("sub_id") subId: Int = 1): Observable<ArrayList<ChapterModel>>
+
 }

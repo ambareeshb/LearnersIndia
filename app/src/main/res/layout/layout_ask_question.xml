@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/ask_question_toolbar" />
+
+    <EditText
+        android:id="@+id/askQuestionText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/toolbar"
+        android:gravity="top"
+        android:hint="@string/ask_question"
+        android:minHeight="300dp"
+        android:padding="10dp" />
+
+    <ImageButton
+        android:id="@+id/buttonAskQuestionAttachment"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/askQuestionText"
+        android:layout_margin="15dp"
+        android:background="@drawable/dotted_square"
+        android:padding="15dp"
+        android:src="@drawable/ic_add_circle_outline_black_24dp" />
+
+    <LinearLayout
+        android:id="@+id/askQuestionButtonsBottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@id/buttonAskQuestionAttachment"
+        android:gravity="bottom"
+        android:divider="@drawable/divider_vertical"
+        android:showDividers="middle"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/buttonGallery"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:background="@color/colorPrimary"
+            android:src="@drawable/ic_image_black_24dp"
+            android:tint="@color/offWhite" />
+
+
+        <ImageButton
+            android:id="@+id/buttonCamera"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:background="@color/colorPrimary"
+            android:src="@drawable/ic_camera_alt_black_24dp"
+            android:tint="@color/offWhite" />
+
+    </LinearLayout>
+
+</RelativeLayout>

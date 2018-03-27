@@ -45,6 +45,9 @@ class SignUpFragment : Fragment() {
             !hasAllFields(fullName.text, emailText.text, passwordText.text, passwordRetype.text, classText.text, boardText.text, textPhoneNumber.text) -> Snackbar.make(view!!, R.string.error_fields_empty, Snackbar.LENGTH_SHORT).show()
             (passwordText.text.toString() == passwordRetype.text.toString()).not() -> Snackbar.make(view!!, R.string.error_retype_password_again, Snackbar.LENGTH_SHORT).show()
             else -> {
+                buttonSignUp.isEnabled = false
+                progress.visibility = View.VISIBLE
+
                 val apiInterface = RetrofitUtils.initRetrofit(ApiInterface::class.java)
                 arguments?.let {
                     apiInterface.signUp("student",
@@ -55,18 +58,27 @@ class SignUpFragment : Fragment() {
                             it.getParcelable<Board>(SignIn.BOARD_PARCEL).syl_id,
                             it.getParcelable<ClassInfo>(SignIn.CLASS_PARCEL).cls_id)
                             .flatMap { data ->
-                               Log.d("SIGNUP_RESPONSE",data.email)
-                                apiInterface.signIn("student",data.email,passwordText.textString()) }
+                                if (data.response_type == "error") {
+                                    Snackbar.make(view!!, data.response_text, Snackbar.LENGTH_LONG).show()
+                                }
+                                apiInterface.signIn("student", data.email
+                                        ?: "", passwordText.textString())
+                            }
                             .subscribeOn(Schedulers.io())
                             .observeOn(AndroidSchedulers.mainThread())
                             .subscribe({ data ->
+                                buttonSignUp.isEnabled = true
+                                progress.visibility = View.GONE
+
                                 if (data.response_type == "error") {
-                                    Snackbar.make(view!!, data.response_text, Snackbar.LENGTH_SHORT).show()
+//                                    Snackbar.make(view!!, data.response_text, Snackbar.LENGTH_SHORT).show()
                                     return@subscribe
                                 }
                                 startActivity(Intent(activity, Home::class.java))
                                 activity?.finish()
                             }, { error ->
+                                buttonSignUp.isEnabled = true
+                                progress.visibility = View.GONE
                                 error.printStackTrace()
                                 Snackbar.make(view!!, "Something went wrong", Snackbar.LENGTH_SHORT).show()
 

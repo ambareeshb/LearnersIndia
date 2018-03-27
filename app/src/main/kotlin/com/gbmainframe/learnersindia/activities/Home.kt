@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v4.app.FragmentManager
 import android.support.v7.app.AppCompatActivity
+import android.view.WindowManager
 import com.gbmainframe.learnersindia.R
 import com.gbmainframe.learnersindia.fragments.*
 import com.gbmainframe.learnersindia.utils.FragmentUtils
@@ -14,6 +15,7 @@ class Home : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        window.setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE)
         setContentView(R.layout.activity_home)
         homeBottomNavigation.selectedItemId = R.id.feed
         loadHomeFeedFragment()
@@ -47,8 +49,11 @@ class Home : AppCompatActivity() {
      * Fragment having search option and recommended search.
      */
     fun loadHomeFeedFragment() {
+        if (supportFragmentManager.findFragmentByTag(HomeFragment.FRAGMENT_TAG) == null) {
+            FragmentUtils(supportFragmentManager).beginTransaction().replaceWithTag(R.id.fragmentContainer, HomeFragment(), HomeFragment.FRAGMENT_TAG)
+                    .commit()
+        }
         supportFragmentManager.popBackStack(AskQuestionFragment.TAG, FragmentManager.POP_BACK_STACK_INCLUSIVE)
-        FragmentUtils(supportFragmentManager).beginTransaction().replace(R.id.fragmentContainer, HomeFragment()).commit()
     }
 
     /**
@@ -87,6 +92,13 @@ class Home : AppCompatActivity() {
                 .replace(R.id.fragmentContainer, AskQuestionFragment())
                 .addToBackStack(true, AskQuestionFragment.TAG)
                 .commit()
+    }
+
+    /**
+     * Pop the latest entry from back stack.
+     */
+    fun popBackStack() {
+        supportFragmentManager.popBackStack()
     }
 
     override fun onBackPressed() {

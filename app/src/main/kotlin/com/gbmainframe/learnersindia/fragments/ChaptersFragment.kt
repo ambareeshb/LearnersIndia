@@ -28,7 +28,7 @@ class ChaptersFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         toolbarTitle.text = getString(R.string.chapters)
-        backButton.setOnClickListener { (activity as Home).loadHomeFeedFragment() }
+        backButton.setOnClickListener { (activity as Home).popBackStack() }
         //Api to list chapters
         progress.visibility = View.VISIBLE
         activity?.let {
@@ -40,6 +40,11 @@ class ChaptersFragment : Fragment() {
             ).subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe({
+                        if (it == null) {
+                            textNoChaptersAvailable.visibility = View.VISIBLE
+                            return@subscribe
+                        }
+                        textNoChaptersAvailable.visibility = View.GONE
                         progress.visibility = View.GONE
                         recyclerChapters.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
                         recyclerChapters.addItemDecoration(DividerItemDecoration(context, LinearLayoutManager.VERTICAL))
@@ -47,8 +52,8 @@ class ChaptersFragment : Fragment() {
 
                     }, {
                         progress.visibility = View.GONE
+                        textNoChaptersAvailable.visibility = View.VISIBLE
                         it.printStackTrace()
-
                     })
 
         }

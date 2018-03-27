@@ -29,6 +29,15 @@ import rx.schedulers.Schedulers
  * Created by ambareeshb on 26/03/18.
  */
 class HomeFragment : Fragment() {
+    companion object {
+        const val FRAGMENT_TAG = "HomeFragment"
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        retainInstance = true
+    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? = inflater.inflate(R.layout.layout_home_fragment, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -52,14 +61,13 @@ class HomeFragment : Fragment() {
          * Home item click listeners.
          */
         homeItemPractise.setOnClickListener {
-            Snackbar.make(view,"Practise session will be available soon",Snackbar.LENGTH_SHORT).show()
-
-        }
-        homeItemTest.setOnClickListener {
             (activity as Home).loadChapterListFragment()
         }
+        homeItemTest.setOnClickListener {
+            Snackbar.make(view, "Test session will be available soon", Snackbar.LENGTH_SHORT).show()
+        }
         homeItemVideo.setOnClickListener {
-            Snackbar.make(view,"Video session will be available soon",Snackbar.LENGTH_SHORT).show()
+            Snackbar.make(view, "Video session will be available soon", Snackbar.LENGTH_SHORT).show()
         }
 
         //Voice search available !
@@ -101,18 +109,18 @@ class HomeFragment : Fragment() {
         /**
          * Call API for recommended questions.
          */
-        progress.visibility = View.VISIBLE
+        progressHome.visibility = View.VISIBLE
 
         RetrofitUtils.initRetrofit(ApiInterface::class.java).getRecommendedQuestions()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ questions ->
-                    progress.visibility = View.GONE
+                    progressHome?.visibility = View.GONE
                     recyclerRecommended.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
                     recyclerRecommended.addItemDecoration(DividerItemDecoration(context, LinearLayoutManager.VERTICAL))
                     recyclerRecommended.adapter = RecommendedQuestionsAdapter(questions)
                 }, { error ->
-                    progress.visibility = View.GONE
+                    progressHome?.visibility = View.GONE
                     Snackbar.make(view, R.string.something_went_wrong, Snackbar.LENGTH_SHORT).show()
                     error.printStackTrace()
                 })

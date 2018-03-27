@@ -62,7 +62,7 @@
             android:padding="5dp" />
 
         <ProgressBar
-            android:id="@+id/progress"
+            android:id="@+id/progressHome"
             style="@style/ProgressBarStyle" />
     </RelativeLayout>
 

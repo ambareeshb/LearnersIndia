@@ -13,16 +13,20 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
-        android:clickable="true"
-        android:tint="@color/offWhite"
         android:alpha=".6"
-        android:src="@drawable/ic_arrow_back"/>
+        android:clickable="true"
+        android:src="@drawable/ic_arrow_back"
+        android:tint="@color/offWhite" />
 
     <TextView
         android:id="@+id/toolbarTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true" />
+        android:layout_centerInParent="true"
+        android:fontFamily="@font/nawabiat"
+        android:text="25sp"
+        android:textColor="@color/offWhite"
+        android:textStyle="bold" />
 
 
 </RelativeLayout>

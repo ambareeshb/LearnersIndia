@@ -11,10 +11,11 @@ import com.google.gson.Gson
  */
 
 object sharedPrefManager {
-    val SHARED_PREFERENCE_NAME = "LEARNERS_INDIA"
-    val USER_SIGNED_IN = "SIGN_IN"
-    val USER_DATA = "USER_DATA"
-    fun getSharedPreference(context: Context) =
+    private const val SHARED_PREFERENCE_NAME = "LEARNERS_INDIA"
+    private const val USER_SIGNED_IN = "SIGN_IN"
+    private const val USER_DATA = "USER_DATA"
+    
+    private fun getSharedPreference(context: Context) =
             context.getSharedPreferences(SHARED_PREFERENCE_NAME, MODE_PRIVATE)
 
     private fun loginUser(context: Context) =
@@ -27,7 +28,7 @@ object sharedPrefManager {
 
     fun putUserInfo(context: Context, user: UserData) {
         val userJson = Gson().toJson(user)
-        getSharedPreference(context).edit().putString(USER_DATA, userJson).apply()
+        getSharedPreference(context).edit().putString(USER_DATA, userJson).commit()
         loginUser(context)
     }
 

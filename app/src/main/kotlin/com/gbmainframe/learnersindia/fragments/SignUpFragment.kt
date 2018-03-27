@@ -16,6 +16,7 @@ import com.gbmainframe.learnersindia.models.Board
 import com.gbmainframe.learnersindia.models.ClassInfo
 import com.gbmainframe.learnersindia.utils.ApiInterface
 import com.gbmainframe.learnersindia.utils.RetrofitUtils
+import com.gbmainframe.learnersindia.utils.sharedPrefManager
 import kotlinx.android.synthetic.main.layout_sign_up.*
 import kotlinx.android.synthetic.main.toolbar.*
 import rx.android.schedulers.AndroidSchedulers
@@ -74,8 +75,11 @@ class SignUpFragment : Fragment() {
 //                                    Snackbar.make(view!!, data.response_text, Snackbar.LENGTH_SHORT).show()
                                     return@subscribe
                                 }
-                                startActivity(Intent(activity, Home::class.java))
-                                activity?.finish()
+                                activity?.let{
+                                    sharedPrefManager.putUserInfo(it, data.user_data)
+                                    startActivity(Intent(activity, Home::class.java))
+                                    activity?.finish()
+                                }
                             }, { error ->
                                 buttonSignUp.isEnabled = true
                                 progress.visibility = View.GONE

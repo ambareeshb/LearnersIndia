@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.support.v7.app.AppCompatActivity
+import android.view.WindowManager
 import com.gbmainframe.learnersindia.R
 import com.gbmainframe.learnersindia.utils.sharedPrefManager
 
@@ -18,6 +19,7 @@ class SplashActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        window.setFlags(WindowManager.LayoutParams.FLAG_SECURE,WindowManager.LayoutParams.FLAG_SECURE)
         setContentView(R.layout.activity_splash)
         handler = Handler()
     }

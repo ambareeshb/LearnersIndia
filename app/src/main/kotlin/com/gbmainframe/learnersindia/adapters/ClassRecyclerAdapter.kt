@@ -31,7 +31,7 @@ class ClassRecyclerAdapter(private val classList: ArrayList<ClassInfo>,
         private val colors = arrayListOf(
                 R.color.paleBrown, R.color.paleGreen,
                 R.color.paleViolet, R.color.ivory,
-                R.color.orange, R.color.palePink,
+                R.color.colorPrimary, R.color.palePink,
                 R.color.yellow,R.color.paleYellow,
                 R.color.skyBlue,R.color.parrotGreen,R.color.darkViolet)
 

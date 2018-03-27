@@ -3,6 +3,7 @@ package com.gbmainframe.learnersindia.activities
 import android.app.FragmentManager
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.view.WindowManager
 import com.gbmainframe.learnersindia.R
 import com.gbmainframe.learnersindia.constants.Constants
 import com.gbmainframe.learnersindia.fragments.*
@@ -20,6 +21,7 @@ class SignIn : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        window.setFlags(WindowManager.LayoutParams.FLAG_SECURE,WindowManager.LayoutParams.FLAG_SECURE)
         setContentView(R.layout.activity_sign_in)
         loadTutorialView()
     }

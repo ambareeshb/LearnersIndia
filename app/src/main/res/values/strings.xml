@@ -38,4 +38,5 @@
     <string name="ask_question_empty">Please type the question</string>
     <string name="chapters">Chapters</string>
     <string name="no_chapters_available">No chapters available currently.</string>
+    <string name="please_allow_permission">Please allow required permissions</string>
 </resources>

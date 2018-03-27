@@ -57,9 +57,9 @@ class SignInFragment : Fragment() {
                         }
                         activity?.let {
                             sharedPrefManager.putUserInfo(it, data.user_data)
+                            startActivity(Intent(activity, Home::class.java))
+                            activity?.finish()
                         }
-                        startActivity(Intent(activity, Home::class.java))
-                        activity?.finish()
                     }, { error ->
                         it.isEnabled = true
                         progress.visibility = View.GONE

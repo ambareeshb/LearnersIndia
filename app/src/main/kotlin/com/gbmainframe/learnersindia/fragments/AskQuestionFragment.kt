@@ -2,11 +2,13 @@ package com.gbmainframe.learnersindia.fragments
 
 import android.app.Activity
 import android.content.Intent
+import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.support.design.widget.Snackbar
 import android.support.v4.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -27,6 +29,7 @@ import rx.schedulers.Schedulers
 
 class AskQuestionFragment : Fragment(), EasyPermissions.PermissionCallbacks {
     override fun onPermissionsDenied(requestCode: Int, perms: MutableList<String>) {
+        Snackbar.make(view!!, R.string.please_allow_permission, Snackbar.LENGTH_SHORT).show()
     }
 
     override fun onPermissionsGranted(requestCode: Int, perms: MutableList<String>) {
@@ -45,13 +48,13 @@ class AskQuestionFragment : Fragment(), EasyPermissions.PermissionCallbacks {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        EasyPermissions.requestPermissions(activity as Home,
+        EasyPermissions.requestPermissions(this,
                 getString(R.string.storage_permission_rationale),
                 RC_STORAGE,
                 android.Manifest.permission.READ_EXTERNAL_STORAGE,
                 android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
         toolbarCloseButton.setOnClickListener {
-            (activity as Home).loadHomeFeedFragment()
+            (activity as Home).popBackStack()
         }
         toolBarDoneButton.setOnClickListener {
             if (askQuestionText.text.isBlank()) {
@@ -101,13 +104,19 @@ class AskQuestionFragment : Fragment(), EasyPermissions.PermissionCallbacks {
             return
         }
         data?.let {
-            val uri = data.extras["data"] as Uri
+            val dataImage = data.extras["data"]
+            when(dataImage){
+                is Bitmap -> Log.d("DATA_IMAGE","Bitmap")
+                is Uri -> Log.d("DATA_IMAGE","URI")
+                else -> Log.d("DATA_IMAGE","SOME thing else")
+            }
+            Log.d("Test","Test")
             when (requestCode) {
                 RC_CAMERA -> {
-                    buttonAskQuestionAttachment.setImageURI(uri)
+                    buttonAskQuestionAttachment.setImageBitmap(dataImage as Bitmap)
                 }
                 RC_GALLERY -> {
-                    buttonAskQuestionAttachment.setImageURI(uri)
+                    buttonAskQuestionAttachment.setImageURI(null)
                 }
             }
         }
@@ -135,6 +144,7 @@ class AskQuestionFragment : Fragment(), EasyPermissions.PermissionCallbacks {
             )
         }
     }
+
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, activity as Home)

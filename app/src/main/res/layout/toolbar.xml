@@ -3,7 +3,6 @@
     android:id="@+id/toolbar"
     android:layout_width="match_parent"
     android:layout_height="?attr/actionBarSize"
-    android:background="@color/colorPrimary"
     android:orientation="horizontal"
     android:padding="5dp">
 
@@ -14,13 +13,12 @@
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
         android:clickable="true"
-        android:tint="@color/offWhite"
         android:alpha=".6"
         android:src="@drawable/ic_arrow_back"/>
 
     <Button
         android:id="@+id/toolbarButton"
-        style="@style/StyleLoginButton"
+        style="@style/StyleLoginButtonHollow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"

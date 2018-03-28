@@ -25,16 +25,16 @@
             android:showDividers="middle">
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/profile_o" />
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/ic_launcher" />
 
             <TextView
                 style="@style/SignInText"
                 android:layout_marginBottom="5dp"
                 android:gravity="center"
                 android:lines="2"
-                android:text="Login with your \n Learners India Account details" />
+                android:text="@string/login_top_message" />
 
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/userNameLayout"
@@ -69,7 +69,7 @@
 
             <android.support.v7.widget.AppCompatButton
                 android:id="@+id/buttonSignIn"
-                style="@style/StyleLoginButton"
+                style="@style/StyleLoginButtonSolid"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"

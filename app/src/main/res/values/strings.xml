@@ -39,4 +39,7 @@
     <string name="chapters">Chapters</string>
     <string name="no_chapters_available">No chapters available currently.</string>
     <string name="please_allow_permission">Please allow required permissions</string>
+    <string name="let_s_get_started">Let\'s get started</string>
+    <string name="terms_and_conditions"><![CDATA[By signing up, you agree the T&C and authorise Learners India and its partners to call or sms you with reference to Learners India]]></string>
+    <string name="login_top_message">Login with your   Learners India Account details</string>
 </resources>

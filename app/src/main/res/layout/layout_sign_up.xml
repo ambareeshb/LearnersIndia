@@ -22,6 +22,43 @@
             android:padding="16dp"
             android:showDividers="middle">
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nawabiat"
+                android:gravity="center"
+                android:padding="15dp"
+                android:text="@string/let_s_get_started"
+                android:textSize="36sp"
+                android:textStyle="bold" />
+
+            <RelativeLayout
+                android:layout_width="200dp"
+                android:layout_height="200dp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/avatar"
+                    android:foregroundGravity="center"
+                    android:padding="25dp"
+                    android:src="@drawable/face" />
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentRight="true"
+                    android:src="@color/offWhite" />
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentRight="true"
+                    android:src="@drawable/ic_add_black_24dp" />
+            </RelativeLayout>
 
             <EditText
                 android:id="@+id/fullName"
@@ -44,21 +81,21 @@
             <EditText
                 android:id="@+id/passwordRetype"
                 style="@style/SignUpText"
-                android:hint="@string/retype_password"
                 android:layout_marginBottom="3dp"
+                android:hint="@string/retype_password"
                 android:inputType="textPassword" />
 
             <TextView
                 android:id="@+id/boardText"
-                android:textSize="25sp"
+                style="@style/SignUpText"
                 android:layout_marginBottom="3dp"
-                style="@style/SignUpText" />
+                android:textSize="25sp" />
 
             <TextView
                 android:id="@+id/classText"
-                android:textSize="25sp"
+                style="@style/SignUpText"
                 android:layout_marginBottom="3dp"
-                style="@style/SignUpText" />
+                android:textSize="25sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -74,8 +111,8 @@
 
                 <EditText
                     android:id="@+id/textPhoneNumber"
-                    android:hint="@string/mobile"
                     style="@style/SignUpText"
+                    android:hint="@string/mobile"
                     android:inputType="phone" />
 
             </LinearLayout>
@@ -83,11 +120,21 @@
 
             <android.support.v7.widget.AppCompatButton
                 android:id="@+id/buttonSignUp"
-                style="@style/StyleLoginButton"
+                style="@style/StyleLoginButtonSolid"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/sign_up" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nawabiat"
+                android:gravity="center"
+                android:padding="15dp"
+                android:text="@string/terms_and_conditions"
+                android:textStyle="bold" />
         </LinearLayout>
+
         <ProgressBar
             android:id="@+id/progress"
             style="@style/ProgressBarStyle" />

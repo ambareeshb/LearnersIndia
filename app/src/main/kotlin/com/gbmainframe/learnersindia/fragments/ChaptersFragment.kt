@@ -40,12 +40,12 @@ class ChaptersFragment : Fragment() {
             ).subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe({
+                        progress.visibility = View.GONE
                         if (it == null) {
                             textNoChaptersAvailable.visibility = View.VISIBLE
                             return@subscribe
                         }
                         textNoChaptersAvailable.visibility = View.GONE
-                        progress.visibility = View.GONE
                         recyclerChapters.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
                         recyclerChapters.addItemDecoration(DividerItemDecoration(context, LinearLayoutManager.VERTICAL))
                         recyclerChapters.adapter = ChaptersAdapter(it)

@@ -37,7 +37,6 @@ class AskQuestionFragment : Fragment(), EasyPermissions.PermissionCallbacks {
     }
 
     companion object {
-        const val TAG = "AskFragment"
         const val RC_GALLERY = 10003
         const val RC_CAMERA = 10008
         const val RC_STORAGE = 10009

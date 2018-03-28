@@ -13,6 +13,10 @@ import kotlinx.android.synthetic.main.activity_home.*
 
 class Home : AppCompatActivity() {
 
+    companion object {
+        const val TAG = "CommonFragmentTag"
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         window.setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE)
@@ -37,6 +41,10 @@ class Home : AppCompatActivity() {
                     loadPremiumFragment()
                     return@setOnNavigationItemSelectedListener true
                 }
+                R.id.ask -> {
+                    loadQuestionsListFragment()
+                    true
+                }
                 else -> {
                     Snackbar.make(layoutRelative, "Under construction", Snackbar.LENGTH_SHORT).show()
                     true
@@ -53,14 +61,14 @@ class Home : AppCompatActivity() {
             FragmentUtils(supportFragmentManager).beginTransaction().replaceWithTag(R.id.fragmentContainer, HomeFragment(), HomeFragment.FRAGMENT_TAG)
                     .commit()
         }
-        supportFragmentManager.popBackStack(AskQuestionFragment.TAG, FragmentManager.POP_BACK_STACK_INCLUSIVE)
+        supportFragmentManager.popBackStack(TAG, FragmentManager.POP_BACK_STACK_INCLUSIVE)
     }
 
     /**
      * Load user profile fragment.
      */
     private fun loadProfileFragment() {
-        supportFragmentManager.popBackStack(AskQuestionFragment.TAG, FragmentManager.POP_BACK_STACK_INCLUSIVE)
+        supportFragmentManager.popBackStack(TAG, FragmentManager.POP_BACK_STACK_INCLUSIVE)
         FragmentUtils(supportFragmentManager).beginTransaction().replace(R.id.fragmentContainer, ProfileFragment()).commit()
     }
 
@@ -68,7 +76,7 @@ class Home : AppCompatActivity() {
      * Load user Premium features fragment.
      */
     private fun loadPremiumFragment() {
-        supportFragmentManager.popBackStack(AskQuestionFragment.TAG, FragmentManager.POP_BACK_STACK_INCLUSIVE)
+        supportFragmentManager.popBackStack(TAG, FragmentManager.POP_BACK_STACK_INCLUSIVE)
         FragmentUtils(supportFragmentManager).beginTransaction().replace(R.id.fragmentContainer, PremiumFragment()).commit()
     }
 
@@ -76,9 +84,10 @@ class Home : AppCompatActivity() {
      * Load chapter list fragment.
      */
     fun loadChapterListFragment() {
-        supportFragmentManager.popBackStack(AskQuestionFragment.TAG, FragmentManager.POP_BACK_STACK_INCLUSIVE)
-        FragmentUtils(supportFragmentManager).beginTransaction().replace(R.id.fragmentContainer, ChaptersFragment())
-                .addToBackStack(true, AskQuestionFragment.TAG)
+        supportFragmentManager.popBackStack(TAG, FragmentManager.POP_BACK_STACK_INCLUSIVE)
+        FragmentUtils(supportFragmentManager).beginTransaction()
+                .replace(R.id.fragmentContainer, ChaptersFragment())
+                .addToBackStack(true, TAG)
                 .commit()
     }
 
@@ -87,10 +96,21 @@ class Home : AppCompatActivity() {
      * Add asks question fragment to container.
      */
     fun loadAskQuestionFragment() {
-        supportFragmentManager.popBackStack(AskQuestionFragment.TAG, FragmentManager.POP_BACK_STACK_INCLUSIVE)
+        supportFragmentManager.popBackStack(TAG, FragmentManager.POP_BACK_STACK_INCLUSIVE)
         FragmentUtils(supportFragmentManager).beginTransaction()
                 .replace(R.id.fragmentContainer, AskQuestionFragment())
-                .addToBackStack(true, AskQuestionFragment.TAG)
+                .addToBackStack(true, TAG)
+                .commit()
+    }
+
+    /**
+     * Load chapter list fragment.
+     */
+    fun loadQuestionsListFragment() {
+        supportFragmentManager.popBackStack(TAG, FragmentManager.POP_BACK_STACK_INCLUSIVE)
+        FragmentUtils(supportFragmentManager).beginTransaction()
+                .replace(R.id.fragmentContainer, QuestionListFragment())
+                .addToBackStack(true, TAG)
                 .commit()
     }
 
@@ -101,7 +121,4 @@ class Home : AppCompatActivity() {
         supportFragmentManager.popBackStack()
     }
 
-    override fun onBackPressed() {
-        super.onBackPressed()
-    }
 }

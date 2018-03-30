@@ -165,13 +165,13 @@ class HomeFragment : Fragment() {
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe({
                         progressVideos.visibility = View.GONE
-                        if(it == null || it.response_type == getString(R.string.response_type_error)){
+                        if (it == null || it.response_type == getString(R.string.response_type_error) || it.response_data == null) {
                             textNoVideosAvailable.visibility = View.VISIBLE
                             return@subscribe
                         }
                         recyclerBestVideos.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
                         recyclerBestVideos.addItemDecoration(DividerItemDecoration(context, LinearLayoutManager.HORIZONTAL))
-                        recyclerBestVideos.adapter = VideosAdapter(it.response_data)
+                        recyclerBestVideos.adapter = VideosAdapter(it.response_data[0].video_data)
                     })
         }
     }

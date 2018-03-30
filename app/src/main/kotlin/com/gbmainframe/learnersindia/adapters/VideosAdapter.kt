@@ -24,7 +24,11 @@ class VideosAdapter(private val videoList: ArrayList<VideoModel>) : RecyclerView
     inner class VideoViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         fun bindView(video: VideoModel) {
             itemView.videoNameText.text = video.ved_title
-            itemView.videoPreview.setImageBitmap(Util.createThumbNailFromVideoUrl(video.ved_url, 5))
+            try {
+                itemView.videoPreview.setImageBitmap(Util.createThumbNailFromVideoUrl(video.ved_url, 5))
+            } catch (exception: IllegalAccessException) {
+            }
+
         }
     }
 }

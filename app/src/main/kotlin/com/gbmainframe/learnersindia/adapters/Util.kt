@@ -11,7 +11,7 @@ object Util {
                 setDataSource(videoPath)
                 //api time unit is micro seconds
             }.getFrameAtTime(timeInSeconds * 1000000,
-                    MediaMetadataRetriever.OPTION_CLOSEST_SYNC)
+                    MediaMetadataRetriever.OPTION_CLOSEST_SYNC)!!
 
 
 }

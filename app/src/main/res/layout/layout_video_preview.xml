@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_margin="20dp">
+
+        <ImageView
+            android:id="@+id/videoPreview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@color/paleBrown" />
+        <ImageView
+            android:layout_width="match_parent"
+            android:background="@color/overlay"
+            android:layout_height="match_parent" />
+
+        <ImageView
+            android:id="@+id/videoPlayIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@android:color/transparent"
+            android:scaleType="fitStart"
+            android:src="@drawable/play" />
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/videoNameText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/nawabiat"
+        android:gravity="center"
+        android:text="New video"
+        android:textSize="22sp"
+        android:textStyle="bold" />
+
+</LinearLayout>

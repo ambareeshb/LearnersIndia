@@ -1,8 +1,10 @@
 package com.gbmainframe.learnersindia.utils
 
 import com.gbmainframe.learnersindia.models.*
+import com.gbmainframe.learnersindia.models.apiresponses.ChapterResponse
 import com.gbmainframe.learnersindia.models.apiresponses.PaymentResponse
 import com.gbmainframe.learnersindia.models.apiresponses.RecommendedQuestionResponse
+import com.gbmainframe.learnersindia.models.apiresponses.VideoResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
 import rx.Observable
@@ -38,8 +40,12 @@ interface ApiInterface {
                                 @Query("sub_id") subId: Int,
                                 @Query("class_id") classId: Int): Observable<RecommendedQuestionResponse>
 
-    @GET("get-free-videos")
-    fun getFreeVideos()
+    @GET("get-videos")
+    fun getVideos(@Query("tocken") token: String,
+                  @Query("syl_id") sylId: Int,
+                  @Query("class_id") classId: Int,
+                  @Query("sub_id") subId: Int,
+                  @Query("chap_id") chapId: Int): Observable<VideoResponse>
 
 
     @GET("ask-question")
@@ -55,7 +61,7 @@ interface ApiInterface {
     fun getChapters(@Query("tocken") token: String,
                     @Query("syl_id") sylId: Int,
                     @Query("class_id") classId: Int,
-                    @Query("sub_id") subId: Int = 1): Observable<ArrayList<ChapterModel>>
+                    @Query("sub_id") subId: Int = 1): Observable<ChapterResponse>
 
     @GET("check-paid-status")
     fun checkPaidStatus(@Query("tocken") token: String): Observable<PaymentResponse>

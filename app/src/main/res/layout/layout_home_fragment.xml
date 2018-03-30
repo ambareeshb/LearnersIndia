@@ -136,6 +136,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/nawabiat"
                     android:padding="10dp"
+                    android:textStyle="bold"
                     android:text="@string/best_of_learners_india"
                     android:textSize="20sp" />
 
@@ -143,8 +144,7 @@
                     android:id="@+id/recyclerBestVideos"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="5dp"
-                    android:visibility="visible" />
+                    android:padding="5dp"/>
 
                 <ProgressBar
                     android:id="@+id/progressVideos"

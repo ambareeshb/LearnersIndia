@@ -20,4 +20,6 @@
     <color name="skyBlue">#cee7ff</color>
     <color name="darkViolet">#8b4789</color>
     <color name="errorRed">#e80427</color>
+
+    <color name="overlay">#55000000</color>
 </resources>

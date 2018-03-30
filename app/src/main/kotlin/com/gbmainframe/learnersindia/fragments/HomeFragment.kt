@@ -15,6 +15,7 @@ import android.view.ViewGroup
 import com.gbmainframe.learnersindia.R
 import com.gbmainframe.learnersindia.activities.Home
 import com.gbmainframe.learnersindia.adapters.RecommendedQuestionsAdapter
+import com.gbmainframe.learnersindia.adapters.VideosAdapter
 import com.gbmainframe.learnersindia.utils.ApiInterface
 import com.gbmainframe.learnersindia.utils.RetrofitUtils
 import com.gbmainframe.learnersindia.utils.sharedPrefManager
@@ -75,6 +76,9 @@ class HomeFragment : Fragment() {
         homeItemNotification.setOnClickListener {
             Snackbar.make(view, "will be available soon", Snackbar.LENGTH_SHORT).show()
         }
+        homeItemAsk.setOnClickListener {
+            (activity as Home).loadAskQuestionFragment()
+        }
 
         //Voice search available !
         searchbox.enableVoiceRecognition(this)
@@ -112,15 +116,16 @@ class HomeFragment : Fragment() {
 
         })
 
-        /**
-         * Call API for recommended questions.
-         */
-        progressHome.visibility = View.VISIBLE
-        textNoQuestionAvailable.visibility = View.GONE
 
         activity?.let {
 
             val user = sharedPrefManager.getUser(it)
+            /**
+             * Call API for recommended questions.
+             */
+            progressHome.visibility = View.VISIBLE
+            textNoQuestionAvailable.visibility = View.GONE
+
             RetrofitUtils.initRetrofit(ApiInterface::class.java).getRecommendedQuestions(
                     user.syl_id.toInt(),
                     1,
@@ -144,12 +149,30 @@ class HomeFragment : Fragment() {
                         Snackbar.make(view, R.string.something_went_wrong, Snackbar.LENGTH_SHORT).show()
                         error.printStackTrace()
                     })
-        }
-        /**
-         * On clicking floating action button on home.
-         */
-        homeItemAsk.setOnClickListener {
-            (activity as Home).loadAskQuestionFragment()
+            /**
+             * Api for recommended video list.
+             */
+            progressVideos.visibility = View.VISIBLE
+            textNoVideosAvailable.visibility = View.GONE
+
+            RetrofitUtils.initRetrofit(ApiInterface::class.java).getVideos(
+                    "ec251d72a1a590736de55f990e443aeb",
+                    sylId = 1,
+                    classId = 10,
+                    subId = 1,
+                    chapId = 9
+            ).subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe({
+                        progressVideos.visibility = View.GONE
+                        if(it == null || it.response_type == getString(R.string.response_type_error)){
+                            textNoVideosAvailable.visibility = View.VISIBLE
+                            return@subscribe
+                        }
+                        recyclerBestVideos.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+                        recyclerBestVideos.addItemDecoration(DividerItemDecoration(context, LinearLayoutManager.HORIZONTAL))
+                        recyclerBestVideos.adapter = VideosAdapter(it.response_data)
+                    })
         }
     }
 

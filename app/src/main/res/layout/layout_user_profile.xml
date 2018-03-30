@@ -14,10 +14,11 @@
 
             <ImageView
                 android:id="@+id/profileBg"
-                android:src="@drawable/top"
-                android:scaleType="fitStart"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:scaleType="fitStart"
+                android:src="@drawable/top" />
+
             <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/profile_image"
                 android:layout_width="96dp"
@@ -32,11 +33,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
-                android:textStyle="bold"
                 android:layout_toRightOf="@id/profile_image"
                 android:fontFamily="@font/nawabiat"
                 android:textColor="@color/offWhite"
-                android:textSize="23sp" />
+                android:textSize="23sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/className"
@@ -153,16 +154,28 @@
                     android:layout_weight="1"
                     android:text="@string/subscription" />
 
-                <TextView
-                    android:id="@+id/subscriptionValue"
-                    style="@style/UserProfileTextStyles"
+                <FrameLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
-                    android:layout_weight="1"
-                    android:textStyle="bold"
-                    android:text="@string/subscription_free"
-                    android:textColor="@color/paleGreen" />
+                    android:layout_weight="1">
+
+                    <ProgressBar
+                        android:id="@+id/paymentStatusProgress"
+                        style="@style/ProgressBarStyle"
+                        android:layout_gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:id="@+id/subscriptionValue"
+                        style="@style/UserProfileTextStyles"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:textColor="@color/paleGreen"
+                        android:textStyle="bold" />
+                </FrameLayout>
 
                 <Button
                     android:id="@+id/buttonPremium"
@@ -190,9 +203,9 @@
                 <TextView
                     style="@style/UserProfileTextStyles"
                     android:layout_width="match_parent"
-                    android:gravity="center_vertical"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="20dp"
+                    android:gravity="center_vertical"
                     android:text="@string/edit_profile" />
             </LinearLayout>
 
@@ -214,8 +227,8 @@
                     style="@style/UserProfileTextStyles"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:gravity="center_vertical"
                     android:layout_marginLeft="20dp"
+                    android:gravity="center_vertical"
                     android:text="@string/invite_friends" />
             </LinearLayout>
 
@@ -235,10 +248,10 @@
 
                 <TextView
                     style="@style/UserProfileTextStyles"
-                    android:gravity="center_vertical"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="20dp"
+                    android:gravity="center_vertical"
                     android:text="@string/feedback" />
             </LinearLayout>
 
@@ -260,8 +273,8 @@
                     style="@style/UserProfileTextStyles"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:gravity="center_vertical"
                     android:layout_marginLeft="20dp"
+                    android:gravity="center_vertical"
                     android:text="@string/call_us" />
             </LinearLayout>
 
@@ -283,11 +296,11 @@
                     style="@style/UserProfileTextStyles"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:gravity="center_vertical"
-                    android:textStyle="bold"
                     android:layout_marginLeft="20dp"
+                    android:gravity="center_vertical"
                     android:text="@string/logout"
-                    android:textColor="@color/paleBrown" />
+                    android:textColor="@color/paleBrown"
+                    android:textStyle="bold" />
             </LinearLayout>
         </RelativeLayout>
 

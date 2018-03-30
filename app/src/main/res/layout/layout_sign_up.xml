@@ -118,6 +118,13 @@
             </LinearLayout>
 
 
+            <TextView
+                android:id="@+id/signUpErrorText"
+                style="@style/SignUpText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/errorRed" />
+
             <android.support.v7.widget.AppCompatButton
                 android:id="@+id/buttonSignUp"
                 style="@style/StyleLoginButtonSolid"

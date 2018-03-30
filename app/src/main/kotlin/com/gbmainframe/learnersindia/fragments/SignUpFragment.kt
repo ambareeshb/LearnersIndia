@@ -46,6 +46,7 @@ class SignUpFragment : Fragment() {
             !hasAllFields(fullName.text, emailText.text, passwordText.text, passwordRetype.text, classText.text, boardText.text, textPhoneNumber.text) -> Snackbar.make(view!!, R.string.error_fields_empty, Snackbar.LENGTH_SHORT).show()
             (passwordText.text.toString() == passwordRetype.text.toString()).not() -> Snackbar.make(view!!, R.string.error_retype_password_again, Snackbar.LENGTH_SHORT).show()
             else -> {
+                signUpErrorText.text = ""
                 buttonSignUp.isEnabled = false
                 progress.visibility = View.VISIBLE
 
@@ -60,6 +61,7 @@ class SignUpFragment : Fragment() {
                             it.getParcelable<ClassInfo>(SignIn.CLASS_PARCEL).cls_id)
                             .flatMap { data ->
                                 if (data.response_type == "error") {
+                                    signUpErrorText.text = data.response_text
                                     Snackbar.make(view!!, data.response_text, Snackbar.LENGTH_LONG).show()
                                 }
                                 apiInterface.signIn("student", data.email
@@ -75,7 +77,7 @@ class SignUpFragment : Fragment() {
 //                                    Snackbar.make(view!!, data.response_text, Snackbar.LENGTH_SHORT).show()
                                     return@subscribe
                                 }
-                                activity?.let{
+                                activity?.let {
                                     sharedPrefManager.putUserInfo(it, data.user_data)
                                     startActivity(Intent(activity, Home::class.java))
                                     activity?.finish()

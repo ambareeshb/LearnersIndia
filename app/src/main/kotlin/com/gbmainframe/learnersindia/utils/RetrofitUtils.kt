@@ -34,7 +34,7 @@ object RetrofitUtils {
      * Ok http client with logging interceptor.
      * @return
      */
-    val client: OkHttpClient
+    private val client: OkHttpClient
         get() {
             val logging = HttpLoggingInterceptor()
             logging.level = HttpLoggingInterceptor.Level.BODY

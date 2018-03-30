@@ -44,4 +44,5 @@
     <string name="login_top_message">Login with your   Learners India Account details</string>
     <string name="no_questions_available">No questions available</string>
     <string name="questions">Questions</string>
+    <string name="response_type_error">error</string>
 </resources>

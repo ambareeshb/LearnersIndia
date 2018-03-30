@@ -9,6 +9,7 @@
     <color name="paleViolet">#ae94cc</color>
     <color name="paleGreen">#53ae82</color>
     <color name="paleBrown">#942828</color>
+    <color name="errorRed">#e80427</color>
     <!--Extra colors for class pointers-->
     <color name="palePink">#eaa2c8</color>
     <color name="ivory">#b4cb64</color>

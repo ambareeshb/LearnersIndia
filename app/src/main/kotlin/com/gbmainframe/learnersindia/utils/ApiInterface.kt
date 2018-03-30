@@ -1,6 +1,7 @@
 package com.gbmainframe.learnersindia.utils
 
 import com.gbmainframe.learnersindia.models.*
+import com.gbmainframe.learnersindia.models.apiresponses.PaymentResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
 import rx.Observable
@@ -52,5 +53,8 @@ interface ApiInterface {
                     @Query("syl_id") sylId: Int,
                     @Query("class_id") classId: Int,
                     @Query("sub_id") subId: Int = 1): Observable<ArrayList<ChapterModel>>
+
+    @GET("check-paid-status")
+    fun checkPaidStatus(@Query("tocken") token: String): Observable<PaymentResponse>
 
 }

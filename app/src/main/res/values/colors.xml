@@ -5,17 +5,19 @@
     <color name="colorAccent">#F97F27</color>
     <color name="colorBlue">#0E2F44</color>
     <color name="offWhite">#f0f0f0</color>
+    <color name="white">#ffffff</color>
     <!--Home Item colors-->
     <color name="paleViolet">#ae94cc</color>
-    <color name="paleGreen">#53ae82</color>
-    <color name="paleBrown">#942828</color>
-    <color name="errorRed">#e80427</color>
+    <color name="paleGreen">#33cc99</color>
+    <color name="paleBrown">#b6927b</color>
+    <color name="paleBlue">#79c7e0</color>
+    <color name="palePink">#ffb6c1</color>
+    <color name="paleYellow">#FFE965</color>
     <!--Extra colors for class pointers-->
-    <color name="palePink">#eaa2c8</color>
     <color name="ivory">#b4cb64</color>
     <color name="parrotGreen">#66CD00</color>
     <color name="yellow">#f2e807</color>
     <color name="skyBlue">#cee7ff</color>
     <color name="darkViolet">#8b4789</color>
-    <color name="paleYellow">#FFE965</color>
+    <color name="errorRed">#e80427</color>
 </resources>

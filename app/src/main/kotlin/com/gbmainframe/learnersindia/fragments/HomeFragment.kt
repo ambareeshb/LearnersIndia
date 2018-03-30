@@ -51,7 +51,7 @@ class HomeFragment : Fragment() {
                 4 -> "TN"
                 else -> "CBSE"
             }
-            toolbarTitle.text = "$board ${user.cls_id}"
+            toolbarTitle.text = "$board - Class ${user.cls_id}"
         }
 
         toolbarSearch.setOnClickListener {
@@ -68,6 +68,12 @@ class HomeFragment : Fragment() {
         }
         homeItemVideo.setOnClickListener {
             Snackbar.make(view, "Video session will be available soon", Snackbar.LENGTH_SHORT).show()
+        }
+        homeItemGame.setOnClickListener {
+            Snackbar.make(view, "will be available soon", Snackbar.LENGTH_SHORT).show()
+        }
+        homeItemNotification.setOnClickListener {
+            Snackbar.make(view, "will be available soon", Snackbar.LENGTH_SHORT).show()
         }
 
         //Voice search available !
@@ -110,24 +116,39 @@ class HomeFragment : Fragment() {
          * Call API for recommended questions.
          */
         progressHome.visibility = View.VISIBLE
+        textNoQuestionAvailable.visibility = View.GONE
 
-        RetrofitUtils.initRetrofit(ApiInterface::class.java).getRecommendedQuestions()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({ questions ->
-                    progressHome?.visibility = View.GONE
-                    recyclerRecommended.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-                    recyclerRecommended.addItemDecoration(DividerItemDecoration(context, LinearLayoutManager.VERTICAL))
-                    recyclerRecommended.adapter = RecommendedQuestionsAdapter(questions)
-                }, { error ->
-                    progressHome?.visibility = View.GONE
-                    Snackbar.make(view, R.string.something_went_wrong, Snackbar.LENGTH_SHORT).show()
-                    error.printStackTrace()
-                })
+        activity?.let {
+
+            val user = sharedPrefManager.getUser(it)
+            RetrofitUtils.initRetrofit(ApiInterface::class.java).getRecommendedQuestions(
+                    user.syl_id.toInt(),
+                    1,
+                    user.cls_id.toInt())
+
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe({ questions ->
+                        progressHome?.visibility = View.GONE
+                        if (questions.response_type == getString(R.string.response_type_error)) {
+                            textNoQuestionAvailable.visibility = View.VISIBLE
+                            Snackbar.make(view, questions.response_text, Snackbar.LENGTH_SHORT).show()
+                            return@subscribe
+                        }
+                        recyclerRecommended.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+                        recyclerRecommended.addItemDecoration(DividerItemDecoration(context, LinearLayoutManager.VERTICAL))
+                        recyclerRecommended.adapter = RecommendedQuestionsAdapter(questions.question_data)
+                    }, { error ->
+                        progressHome?.visibility = View.GONE
+                        textNoQuestionAvailable.visibility = View.VISIBLE
+                        Snackbar.make(view, R.string.something_went_wrong, Snackbar.LENGTH_SHORT).show()
+                        error.printStackTrace()
+                    })
+        }
         /**
          * On clicking floating action button on home.
          */
-        floatingButtonAsk.setOnClickListener {
+        homeItemAsk.setOnClickListener {
             (activity as Home).loadAskQuestionFragment()
         }
     }

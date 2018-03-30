@@ -13,6 +13,7 @@ import com.gbmainframe.learnersindia.activities.Home
 import com.gbmainframe.learnersindia.adapters.RecommendedQuestionsAdapter
 import com.gbmainframe.learnersindia.utils.ApiInterface
 import com.gbmainframe.learnersindia.utils.RetrofitUtils
+import com.gbmainframe.learnersindia.utils.sharedPrefManager
 import kotlinx.android.synthetic.main.layout_list_questions.*
 import kotlinx.android.synthetic.main.simple_toolbar.*
 import rx.android.schedulers.AndroidSchedulers
@@ -35,23 +36,33 @@ class QuestionListFragment : Fragment() {
          */
         progress.visibility = View.VISIBLE
 
-        RetrofitUtils.initRetrofit(ApiInterface::class.java).getRecommendedQuestions()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({ questions ->
-                    progress?.visibility = View.GONE
-                    if (questions == null) {
-                        textNoQuestionAvailable.visibility = View.VISIBLE
-                        return@subscribe
-                    }
-                    textNoQuestionAvailable.visibility = View.GONE
-                    recyclerRecommended.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-                    recyclerRecommended.addItemDecoration(DividerItemDecoration(context, LinearLayoutManager.VERTICAL))
-                    recyclerRecommended.adapter = RecommendedQuestionsAdapter(questions)
-                }, { error ->
-                    progress?.visibility = View.GONE
-                    Snackbar.make(view, R.string.something_went_wrong, Snackbar.LENGTH_SHORT).show()
-                    error.printStackTrace()
-                })
+
+
+        activity?.let {
+            val user = sharedPrefManager.getUser(it)
+            RetrofitUtils.initRetrofit(ApiInterface::class.java).getRecommendedQuestions(
+                    user.syl_id.toInt(),
+                    1,
+                    user.cls_id.toInt())
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe({ questions ->
+                        progress?.visibility = View.GONE
+                        if (questions == null || questions.response_type == getString(R.string.response_type_error)) {
+                            textNoQuestionAvailable.visibility = View.VISIBLE
+                            return@subscribe
+                        }
+                        textNoQuestionAvailable.visibility = View.GONE
+                        recyclerRecommended.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+                        recyclerRecommended.addItemDecoration(DividerItemDecoration(context, LinearLayoutManager.VERTICAL))
+                        recyclerRecommended.adapter = RecommendedQuestionsAdapter(questions.question_data)
+                    }, { error ->
+                        progress?.visibility = View.GONE
+                        Snackbar.make(view, R.string.something_went_wrong, Snackbar.LENGTH_SHORT).show()
+                        error.printStackTrace()
+                    })
+        }
+
     }
+
 }

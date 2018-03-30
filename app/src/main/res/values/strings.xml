@@ -12,7 +12,7 @@
     <string name="user_name">Email / Phone</string>
     <string name="error_retype_password_again">Retype password again</string>
     <string name="mobile">Mobile number</string>
-    <string name="recommended_questions">Recommended</string>
+    <string name="recommended_questions">Recommended questions</string>
     <string name="practise">Practise</string>
     <string name="videos">Videos</string>
     <string name="test">Test</string>
@@ -45,4 +45,9 @@
     <string name="no_questions_available">No questions available</string>
     <string name="questions">Questions</string>
     <string name="response_type_error">error</string>
+    <string name="notification">Notification</string>
+    <string name="game">Game</string>
+    <string name="ask_home">Ask</string>
+    <string name="best_of_learners_india">Best Of Learners India</string>
+    <string name="no_videos_available">No videos  available</string>
 </resources>

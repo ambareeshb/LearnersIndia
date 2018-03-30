@@ -1,116 +1,222 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
-
-    <include layout="@layout/home_toolbar" />
-
-
-    <com.gbmainframe.learnersindia.views.HomeItem
-        android:id="@+id/homeItemPractise"
-        style="@style/HomeItemStyle"
-        android:layout_below="@+id/toolbar"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="30dp"
-        app:headerColor="@color/paleGreen"
-        app:homeItemImage="@drawable/practice_o"
-        app:homeItemText="@string/practise" />
-
-
-    <com.gbmainframe.learnersindia.views.HomeItem
-        android:id="@+id/homeItemTest"
-        style="@style/HomeItemStyle"
-        android:layout_below="@+id/homeItemPractise"
-        android:layout_marginLeft="20dp"
-        app:headerColor="@color/paleViolet"
-        app:homeItemImage="@drawable/test"
-        app:homeItemText="@string/test" />
-
-    <com.gbmainframe.learnersindia.views.HomeItem
-        android:id="@+id/homeItemVideo"
-        style="@style/HomeItemStyle"
-        android:layout_below="@+id/toolbar"
-        android:layout_marginTop="30dp"
-        android:layout_toRightOf="@+id/homeItemPractise"
-        app:headerColor="@color/paleBrown"
-        app:homeItemImage="@drawable/play"
-        app:homeItemText="@string/videos" />
-
-    <TextView
-        android:id="@+id/recommendedText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/homeItemTest"
-        android:layout_marginTop="30dp"
-        android:background="@color/offWhite"
-        android:fontFamily="@font/nawabiat"
-        android:padding="5dp"
-        android:text="@string/recommended_questions"
-        android:textSize="20sp" />
+    android:layout_height="match_parent">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_below="@id/recommendedText"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/recyclerRecommended"
+        <include layout="@layout/home_toolbar" />
+
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/homeTopItems"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/toolbar"
+            android:layout_centerHorizontal="true"
+            android:background="@color/white"
+            style="@style/HomeCardStyles">
+
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:padding="15dp"
+                android:layout_height="wrap_content">
+
+
+                <com.gbmainframe.learnersindia.views.HomeItem
+                    android:id="@+id/homeItemPractise"
+                    style="@style/HomeItemStyle"
+                    app:headerColor="@color/paleGreen"
+                    app:homeItemImage="@drawable/exercise_home"
+                    app:homeItemText="@string/practise" />
+
+
+                <com.gbmainframe.learnersindia.views.HomeItem
+                    android:id="@+id/homeItemTest"
+                    style="@style/HomeItemStyle"
+                    android:layout_alignParentRight="true"
+                    app:headerColor="@color/paleViolet"
+                    app:homeItemImage="@drawable/test_home"
+                    app:homeItemText="@string/test" />
+
+                <ImageView
+                    android:id="@+id/verticalDivider1"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@id/homeItemPractise"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:alpha=".6"
+                    android:background="@android:color/darker_gray" />
+
+                <com.gbmainframe.learnersindia.views.HomeItem
+                    android:id="@+id/homeItemVideo"
+                    style="@style/HomeItemStyle"
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@+id/verticalDivider1"
+                    app:headerColor="@color/paleBrown"
+                    app:homeItemImage="@drawable/video_home"
+                    app:homeItemText="@string/videos" />
+
+                <com.gbmainframe.learnersindia.views.HomeItem
+                    android:id="@+id/homeItemAsk"
+                    style="@style/HomeItemStyle"
+                    android:layout_alignParentRight="true"
+                    android:layout_below="@id/homeItemTest"
+                    app:headerColor="@color/palePink"
+                    app:homeItemImage="@drawable/ask_home"
+                    app:homeItemText="@string/ask_home" />
+
+                <ImageView
+                    android:id="@+id/verticalDivider2"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@id/homeItemVideo"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:alpha=".6"
+                    android:background="@android:color/darker_gray" />
+
+                <com.gbmainframe.learnersindia.views.HomeItem
+                    android:id="@+id/homeItemGame"
+                    style="@style/HomeItemStyle"
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@+id/verticalDivider2"
+                    app:headerColor="@color/paleYellow"
+                    app:homeItemImage="@drawable/game_home"
+                    app:homeItemText="@string/game" />
+
+                <com.gbmainframe.learnersindia.views.HomeItem
+                    android:id="@+id/homeItemNotification"
+                    style="@style/HomeItemStyle"
+                    android:layout_alignParentRight="true"
+                    android:layout_below="@id/homeItemAsk"
+                    app:headerColor="@color/paleViolet"
+                    app:homeItemImage="@drawable/notification_home"
+                    app:homeItemText="@string/notification" />
+
+                <ImageView
+                    android:id="@+id/dividerHorizontal"
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:layout_centerInParent="true"
+                    android:layout_gravity="center_horizontal"
+                    android:alpha=".6"
+                    android:background="@android:color/darker_gray"
+                    android:minHeight="350dp" />
+
+            </RelativeLayout>
+
+        </android.support.v7.widget.CardView>
+
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/videoListHome"
+            android:layout_width="match_parent"
+            style="@style/HomeCardStyles"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/homeTopItems"
+            android:minHeight="100dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15dp"
+                android:layout_marginBottom="15dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/bestVideos"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nawabiat"
+                    android:padding="10dp"
+                    android:text="@string/best_of_learners_india"
+                    android:textSize="20sp" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recyclerBestVideos"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:visibility="visible" />
+
+                <ProgressBar
+                    android:id="@+id/progressVideos"
+                    style="@style/ProgressBarStyle" />
+
+                <TextView
+                    android:id="@+id/textNoVideosAvailable"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_centerInParent="true"
+                    android:fontFamily="@font/nawabiat"
+                    android:gravity="center"
+                    android:text="@string/no_videos_available"
+                    android:textSize="25sp"
+                    android:visibility="gone" />
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+
+
+        <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="5dp" />
+            style="@style/HomeCardStyles"
+            android:layout_below="@id/videoListHome"
+            android:minHeight="50dp">
 
-        <ProgressBar
-            android:id="@+id/progressHome"
-            style="@style/ProgressBarStyle" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15dp"
+                android:layout_marginBottom="15dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/recommendedText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/videoListHome"
+                    android:fontFamily="@font/nawabiat"
+                    android:padding="10dp"
+                    android:text="@string/recommended_questions"
+                    android:textSize="20sp" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recyclerRecommended"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp" />
+
+                <ProgressBar
+                    android:id="@+id/progressHome"
+                    style="@style/ProgressBarStyle" />
+
+                <TextView
+                    android:id="@+id/textNoQuestionAvailable"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_centerInParent="true"
+                    android:fontFamily="@font/nawabiat"
+                    android:gravity="center"
+                    android:text="@string/no_questions_available"
+                    android:textSize="25sp"
+                    android:visibility="gone" />
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+
+
+        <com.quinny898.library.persistentsearch.SearchBox
+            android:id="@+id/searchbox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone" />
+
     </RelativeLayout>
-
-    <FrameLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_margin="20dp">
-
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/floatingButtonAsk"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@android:color/transparent" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:elevation="16dp"
-            android:fontFamily="@font/nawabiat"
-            android:text="@string/ask"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="@android:color/white" />
-    </FrameLayout>
-
-    <com.quinny898.library.persistentsearch.SearchBox
-        android:id="@+id/searchbox"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:visibility="gone" />
-
-    <!--<fr.castorflex.android.smoothprogressbar.SmoothProgressBar xmlns:android="http://schemas.android.com/apk/res/android"-->
-    <!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
-    <!--android:id="@+id/searchProgress"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:layout_below="@+id/searchbox"-->
-    <!--android:indeterminate="true"-->
-    <!--app:spb_color="#FF0000"-->
-    <!--app:spb_mirror_mode="false"-->
-    <!--app:spb_progressiveStart_activated="true"-->
-    <!--app:spb_progressiveStart_speed="1.5"-->
-    <!--app:spb_progressiveStop_speed="3.4"-->
-    <!--app:spb_reversed="false"-->
-    <!--app:spb_sections_count="4"-->
-    <!--app:spb_speed="2.0"-->
-    <!--app:spb_stroke_separator_length="4dp"-->
-    <!--app:spb_stroke_width="4dp" />-->
-</RelativeLayout>
+</ScrollView>

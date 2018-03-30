@@ -47,6 +47,7 @@ class SignUpFragment : Fragment() {
             (passwordText.text.toString() == passwordRetype.text.toString()).not() -> Snackbar.make(view!!, R.string.error_retype_password_again, Snackbar.LENGTH_SHORT).show()
             else -> {
                 signUpErrorText.text = ""
+                signUpErrorText.visibility = View.GONE
                 buttonSignUp.isEnabled = false
                 progress.visibility = View.VISIBLE
 
@@ -62,7 +63,8 @@ class SignUpFragment : Fragment() {
                             .flatMap { data ->
                                 if (data.response_type == "error") {
                                     signUpErrorText.text = data.response_text
-                                    Snackbar.make(view!!, data.response_text, Snackbar.LENGTH_LONG).show()
+                                    signUpErrorText.visibility = View.VISIBLE
+//                                    Snackbar.make(view!!, data.response_text, Snackbar.LENGTH_LONG).show()
                                 }
                                 apiInterface.signIn("student", data.email
                                         ?: "", passwordText.textString())

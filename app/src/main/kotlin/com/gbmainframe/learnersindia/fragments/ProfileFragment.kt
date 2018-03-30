@@ -50,7 +50,7 @@ class ProfileFragment : Fragment() {
                 else -> "CBSE"
 
             }
-            className.text = ("$board ${user.cls_id}")
+            className.text = ("$board - Class ${user.cls_id}")
             //Checking paid status of user
             paymentStatusProgress.visibility = View.VISIBLE
             subscriptionValue.visibility = View.GONE

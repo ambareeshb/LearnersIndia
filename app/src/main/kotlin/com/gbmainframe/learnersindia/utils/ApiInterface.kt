@@ -2,6 +2,7 @@ package com.gbmainframe.learnersindia.utils
 
 import com.gbmainframe.learnersindia.models.*
 import com.gbmainframe.learnersindia.models.apiresponses.PaymentResponse
+import com.gbmainframe.learnersindia.models.apiresponses.RecommendedQuestionResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
 import rx.Observable
@@ -33,7 +34,9 @@ interface ApiInterface {
     ): Observable<SignInResponse>
 
     @GET("reccomented-questions")
-    fun getRecommendedQuestions(): Observable<ArrayList<RecommendedQuestions>>
+    fun getRecommendedQuestions(@Query("syl_id") sylId: Int,
+                                @Query("sub_id") subId: Int,
+                                @Query("class_id") classId: Int): Observable<RecommendedQuestionResponse>
 
     @GET("get-free-videos")
     fun getFreeVideos()

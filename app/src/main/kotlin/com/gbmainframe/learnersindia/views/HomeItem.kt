@@ -10,6 +10,7 @@ import kotlinx.android.synthetic.main.home_item.view.*
 
 /**
  * Created by ambareeshb on 26/03/18.
+ * Home item
  */
 class HomeItem : LinearLayout {
 
@@ -26,7 +27,7 @@ class HomeItem : LinearLayout {
                 R.styleable.HomeItem
                 , 0, 0)
         try {
-            headerColor = typedArray.getResourceId(R.styleable.HomeItem_headerColor,R.color.paleBrown)
+            headerColor = typedArray.getResourceId(R.styleable.HomeItem_headerColor,R.color.paleBlue)
             itemImage = typedArray.getResourceId(R.styleable.HomeItem_homeItemImage, R.drawable.progress_o)
             itemText = typedArray.getString(R.styleable.HomeItem_homeItemText)
         } finally {
@@ -43,7 +44,7 @@ class HomeItem : LinearLayout {
     private fun init() {
         View.inflate(context, R.layout.home_item, this)
         headerColor?.let {
-            homeItemTopColor.setBackgroundColor(ContextCompat.getColor(context, it))
+            homeItemTopColor.setColorFilter(ContextCompat.getColor(context, it))
         }
         itemImage?.let {
             homeItemImage.setImageDrawable(ContextCompat.getDrawable(context, it))

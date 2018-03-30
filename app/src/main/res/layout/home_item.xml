@@ -1,36 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="100dp"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/home_item_click"
+    android:gravity="center"
+    android:orientation="vertical">
+
+
+    <ImageView
+        android:id="@+id/homeItemImage"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_margin="5dp" />
+
+    <TextView
+        android:id="@+id/homeItemText"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/offWhite"
+        android:layout_marginBottom="5dp"
+        android:fontFamily="@font/nawabiat"
         android:gravity="center"
-        android:orientation="vertical">
+        android:textSize="24sp"
+        android:textStyle="bold" />
 
-        <ImageView
-            android:id="@+id/homeItemTopColor"
-            android:layout_width="match_parent"
-            android:layout_height="2dp" />
-
-        <ImageView
-            android:id="@+id/homeItemImage"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_margin="5dp" />
-
-        <TextView
-            android:id="@+id/homeItemText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:fontFamily="@font/nawabiat"
-            android:gravity="center"
-            android:textSize="20sp" />
+    <ImageView
+        android:id="@+id/homeItemTopColor"
+        android:layout_width="100dp"
+        android:layout_margin="10dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/home_item_color_line"
+        android:layout_height="8dp" />
 
 
-    </LinearLayout>
-</android.support.v7.widget.CardView>
+</LinearLayout>

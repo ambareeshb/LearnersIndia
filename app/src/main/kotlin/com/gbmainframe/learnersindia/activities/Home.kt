@@ -104,13 +104,12 @@ class Home : AppCompatActivity() {
     }
 
     /**
-     * Load chapter list fragment.
+     * Load question list fragment.
      */
     fun loadQuestionsListFragment() {
         supportFragmentManager.popBackStack(TAG, FragmentManager.POP_BACK_STACK_INCLUSIVE)
         FragmentUtils(supportFragmentManager).beginTransaction()
                 .replace(R.id.fragmentContainer, QuestionListFragment())
-                .addToBackStack(true, TAG)
                 .commit()
     }
 

@@ -155,23 +155,21 @@ class HomeFragment : Fragment() {
             progressVideos.visibility = View.VISIBLE
             textNoVideosAvailable.visibility = View.GONE
 
-            RetrofitUtils.initRetrofit(ApiInterface::class.java).getVideos(
-                    "ec251d72a1a590736de55f990e443aeb",
+            RetrofitUtils.initRetrofit(ApiInterface::class.java).getFreeVideos(
                     sylId = 1,
                     classId = 10,
-                    subId = 1,
-                    chapId = 9
+                    subId = 1
             ).subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe({
                         progressVideos.visibility = View.GONE
-                        if (it == null || it.response_type == getString(R.string.response_type_error) || it.response_data == null) {
+                        if (it == null || it.response_type == getString(R.string.response_type_error) || it.video_data == null) {
                             textNoVideosAvailable.visibility = View.VISIBLE
                             return@subscribe
                         }
                         recyclerBestVideos.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
                         recyclerBestVideos.addItemDecoration(DividerItemDecoration(context, LinearLayoutManager.HORIZONTAL))
-                        recyclerBestVideos.adapter = VideosAdapter(it.response_data[0].video_data)
+                        recyclerBestVideos.adapter = VideosAdapter(it.video_data)
                     })
         }
     }

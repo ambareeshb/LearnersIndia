@@ -5,25 +5,65 @@
     android:orientation="vertical"
     android:padding="15dp">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/recommendedQuestionTopLayout"
+        android:orientation="horizontal">
+
+
+        <TextView
+            android:id="@+id/recommendedQuestionUserName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nawabiat"
+            android:layout_marginRight="3dp"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/recommendedQuestionTop"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nawabiat"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+
     <TextView
         android:id="@+id/recommendedQuestion"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/recommendedQuestionTopLayout"
         android:layout_centerVertical="true"
         android:fontFamily="@font/nawabiat"
-        android:textSize="20sp"
-        android:layout_toLeftOf="@+id/recommendedViewAnswer" />
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="20dp"
+        android:textSize="20sp" />
 
     <Button
-        android:id="@+id/recommendedViewAnswer"
+        android:id="@+id/recommendedAddAnswer"
         style="@style/StyleLoginButtonHollow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/recommendedQuestion"
+        android:text="@string/add_answer"
+        android:padding="3dp"
+        android:fontFamily="@font/nawabiat"
+        android:textSize="16sp"
         android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"
-        android:layout_margin="5dp"
-        android:padding="7dp"
-        android:text="@string/view_answer"
-        android:textSize="18sp" />
+        />
+
+    <TextView
+        android:id="@+id/recommendedQuestionCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/recommendedQuestion"
+        android:layout_alignBaseline="@id/recommendedAddAnswer"
+        android:layout_alignParentLeft="true"
+        android:fontFamily="@font/nawabiat"
+        android:text="No Answers Yet"
+        android:textColor="@color/colorBlue"
+        android:textSize="22sp" />
 
 </RelativeLayout>

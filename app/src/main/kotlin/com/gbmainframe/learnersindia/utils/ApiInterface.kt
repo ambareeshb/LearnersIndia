@@ -6,6 +6,7 @@ import com.gbmainframe.learnersindia.models.apiresponses.PaymentResponse
 import com.gbmainframe.learnersindia.models.apiresponses.RecommendedQuestionResponse
 import com.gbmainframe.learnersindia.models.apiresponses.VideoResponse
 import retrofit2.http.GET
+import retrofit2.http.Path
 import retrofit2.http.Query
 import rx.Observable
 
@@ -46,6 +47,15 @@ interface ApiInterface {
                   @Query("class_id") classId: Int,
                   @Query("sub_id") subId: Int,
                   @Query("chap_id") chapId: Int): Observable<VideoResponse>
+
+    @GET("get-free-videos")
+    fun getFreeVideos(
+            @Query("syl_id") sylId: Int,
+            @Query("class_id") classId: Int,
+            @Query("sub_id") subId: Int): Observable<VideoResponse>
+
+    @GET("http://vimeo.com/api/v2/video/video_id")
+    fun getThumbNailFromVimeo(@Path("video_id") videoId: String) //Video id should contain o/p format eg: 6271487.json
 
 
     @GET("ask-question")

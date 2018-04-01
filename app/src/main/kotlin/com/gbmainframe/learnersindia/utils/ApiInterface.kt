@@ -80,5 +80,6 @@ interface ApiInterface {
     @GET("search")
     fun search(@Query("keyword") keyword: String,
                @Query("syl_id") sylId: Int,
+               @Query("class_id") classId: Int,
                @Query("sub_id") subId: Int): Observable<SearchModel>
 }

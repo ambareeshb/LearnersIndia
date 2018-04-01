@@ -1,27 +1,23 @@
 package com.gbmainframe.learnersindia.fragments
 
-import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.speech.RecognizerIntent
 import android.support.design.widget.Snackbar
 import android.support.v4.app.Fragment
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.gbmainframe.learnersindia.R
 import com.gbmainframe.learnersindia.activities.Home
 import com.gbmainframe.learnersindia.activities.SearchActivity
+import com.gbmainframe.learnersindia.activities.VideoPlayerActivity
 import com.gbmainframe.learnersindia.adapters.RecommendedQuestionsAdapter
 import com.gbmainframe.learnersindia.adapters.VideosAdapter
 import com.gbmainframe.learnersindia.utils.ApiInterface
 import com.gbmainframe.learnersindia.utils.RetrofitUtils
 import com.gbmainframe.learnersindia.utils.sharedPrefManager
-import com.quinny898.library.persistentsearch.SearchBox
-import com.quinny898.library.persistentsearch.SearchResult
 import kotlinx.android.synthetic.main.home_toolbar.*
 import kotlinx.android.synthetic.main.layout_home_fragment.*
 import rx.android.schedulers.AndroidSchedulers
@@ -143,7 +139,9 @@ class HomeFragment : Fragment() {
                         }
                         recyclerBestVideos.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
 //                        recyclerBestVideos.addItemDecoration(DividerItemDecoration(context, LinearLayoutManager.HORIZONTAL))
-                        recyclerBestVideos.adapter = VideosAdapter(it.video_data)
+                        recyclerBestVideos.adapter = VideosAdapter(it.video_data) { videoUrl ->
+                            startActivity(Intent(activity, VideoPlayerActivity::class.java))
+                        }
                     })
         }
     }

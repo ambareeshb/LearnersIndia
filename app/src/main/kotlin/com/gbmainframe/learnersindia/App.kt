@@ -1,11 +1,30 @@
 package com.gbmainframe.learnersindia
 
 import android.app.Application
-import android.support.multidex.MultiDexApplication
+import com.vimeo.networking.Configuration
+import com.vimeo.networking.VimeoClient
 
 /**
  * Created by ambareeshb on 22/03/18.
  */
-class App:MultiDexApplication(){
+class App : Application() {
 
+    override fun onCreate() {
+        super.onCreate()
+        VimeoClient.initialize(Configuration.Builder(getString(R.string.vimeo_access_token)).build())
+        val uri = "/262504336"
+
+
+//        VimeoClient.getInstance().authorizeWithClientCredentialsGrant(object : AuthCallback {
+//            override fun success() {
+//                Log.d("VimeoSuccess", "videoGot")
+//            }
+//
+//            override fun failure(error: VimeoError?) {
+//                error?.printStackTrace()
+//            }
+//        })
+
+
+    }
 }

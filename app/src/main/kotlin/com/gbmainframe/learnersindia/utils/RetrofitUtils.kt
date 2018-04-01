@@ -6,7 +6,6 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.converter.jackson.JacksonConverterFactory
 
 /**
  * Created by ambareeshb on 18/03/18.
@@ -22,7 +21,6 @@ object RetrofitUtils {
             retrofit = Retrofit.Builder()
                     .baseUrl(BuildConfig.BASE_URL)
                     .addConverterFactory(GsonConverterFactory.create())
-                    .addConverterFactory(JacksonConverterFactory.create())
                     .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                     .client(client)
                     .build()

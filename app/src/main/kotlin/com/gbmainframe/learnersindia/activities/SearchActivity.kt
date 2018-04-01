@@ -29,7 +29,7 @@ class SearchActivity : AppCompatActivity() {
         }
         searchbox.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
-                hideSoftKeyboard(searchbox)
+                hideSoftKeyboard()
                 search(query!!)
                 return true
             }
@@ -55,7 +55,10 @@ class SearchActivity : AppCompatActivity() {
             progressSearch1.visibility = View.VISIBLE
             progressSearch2.visibility = View.VISIBLE
             progressSearch3.visibility = View.VISIBLE
-            RetrofitUtils.initRetrofit(ApiInterface::class.java).search(keyword = "learn", sylId = user.syl_id.toInt(), subId = 1)
+            RetrofitUtils.initRetrofit(ApiInterface::class.java).search(keyword = "learn",
+                    sylId = user.syl_id.toInt(),
+                    classId = 10,
+                    subId = 1)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe({
@@ -94,9 +97,11 @@ class SearchActivity : AppCompatActivity() {
     /**
      * Hide softkey board
      */
-    fun hideSoftKeyboard(view: View) {
-        (getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager)
-                .hideSoftInputFromInputMethod(view.windowToken, InputMethodManager.HIDE_IMPLICIT_ONLY)
+    fun hideSoftKeyboard() {
+        this.currentFocus?.let {
+            (getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager)
+                    .hideSoftInputFromInputMethod(it.windowToken, 0)
+        }
     }
 
 }

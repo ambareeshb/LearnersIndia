@@ -1,4 +1,5 @@
 <resources>
+    <string name="vimeo_access_token">f975e748b7fccb6e3db8b06d152879fd</string>
     <string name="app_name">LearnersIndia</string>
     <string name="password">Password</string>
     <string name="retype_password">Retype password</string>
@@ -53,5 +54,6 @@
     <string name="add_answer">Add Answer</string>
     <string name="no_answers_available">No answers available</string>
     <string name="answers">Answers</string>
-    <string name="text_no_content_available">No content available</string>
+    <string name="text_no_content_available">No content found</string>
+
 </resources>

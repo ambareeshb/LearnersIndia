@@ -14,6 +14,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.gbmainframe.learnersindia.R
 import com.gbmainframe.learnersindia.activities.Home
+import com.gbmainframe.learnersindia.activities.SearchActivity
 import com.gbmainframe.learnersindia.adapters.RecommendedQuestionsAdapter
 import com.gbmainframe.learnersindia.adapters.VideosAdapter
 import com.gbmainframe.learnersindia.utils.ApiInterface
@@ -56,7 +57,7 @@ class HomeFragment : Fragment() {
         }
 
         toolbarSearch.setOnClickListener {
-            searchbox.visibility = View.VISIBLE
+            startActivity(Intent(activity, SearchActivity::class.java))
         }
         /**
          * Home item click listeners.
@@ -80,42 +81,6 @@ class HomeFragment : Fragment() {
             (activity as Home).loadAskQuestionFragment()
         }
 
-        //Voice search available !
-        searchbox.enableVoiceRecognition(this)
-        //Listener for search box
-        searchbox.setSearchListener(object : SearchBox.SearchListener {
-            override fun onSearchClosed() {
-                toolbar.visibility = View.VISIBLE
-                searchbox.visibility = View.GONE
-            }
-
-            override fun onSearch(p0: String?) {
-                Log.d("adf", "adf")
-
-            }
-
-            override fun onResultClick(p0: SearchResult?) {
-                Log.d("adf", "adf")
-            }
-
-            override fun onSearchCleared() {
-                Log.d("adf", "adf")
-            }
-
-            override fun onSearchTermChanged(p0: String?) {
-                Log.d("adf", "adf")
-            }
-
-            override fun onSearchOpened() {
-                searchbox.addAllSearchables(arrayListOf(SearchResult("n th degree polynomial"),
-                        SearchResult("factorial of 16"),
-                        SearchResult("fibanacci and sunflower"),
-                        SearchResult("mid term question paper")
-                ))
-            }
-
-        })
-
 
         activity?.let {
 
@@ -127,22 +92,31 @@ class HomeFragment : Fragment() {
             textNoQuestionAvailable.visibility = View.GONE
 
             RetrofitUtils.initRetrofit(ApiInterface::class.java).getRecommendedQuestions(
-                    user.syl_id.toInt(),
-                    1,
-                    user.cls_id.toInt())
+//                    user.syl_id.toInt(),
+//                    1,
+//                    user.cls_id.toInt())
+                    sylId = 1,
+                    classId = 10,
+                    subId = 1)
 
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe({ questions ->
+                        if (progressHome == null) {
+                            return@subscribe
+                        }
                         progressHome?.visibility = View.GONE
                         if (questions.response_type == getString(R.string.response_type_error)) {
                             textNoQuestionAvailable.visibility = View.VISIBLE
                             Snackbar.make(view, questions.response_text, Snackbar.LENGTH_SHORT).show()
                             return@subscribe
                         }
+                        textNoQuestionAvailable.visibility = View.GONE
                         recyclerRecommended.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
                         recyclerRecommended.addItemDecoration(DividerItemDecoration(context, LinearLayoutManager.VERTICAL))
-                        recyclerRecommended.adapter = RecommendedQuestionsAdapter(questions.question_data)
+                        recyclerRecommended.adapter = RecommendedQuestionsAdapter(questions.questions_data) { questionId ->
+                            (activity as Home).loadAnswerListFragment(2)// 2 for demo
+                        }
                     }, { error ->
                         progressHome?.visibility = View.GONE
                         textNoQuestionAvailable.visibility = View.VISIBLE
@@ -168,16 +142,10 @@ class HomeFragment : Fragment() {
                             return@subscribe
                         }
                         recyclerBestVideos.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-                        recyclerBestVideos.addItemDecoration(DividerItemDecoration(context, LinearLayoutManager.HORIZONTAL))
+//                        recyclerBestVideos.addItemDecoration(DividerItemDecoration(context, LinearLayoutManager.HORIZONTAL))
                         recyclerBestVideos.adapter = VideosAdapter(it.video_data)
                     })
         }
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        if (requestCode == SearchBox.VOICE_RECOGNITION_CODE && resultCode == Activity.RESULT_OK) {
-            val matches: ArrayList<String> = data?.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS) as ArrayList<String>
-            searchbox.populateEditText(matches.first())
-        }
-    }
 }

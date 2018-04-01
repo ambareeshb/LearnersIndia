@@ -6,9 +6,9 @@
     android:padding="15dp">
 
     <LinearLayout
+        android:id="@+id/recommendedQuestionTopLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/recommendedQuestionTopLayout"
         android:orientation="horizontal">
 
 
@@ -16,8 +16,8 @@
             android:id="@+id/recommendedQuestionUserName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/nawabiat"
             android:layout_marginRight="3dp"
+            android:fontFamily="@font/nawabiat"
             android:textSize="16sp"
             android:textStyle="bold" />
 
@@ -30,15 +30,24 @@
     </LinearLayout>
 
 
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/userImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/recommendedQuestionTopLayout"
+        android:layout_margin="10dp"
+        android:src="@drawable/avatar_female" />
+
     <TextView
         android:id="@+id/recommendedQuestion"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/recommendedQuestionTopLayout"
         android:layout_centerVertical="true"
-        android:fontFamily="@font/nawabiat"
         android:layout_marginBottom="20dp"
         android:layout_marginTop="20dp"
+        android:layout_toRightOf="@+id/userImage"
+        android:fontFamily="@font/nawabiat"
         android:textSize="20sp" />
 
     <Button
@@ -46,21 +55,20 @@
         style="@style/StyleLoginButtonHollow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/recommendedQuestion"
-        android:text="@string/add_answer"
-        android:padding="3dp"
-        android:fontFamily="@font/nawabiat"
-        android:textSize="16sp"
         android:layout_alignParentRight="true"
-        />
+        android:layout_below="@+id/recommendedQuestion"
+        android:fontFamily="@font/nawabiat"
+        android:padding="3dp"
+        android:text="@string/add_answer"
+        android:textSize="16sp" />
 
     <TextView
         android:id="@+id/recommendedQuestionCount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/recommendedQuestion"
         android:layout_alignBaseline="@id/recommendedAddAnswer"
         android:layout_alignParentLeft="true"
+        android:layout_below="@+id/recommendedQuestion"
         android:fontFamily="@font/nawabiat"
         android:text="No Answers Yet"
         android:textColor="@color/colorBlue"

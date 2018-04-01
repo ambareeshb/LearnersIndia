@@ -6,7 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import com.gbmainframe.learnersindia.R
 import com.gbmainframe.learnersindia.models.VideoModel
+import com.gbmainframe.learnersindia.utils.ApiInterface
+import com.gbmainframe.learnersindia.utils.RetrofitUtils
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.layout_video_preview.view.*
+import rx.android.schedulers.AndroidSchedulers
+import rx.schedulers.Schedulers
 
 /**
  * Created by ambareeshb on 30/03/18.
@@ -24,10 +29,16 @@ class VideosAdapter(private val videoList: ArrayList<VideoModel>) : RecyclerView
     inner class VideoViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         fun bindView(video: VideoModel) {
             itemView.videoNameText.text = video.ved_title
-            try {
-                itemView.videoPreview.setImageBitmap(Util.createThumbNailFromVideoUrl(video.ved_url, 5))
-            } catch (exception: IllegalAccessException) {
-            }
+                RetrofitUtils.initRetrofit(ApiInterface::class.java).getVimeoVideoMetadata(video.video_id + ".json")
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe({
+                            Picasso.get()
+                                    .load(it.url)
+                                    .into(itemView.videoPreview)
+                        }, {
+                          it.printStackTrace()
+                        })
 
         }
     }

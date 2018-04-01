@@ -51,4 +51,7 @@
     <string name="best_of_learners_india">Best Of Learners India</string>
     <string name="no_videos_available">No videos  available</string>
     <string name="add_answer">Add Answer</string>
+    <string name="no_answers_available">No answers available</string>
+    <string name="answers">Answers</string>
+    <string name="text_no_content_available">No content available</string>
 </resources>

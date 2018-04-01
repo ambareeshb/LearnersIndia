@@ -30,10 +30,12 @@
 
     <ImageView
         android:id="@+id/toolbarSearch"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
+        android:scaleType="fitXY"
+        android:layout_marginRight="10dp"
         android:src="@drawable/ic_search"
         android:tint="@color/offWhite" />
 

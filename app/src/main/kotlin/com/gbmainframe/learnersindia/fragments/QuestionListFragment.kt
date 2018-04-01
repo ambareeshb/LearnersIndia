@@ -55,7 +55,9 @@ class QuestionListFragment : Fragment() {
                         textNoQuestionAvailable.visibility = View.GONE
                         recyclerRecommended.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
                         recyclerRecommended.addItemDecoration(DividerItemDecoration(context, LinearLayoutManager.VERTICAL))
-                        recyclerRecommended.adapter = RecommendedQuestionsAdapter(questions.question_data)
+                        recyclerRecommended.adapter = RecommendedQuestionsAdapter(questions.questions_data){ questionId ->
+                            (activity as Home).loadAnswerListFragment(questionId)
+                        }
                     }, { error ->
                         progress?.visibility = View.GONE
                         Snackbar.make(view, R.string.something_went_wrong, Snackbar.LENGTH_SHORT).show()

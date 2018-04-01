@@ -1,10 +1,7 @@
 package com.gbmainframe.learnersindia.utils
 
 import com.gbmainframe.learnersindia.models.*
-import com.gbmainframe.learnersindia.models.apiresponses.ChapterResponse
-import com.gbmainframe.learnersindia.models.apiresponses.PaymentResponse
-import com.gbmainframe.learnersindia.models.apiresponses.RecommendedQuestionResponse
-import com.gbmainframe.learnersindia.models.apiresponses.VideoResponse
+import com.gbmainframe.learnersindia.models.apiresponses.*
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
@@ -12,6 +9,7 @@ import rx.Observable
 
 /**
  * Created by ambareeshb on 25/03/18.
+ * To handel API requests.
  */
 interface ApiInterface {
     @GET("get-board")
@@ -46,7 +44,7 @@ interface ApiInterface {
                   @Query("syl_id") sylId: Int,
                   @Query("class_id") classId: Int,
                   @Query("sub_id") subId: Int,
-                  @Query("chap_id") chapId: Int): Observable<VideoResponse>
+                  @Query("chap_id") chapId: Int): Observable<VideoResponsePaid>
 
     @GET("get-free-videos")
     fun getFreeVideos(
@@ -54,8 +52,8 @@ interface ApiInterface {
             @Query("class_id") classId: Int,
             @Query("sub_id") subId: Int): Observable<VideoResponse>
 
-    @GET("http://vimeo.com/api/v2/video/video_id")
-    fun getThumbNailFromVimeo(@Path("video_id") videoId: String) //Video id should contain o/p format eg: 6271487.json
+    @GET("http://vimeo.com/api/v2/video/{video_id}")
+    fun getVimeoVideoMetadata(@Path("video_id") videoId: String): Observable<VimeoVideoModel> //Video id should contain o/p format eg: 6271487.json
 
 
     @GET("ask-question")
@@ -67,6 +65,9 @@ interface ApiInterface {
                     @Query("q_title") title: String = "Mathematics",
                     @Query("q_details") details: String): Observable<BaseApiModel>
 
+    @GET("get-all-answers")
+    fun getAllAnswers(@Query("qstn_id") questionId: Int): Observable<AnswerResponse>
+
     @GET("get-chapters")
     fun getChapters(@Query("tocken") token: String,
                     @Query("syl_id") sylId: Int,
@@ -76,4 +77,8 @@ interface ApiInterface {
     @GET("check-paid-status")
     fun checkPaidStatus(@Query("tocken") token: String): Observable<PaymentResponse>
 
+    @GET("search")
+    fun search(@Query("keyword") keyword: String,
+               @Query("syl_id") sylId: Int,
+               @Query("sub_id") subId: Int): Observable<SearchModel>
 }

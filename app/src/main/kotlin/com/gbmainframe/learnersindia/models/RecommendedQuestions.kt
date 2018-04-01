@@ -11,4 +11,5 @@ data class RecommendedQuestions(val qst_id: Int,
                                 val subjectname:String,
                                 val boardname:String,
                                 val gradename:String,
-                                val chapter:String)
+                                val chapter:String,
+                                val Total_answers:Int)

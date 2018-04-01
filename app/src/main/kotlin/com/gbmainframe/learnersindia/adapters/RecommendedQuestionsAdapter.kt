@@ -14,7 +14,8 @@ import java.util.*
 /**
  * Created by ambareeshb on 27/03/18.
  */
-class RecommendedQuestionsAdapter(private val recommendedQuestions: ArrayList<RecommendedQuestions>) : RecyclerView.Adapter<RecommendedQuestionsAdapter.ViewHolder>() {
+class RecommendedQuestionsAdapter(private val recommendedQuestions: ArrayList<RecommendedQuestions>,
+                                  private val questionClicked: (Int) -> Unit) : RecyclerView.Adapter<RecommendedQuestionsAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ViewHolder =
             ViewHolder(LayoutInflater.from(parent?.context).inflate(R.layout.recommended_question_single, parent, false))
 
@@ -26,19 +27,27 @@ class RecommendedQuestionsAdapter(private val recommendedQuestions: ArrayList<Re
     }
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        fun bindView(recommendedQuestions: RecommendedQuestions) {
-            itemView.recommendedQuestion.text = recommendedQuestions.qst_title
-            itemView.recommendedQuestionTop.text = "asked in ${recommendedQuestions.subjectname}," +
-                    " ${dateFromTimeStamp(recommendedQuestions.qst_timestamp.toLong())}"
+        fun bindView(recommendedQuestion: RecommendedQuestions) {
+            itemView.recommendedQuestionUserName.text = recommendedQuestion.student
+            itemView.recommendedQuestionTop.text = "asked in ${recommendedQuestion.subjectname}," +
+                    " ${dateFromTimeStamp(recommendedQuestion.qst_timestamp.toLong())}"
+            itemView.recommendedQuestion.text = recommendedQuestion.qst_title
+            val answerString = " ${recommendedQuestion.Total_answers} ${itemView.context.resources.getQuantityString(R.plurals.question_answers, recommendedQuestion.Total_answers)}"
+            itemView.recommendedQuestionCount.text = answerString
             itemView.recommendedAddAnswer.setOnClickListener {
-                Snackbar.make(itemView.rootView, "Answer not available now", Snackbar.LENGTH_SHORT).show()
+                if (recommendedQuestion.Total_answers < 1) {
+                    Snackbar.make(itemView.rootView, "Answer not available now", Snackbar.LENGTH_SHORT).show()
+                    return@setOnClickListener
+                }
+                questionClicked(recommendedQuestion.qst_id)
             }
         }
 
         private fun dateFromTimeStamp(timeStamp: Long): String {
-            val date = SimpleDateFormat("MM/DD/YY", Locale.US)
+            val date = SimpleDateFormat("mm/dd/yy", Locale.US)
             return date.format(timeStamp)
         }
 
     }
+
 }

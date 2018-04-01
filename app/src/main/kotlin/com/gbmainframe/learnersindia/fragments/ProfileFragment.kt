@@ -60,6 +60,9 @@ class ProfileFragment : Fragment() {
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe({
+                        if (paymentStatusProgress == null) {
+                            return@subscribe
+                        }
                         if (it.response_type == getString(R.string.response_type_error)) {
                             Snackbar.make(view, it.response_text, Snackbar.LENGTH_SHORT).show()
                             return@subscribe

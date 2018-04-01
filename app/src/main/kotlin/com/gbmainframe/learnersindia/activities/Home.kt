@@ -114,6 +114,22 @@ class Home : AppCompatActivity() {
     }
 
     /**
+     * Load answer list fragment.
+     */
+    fun loadAnswerListFragment(questionId: Int) {
+        AnswerListFragment().apply {
+            supportFragmentManager.popBackStack(TAG, FragmentManager.POP_BACK_STACK_INCLUSIVE)
+            arguments = Bundle().apply {
+                putInt(AnswerListFragment.ANSWER_BUNDLE_KEY, questionId)
+            }
+            FragmentUtils(supportFragmentManager).beginTransaction()
+                    .replace(R.id.fragmentContainer, this)
+                    .addToBackStack(true, TAG)
+                    .commit()
+        }
+    }
+
+    /**
      * Pop the latest entry from back stack.
      */
     fun popBackStack() {

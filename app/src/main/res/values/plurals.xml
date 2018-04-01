@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <plurals name="question_answers">
+        <item quantity="one">Answer</item>
+        <item quantity="other">Answers</item>
+    </plurals>
+
+</resources>

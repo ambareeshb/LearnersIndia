@@ -46,14 +46,16 @@
     <string name="no_questions_available">No questions available</string>
     <string name="questions">Questions</string>
     <string name="response_type_error">error</string>
-    <string name="notification">Notification</string>
-    <string name="game">Game</string>
-    <string name="ask_home">Ask</string>
+    <string name="notification">Notifications</string>
+    <string name="game">Games</string>
+    <string name="ask_home">Ask doubt</string>
     <string name="best_of_learners_india">Best Of Learners India</string>
     <string name="no_videos_available">No videos  available</string>
     <string name="add_answer">Add Answer</string>
     <string name="no_answers_available">No answers available</string>
     <string name="answers">Answers</string>
     <string name="text_no_content_available">No content found</string>
+    <string name="exercise">Exercises</string>
+    <string name="video_lessons">Video lessons</string>
 
 </resources>

@@ -65,7 +65,8 @@ class HomeFragment : Fragment() {
             Snackbar.make(view, "Test session will be available soon", Snackbar.LENGTH_SHORT).show()
         }
         homeItemVideo.setOnClickListener {
-            Snackbar.make(view, "Video session will be available soon", Snackbar.LENGTH_SHORT).show()
+            (activity as Home).loadChapterListFragment()
+//            Snackbar.make(view, "Video session will be available soon", Snackbar.LENGTH_SHORT).show()
         }
         homeItemGame.setOnClickListener {
             Snackbar.make(view, "will be available soon", Snackbar.LENGTH_SHORT).show()

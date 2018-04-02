@@ -27,56 +27,56 @@
                 android:layout_height="wrap_content"
                 android:padding="15dp">
 
-
-                <com.gbmainframe.learnersindia.views.HomeItem
-                    android:id="@+id/homeItemPractise"
-                    style="@style/HomeItemStyle"
-                    app:headerColor="@color/paleGreen"
-                    app:homeItemImage="@drawable/exercise_home"
-                    app:homeItemText="@string/practise" />
-
-
-                <com.gbmainframe.learnersindia.views.HomeItem
-                    android:id="@+id/homeItemTest"
-                    style="@style/HomeItemStyle"
-                    android:layout_alignParentRight="true"
-                    app:headerColor="@color/paleViolet"
-                    app:homeItemImage="@drawable/test_home"
-                    app:homeItemText="@string/test" />
-
-                <ImageView
-                    android:id="@+id/verticalDivider1"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_below="@id/homeItemPractise"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"
-                    android:alpha=".6"
-                    android:background="@android:color/darker_gray" />
-
                 <com.gbmainframe.learnersindia.views.HomeItem
                     android:id="@+id/homeItemVideo"
                     style="@style/HomeItemStyle"
-                    android:layout_alignParentLeft="true"
-                    android:layout_below="@+id/verticalDivider1"
                     app:headerColor="@color/paleBrown"
                     app:homeItemImage="@drawable/video_home"
                     app:homeItemText="@string/videos" />
 
                 <com.gbmainframe.learnersindia.views.HomeItem
+                    android:id="@+id/homeItemPractise"
+                    style="@style/HomeItemStyle"
+                    android:layout_alignParentRight="true"
+                    app:headerColor="@color/paleGreen"
+                    app:homeItemImage="@drawable/exercise_home"
+                    app:homeItemText="@string/exercise" />
+
+                <ImageView
+                    android:id="@+id/verticalDivider1"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@id/homeItemVideo"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:alpha=".6"
+                    android:background="@android:color/darker_gray" />
+
+
+                <com.gbmainframe.learnersindia.views.HomeItem
+                    android:id="@+id/homeItemTest"
+                    style="@style/HomeItemStyle"
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@+id/verticalDivider1"
+                    app:headerColor="@color/paleViolet"
+                    app:homeItemImage="@drawable/test_home"
+                    app:homeItemText="@string/test" />
+
+                <com.gbmainframe.learnersindia.views.HomeItem
                     android:id="@+id/homeItemAsk"
                     style="@style/HomeItemStyle"
                     android:layout_alignParentRight="true"
-                    android:layout_below="@id/homeItemTest"
+                    android:layout_below="@id/homeItemPractise"
                     app:headerColor="@color/palePink"
                     app:homeItemImage="@drawable/ask_home"
                     app:homeItemText="@string/ask_home" />
+
 
                 <ImageView
                     android:id="@+id/verticalDivider2"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:layout_below="@id/homeItemVideo"
+                    android:layout_below="@id/homeItemTest"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
                     android:alpha=".6"
@@ -96,7 +96,7 @@
                     style="@style/HomeItemStyle"
                     android:layout_alignParentRight="true"
                     android:layout_below="@id/homeItemAsk"
-                    app:headerColor="@color/paleViolet"
+                    app:headerColor="@color/paleBlue"
                     app:homeItemImage="@drawable/notification_home"
                     app:homeItemText="@string/notification" />
 
@@ -211,7 +211,6 @@
                     android:visibility="gone" />
             </LinearLayout>
         </android.support.v7.widget.CardView>
-
 
 
     </RelativeLayout>

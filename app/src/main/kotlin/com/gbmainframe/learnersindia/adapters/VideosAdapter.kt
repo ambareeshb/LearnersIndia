@@ -33,13 +33,14 @@ class VideosAdapter(private val videoList: ArrayList<VideoModel>,
             itemView.setOnClickListener {
                 videoClicked(video.ved_url)
             }
-            RetrofitUtils.initRetrofit(ApiInterface::class.java).getVimeoVideoMetadata(video.video_id + ".json")
+            RetrofitUtils.initRetrofit(ApiInterface::class.java).getVimeoVideoMetadata("262504336")
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe({
-                        Glide.with(itemView.context)
-                                .load(it.url)
-                                .into(itemView.videoPreview)
+                        if (it.pictures.sizes[3] != null)
+                            Glide.with(itemView.context)
+                                    .load(it.pictures.sizes[3].toString())
+                                    .into(itemView.videoPreview)
                     }, {
                         it.printStackTrace()
                     })

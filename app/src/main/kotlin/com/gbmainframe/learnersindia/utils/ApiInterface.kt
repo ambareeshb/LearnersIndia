@@ -52,7 +52,7 @@ interface ApiInterface {
             @Query("class_id") classId: Int,
             @Query("sub_id") subId: Int): Observable<VideoResponse>
 
-    @GET("http://vimeo.com/api/v2/video/{video_id}")
+    @GET("https://api.vimeo.com/videos/{video_id}")
     fun getVimeoVideoMetadata(@Path("video_id") videoId: String): Observable<VimeoVideoModel> //Video id should contain o/p format eg: 6271487.json
 
 
@@ -82,4 +82,5 @@ interface ApiInterface {
                @Query("syl_id") sylId: Int,
                @Query("class_id") classId: Int,
                @Query("sub_id") subId: Int): Observable<SearchModel>
+
 }

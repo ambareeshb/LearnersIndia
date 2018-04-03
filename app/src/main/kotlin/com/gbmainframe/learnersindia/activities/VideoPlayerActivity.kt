@@ -1,8 +1,12 @@
 package com.gbmainframe.learnersindia.activities
 
+import android.graphics.Bitmap
+import android.graphics.Canvas
+import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
+import android.webkit.WebChromeClient
 import android.webkit.WebSettings
 import android.webkit.WebView
 import android.webkit.WebViewClient
@@ -40,6 +44,17 @@ class VideoPlayerActivity : AppCompatActivity() {
                 override fun onPageFinished(view: WebView?, url: String?) {
                     learnersProgress.visibility = View.GONE
                     vimeoPlayer.visibility = View.VISIBLE
+                }
+            }
+            webChromeClient = object : WebChromeClient() {
+                override fun getDefaultVideoPoster(): Bitmap {
+                    val bitmap = Bitmap.createBitmap(1, 1, Bitmap.Config.RGB_565)
+                    val canvase = Canvas(bitmap)
+                    canvase.drawARGB(0, 0, 0, 0)
+
+                    val drawable = BitmapDrawable(bitmap)
+                    drawable.alpha = 100
+                    return drawable.bitmap
                 }
             }
             loadUrl(path)

@@ -35,7 +35,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/recommendedQuestionTopLayout"
-        android:layout_margin="10dp"
         android:src="@drawable/avatar_female" />
 
     <ImageView
@@ -46,7 +45,30 @@
         android:layout_centerVertical="true"
         android:layout_marginBottom="20dp"
         android:layout_marginTop="20dp"
-        android:scaleType="fitCenter"
+        android:layout_toRightOf="@+id/userImage"
+        android:fontFamily="@font/nawabiat"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/dummyCenterView"
+        android:layout_width="1dp"
+        android:layout_height="1dp"
+        android:layout_below="@id/recommendedQuestionTopLayout"
+        android:layout_centerVertical="true"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_toRightOf="@+id/userImage"
+        android:fontFamily="@font/nawabiat"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/recommendedQuestionTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/recommendedQuestionTopLayout"
+        android:layout_centerVertical="true"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="20dp"
         android:layout_toRightOf="@+id/userImage"
         android:fontFamily="@font/nawabiat"
         android:textSize="20sp" />
@@ -57,7 +79,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:layout_below="@+id/recommendedQuestion"
+        android:layout_below="@+id/dummyCenterView"
         android:fontFamily="@font/nawabiat"
         android:padding="3dp"
         android:text="@string/add_answer"
@@ -67,7 +89,7 @@
         android:id="@+id/recommendedQuestionCount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@id/recommendedAddAnswer"
+        android:layout_alignBaseline="@id/dummyCenterView"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/recommendedQuestion"
         android:fontFamily="@font/nawabiat"

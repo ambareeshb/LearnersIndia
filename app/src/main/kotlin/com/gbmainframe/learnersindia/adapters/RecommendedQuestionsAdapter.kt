@@ -38,9 +38,23 @@ class RecommendedQuestionsAdapter(private val recommendedQuestions: ArrayList<Re
 //            itemView.recommendedQuestion.text = extractImageUrl(recommendedQuestion.qst_title)
             val answerString = " ${recommendedQuestion.Total_answers} ${itemView.context.resources.getQuantityString(R.plurals.question_answers, recommendedQuestion.Total_answers)}"
             itemView.recommendedQuestionCount.text = answerString
-            Glide.with(itemView.context)
-                    .load(extractImageUrl(recommendedQuestion.qst_title))
-                    .into(itemView.recommendedQuestion)
+
+            if(recommendedQuestion.qst_title.startsWith("<")){
+                itemView.recommendedQuestion.visibility = View.VISIBLE
+                itemView.recommendedQuestionTitle.visibility = View.GONE
+
+                Glide.with(itemView.context)
+                        .load(extractImageUrl(recommendedQuestion.qst_title))
+                        .into(itemView.recommendedQuestion)
+            }
+            else{
+                itemView.recommendedQuestion.visibility = View.GONE
+                itemView.recommendedQuestionTitle.visibility = View.VISIBLE
+
+                itemView.recommendedQuestionTitle.text = recommendedQuestion.qst_title
+            }
+
+
             itemView.recommendedAddAnswer.setOnClickListener {
                 if (recommendedQuestion.Total_answers < 1) {
                     Snackbar.make(itemView.rootView, "Answer not available now", Snackbar.LENGTH_SHORT).show()

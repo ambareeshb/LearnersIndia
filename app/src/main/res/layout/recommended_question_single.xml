@@ -79,7 +79,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:layout_below="@+id/dummyCenterView"
+        android:layout_alignParentBottom="true"
         android:fontFamily="@font/nawabiat"
         android:padding="3dp"
         android:text="@string/add_answer"
@@ -89,11 +89,11 @@
         android:id="@+id/recommendedQuestionCount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@id/dummyCenterView"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/recommendedQuestion"
+        android:layout_alignParentBottom="true"
         android:fontFamily="@font/nawabiat"
         android:text="No Answers Yet"
+        android:layout_marginTop="20dp"
         android:textColor="@color/colorBlue"
         android:textSize="22sp" />
 

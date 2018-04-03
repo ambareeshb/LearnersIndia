@@ -16,7 +16,7 @@ object RetrofitUtils {
 
 
     fun <T> initRetrofit(apiInterface: Class<T>,baseUrl:String = BuildConfig.BASE_URL): T {
-        if (retrofit == null || retrofit?.baseUrl().toString() != BuildConfig.BASE_URL) {
+        if (retrofit == null || baseUrl != retrofit?.baseUrl().toString()) {
 
             retrofit = Retrofit.Builder()
                     .baseUrl(baseUrl)

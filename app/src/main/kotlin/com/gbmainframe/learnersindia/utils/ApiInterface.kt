@@ -3,6 +3,7 @@ package com.gbmainframe.learnersindia.utils
 import com.gbmainframe.learnersindia.models.*
 import com.gbmainframe.learnersindia.models.apiresponses.*
 import retrofit2.http.GET
+import retrofit2.http.Header
 import retrofit2.http.Path
 import retrofit2.http.Query
 import rx.Observable
@@ -53,7 +54,8 @@ interface ApiInterface {
             @Query("sub_id") subId: Int): Observable<VideoResponse>
 
     @GET("videos/{video_id}")
-    fun getVimeoVideoMetadata(@Path("video_id") videoId: String): Observable<VimeoVideoModel> //Video id should contain o/p format eg: 6271487.json
+    fun getVimeoVideoMetadata(@Header("Authorization") vimeoToken:String,
+                              @Path("video_id") videoId: String): Observable<VimeoVideoModel> //Video id should contain o/p format eg: 6271487.json
 
 
     @GET("ask-question")

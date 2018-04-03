@@ -89,12 +89,12 @@ class HomeFragment : Fragment() {
             textNoQuestionAvailable.visibility = View.GONE
 
             RetrofitUtils.initRetrofit(ApiInterface::class.java).getRecommendedQuestions(
-//                    user.syl_id.toInt(),
-//                    1,
-//                    user.cls_id.toInt())
-                    sylId = 1,
-                    classId = 10,
-                    subId = 1)
+                    user.syl_id.toInt(),
+                    1,
+                    user.cls_id.toInt())
+//                    sylId = 1,
+//                    classId = 10,
+//                    subId = 1)
 
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
@@ -112,7 +112,7 @@ class HomeFragment : Fragment() {
                         recyclerRecommended.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
                         recyclerRecommended.addItemDecoration(DividerItemDecoration(context, LinearLayoutManager.VERTICAL))
                         recyclerRecommended.adapter = RecommendedQuestionsAdapter(questions.questions_data) { questionId ->
-                            (activity as Home).loadAnswerListFragment(2)// 2 for demo
+                            (activity as Home).loadAnswerListFragment(questionId)
                         }
                     }, { error ->
                         progressHome?.visibility = View.GONE
@@ -139,9 +139,11 @@ class HomeFragment : Fragment() {
                             return@subscribe
                         }
                         recyclerBestVideos.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-//                        recyclerBestVideos.addItemDecoration(DividerItemDecoration(context, LinearLayoutManager.HORIZONTAL))
-                        recyclerBestVideos.adapter = VideosAdapter(it.video_data) { videoUrl ->
-                            startActivity(Intent(activity, VideoPlayerActivity::class.java))
+                        recyclerBestVideos.adapter = VideosAdapter(it.video_data) { videoId ->
+                            Intent(activity,VideoPlayerActivity::class.java).apply {
+                                putExtra(VideoPlayerActivity.VIDEO_URI_BUNDLE_ID,videoId)
+                                startActivity(this)
+                            }
                         }
                     })
         }

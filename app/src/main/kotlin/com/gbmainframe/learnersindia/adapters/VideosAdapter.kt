@@ -1,9 +1,11 @@
 package com.gbmainframe.learnersindia.adapters
 
+import android.support.design.widget.Snackbar
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.gbmainframe.learnersindia.R
 import com.gbmainframe.learnersindia.models.VideoModel
@@ -29,17 +31,25 @@ class VideosAdapter(private val videoList: ArrayList<VideoModel>,
 
     inner class VideoViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         fun bindView(video: VideoModel) {
+            val videoId = video.ved_url.split("/").last()
             itemView.videoNameText.text = video.ved_title
             itemView.setOnClickListener {
-                videoClicked(video.ved_url)
+//                videoClicked(video.ved_id)
+                Toast.makeText(itemView.context,"Hold on loading video",Toast.LENGTH_SHORT).show()
             }
-            RetrofitUtils.initRetrofit(ApiInterface::class.java,"https://api.vimeo.com/").getVimeoVideoMetadata("262504336")
+            val vimeoToken = "Bearer ${itemView.context.getString(R.string.vimeo_access_token)}"
+            RetrofitUtils.initRetrofit(ApiInterface::class.java, "https://api.vimeo.com/")
+                    .getVimeoVideoMetadata(vimeoToken,videoId)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe({
-                        if (it.pictures.sizes[3] != null)
+                        video ->
+                        itemView.setOnClickListener {
+                            videoClicked(video.files[2].link)
+                        }
+                        if (video.pictures.sizes[4] != null)
                             Glide.with(itemView.context)
-                                    .load(it.pictures.sizes[3].toString())
+                                    .load(video.pictures.sizes[3].link)
                                     .into(itemView.videoPreview)
                     }, {
                         it.printStackTrace()

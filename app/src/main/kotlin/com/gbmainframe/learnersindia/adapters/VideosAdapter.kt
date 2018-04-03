@@ -33,7 +33,7 @@ class VideosAdapter(private val videoList: ArrayList<VideoModel>,
             itemView.setOnClickListener {
                 videoClicked(video.ved_url)
             }
-            RetrofitUtils.initRetrofit(ApiInterface::class.java).getVimeoVideoMetadata("262504336")
+            RetrofitUtils.initRetrofit(ApiInterface::class.java,"https://api.vimeo.com/").getVimeoVideoMetadata("262504336")
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe({

@@ -39,7 +39,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/nawabiat"
                     android:padding="10dp"
-                    android:text="Recommended Questions"
+                    android:text="Question &amp; Answers"
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
@@ -139,7 +139,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/nawabiat"
                     android:padding="10dp"
-                    android:text="Question Upload"
+                    android:text="Downloadable PDF"
                     android:textSize="20sp"
                     android:textStyle="bold" />
 

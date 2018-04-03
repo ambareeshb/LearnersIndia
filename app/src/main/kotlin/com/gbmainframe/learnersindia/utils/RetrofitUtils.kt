@@ -15,11 +15,11 @@ object RetrofitUtils {
     private var retrofit: Retrofit? = null
 
 
-    fun <T> initRetrofit(apiInterface: Class<T>): T {
-        if (retrofit == null) {
+    fun <T> initRetrofit(apiInterface: Class<T>,baseUrl:String = BuildConfig.BASE_URL): T {
+        if (retrofit == null || retrofit?.baseUrl().toString() != BuildConfig.BASE_URL) {
 
             retrofit = Retrofit.Builder()
-                    .baseUrl(BuildConfig.BASE_URL)
+                    .baseUrl(baseUrl)
                     .addConverterFactory(GsonConverterFactory.create())
                     .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                     .client(client)

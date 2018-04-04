@@ -84,5 +84,11 @@ interface ApiInterface {
                @Query("syl_id") sylId: Int,
                @Query("class_id") classId: Int,
                @Query("sub_id") subId: Int): Observable<SearchModel>
+    @GET("get-exercises")
+    fun getExercises(@Query("tocken") token: String,
+                    @Query("syl_id") sylId: Int,
+                    @Query("class_id") classId: Int,
+                    @Query("sub_id") subId: Int = 1,
+                    @Query("chap_id") chapId: Int = 1):Observable<ExerciseResponse>
 
 }

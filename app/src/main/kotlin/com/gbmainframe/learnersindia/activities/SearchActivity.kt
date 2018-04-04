@@ -55,7 +55,7 @@ class SearchActivity : AppCompatActivity() {
             progressSearch1.visibility = View.VISIBLE
             progressSearch2.visibility = View.VISIBLE
             progressSearch3.visibility = View.VISIBLE
-            RetrofitUtils.initRetrofit(ApiInterface::class.java).search(keyword = "learn",
+            RetrofitUtils.initRetrofit(ApiInterface::class.java).search(keyword = keyword,
                     sylId = user.syl_id.toInt(),
                     classId = 10,
                     subId = 1)

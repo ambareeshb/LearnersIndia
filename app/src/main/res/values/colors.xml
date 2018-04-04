@@ -22,4 +22,6 @@
     <color name="errorRed">#e80427</color>
 
     <color name="overlay">#22000000</color>
+    <color name="color_grey1">#f6f6f6</color>
+    <color name="color_grey2">#f0f0f0</color>
 </resources>

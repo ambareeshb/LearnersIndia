@@ -16,20 +16,27 @@
         android:alpha=".6"
         android:clickable="true"
         android:src="@drawable/ic_arrow_back"
-        android:tint="@color/white" />
+        android:visibility="gone" />
 
     <TextView
         android:id="@+id/toolbarTitle"
         android:layout_width="wrap_content"
-        android:maxWidth="250dp"
-        android:lines="2"
-        android:ellipsize="marquee"
-        android:gravity="center"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:fontFamily="@font/nawabiat"
-        android:textColor="@color/white"
-        android:textSize="24sp"
+        android:textColor="@color/offWhite"
+        android:textSize="25sp"
         android:textStyle="bold" />
 
+    <ImageView
+        android:id="@+id/askQuestion"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="10dp"
+        android:clickable="true"
+        android:scaleType="fitXY"
+        android:src="@drawable/ic_add_black_24dp"
+        android:tint="@color/offWhite" />
 </RelativeLayout>

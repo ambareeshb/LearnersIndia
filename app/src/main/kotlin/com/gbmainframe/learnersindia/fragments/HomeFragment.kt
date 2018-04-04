@@ -59,13 +59,13 @@ class HomeFragment : Fragment() {
          * Home item click listeners.
          */
         homeItemPractise.setOnClickListener {
-            (activity as Home).loadChapterListFragment()
+            (activity as Home).loadChapterListFragment(ChaptersFragment.Companion.CHAPTER.EXERCISE)
         }
         homeItemTest.setOnClickListener {
             Snackbar.make(view, "Test session will be available soon", Snackbar.LENGTH_SHORT).show()
         }
         homeItemVideo.setOnClickListener {
-            (activity as Home).loadChapterListFragment()
+            (activity as Home).loadChapterListFragment(ChaptersFragment.Companion.CHAPTER.VIDEO)
 //            Snackbar.make(view, "Video session will be available soon", Snackbar.LENGTH_SHORT).show()
         }
         homeItemGame.setOnClickListener {
@@ -75,7 +75,7 @@ class HomeFragment : Fragment() {
             Snackbar.make(view, "will be available soon", Snackbar.LENGTH_SHORT).show()
         }
         homeItemAsk.setOnClickListener {
-            (activity as Home).loadAskQuestionFragment()
+            (activity as Home).loadAskQuestionFragment(true)
         }
 
 
@@ -127,8 +127,8 @@ class HomeFragment : Fragment() {
             textNoVideosAvailable.visibility = View.GONE
 
             RetrofitUtils.initRetrofit(ApiInterface::class.java).getFreeVideos(
-                    sylId = 1,
-                    classId = 10,
+                    sylId = user.syl_id.toInt(),
+                    classId = user.cls_id.toInt(),
                     subId = 1
             ).subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
@@ -140,11 +140,13 @@ class HomeFragment : Fragment() {
                         }
                         recyclerBestVideos.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
                         recyclerBestVideos.adapter = VideosAdapter(it.video_data) { videoId ->
-                            Intent(activity,VideoPlayerActivity::class.java).apply {
-                                putExtra(VideoPlayerActivity.VIDEO_URI_BUNDLE_ID,videoId)
+                            Intent(activity, VideoPlayerActivity::class.java).apply {
+                                putExtra(VideoPlayerActivity.VIDEO_URI_BUNDLE_ID, videoId)
                                 startActivity(this)
                             }
                         }
+                    }, { error ->
+                        error.printStackTrace()
                     })
         }
     }

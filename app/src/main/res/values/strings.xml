@@ -57,5 +57,6 @@
     <string name="text_no_content_available">No content found</string>
     <string name="exercise">Exercises</string>
     <string name="video_lessons">Video lessons</string>
+    <string name="more"><![CDATA[More >>]]></string>
 
 </resources>

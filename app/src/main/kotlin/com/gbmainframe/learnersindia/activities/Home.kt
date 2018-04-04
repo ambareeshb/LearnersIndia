@@ -37,10 +37,10 @@ class Home : AppCompatActivity() {
                     loadProfileFragment()
                     return@setOnNavigationItemSelectedListener true
                 }
-                R.id.premium -> {
-                    loadPremiumFragment()
-                    return@setOnNavigationItemSelectedListener true
-                }
+//                R.id.premium -> {
+//                    loadPremiumFragment()
+//                    return@setOnNavigationItemSelectedListener true
+//                }
                 R.id.ask -> {
                     loadQuestionsListFragment()
                     true
@@ -83,10 +83,14 @@ class Home : AppCompatActivity() {
     /**
      * Load chapter list fragment.
      */
-    fun loadChapterListFragment() {
+    fun loadChapterListFragment(chapterChoice: ChaptersFragment.Companion.CHAPTER) {
         supportFragmentManager.popBackStack(TAG, FragmentManager.POP_BACK_STACK_INCLUSIVE)
+        val bundle = Bundle()
+        bundle.putInt(ChaptersFragment.CHAPTER_BUNDLE, chapterChoice.ordinal)
+        val fragment = ChaptersFragment()
+        fragment.arguments = bundle
         FragmentUtils(supportFragmentManager).beginTransaction()
-                .replace(R.id.fragmentContainer, ChaptersFragment())
+                .replace(R.id.fragmentContainer, fragment)
                 .addToBackStack(true, TAG)
                 .commit()
     }
@@ -95,10 +99,32 @@ class Home : AppCompatActivity() {
     /**
      * Add asks question fragment to container.
      */
-    fun loadAskQuestionFragment() {
+    fun loadAskQuestionFragment(addToBackStack: Boolean) {
         supportFragmentManager.popBackStack(TAG, FragmentManager.POP_BACK_STACK_INCLUSIVE)
         FragmentUtils(supportFragmentManager).beginTransaction()
                 .replace(R.id.fragmentContainer, AskQuestionFragment())
+                .addToBackStack(addToBackStack, TAG)
+                .commit()
+    }
+
+    /**
+     * Add asks question fragment to container.
+     */
+    fun loadVideoListFragment(chapterTitle: String, chapterId: Int) {
+//        supportFragmentManager.popBackStack(TAG, FragmentManager.POP_BACK_STACK_INCLUSIVE)
+        FragmentUtils(supportFragmentManager).beginTransaction()
+                .replace(R.id.fragmentContainer, VideoListFragment.newInstance(chapterId, chapterTitle))
+                .addToBackStack(true, TAG)
+                .commit()
+    }
+
+    /**
+     * Add asks question fragment to container.
+     */
+    fun loadExerciseListFragment(chapterTitle: String, chapterId: Int) {
+//        supportFragmentManager.popBackStack(TAG, FragmentManager.POP_BACK_STACK_INCLUSIVE)
+        FragmentUtils(supportFragmentManager).beginTransaction()
+                .replace(R.id.fragmentContainer, ExerciseListFragment.newInstance(chapterTitle, chapterId))
                 .addToBackStack(true, TAG)
                 .commit()
     }

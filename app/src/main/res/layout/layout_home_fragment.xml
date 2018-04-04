@@ -185,6 +185,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/videoListHome"
+                    android:textStyle="bold"
                     android:fontFamily="@font/nawabiat"
                     android:padding="10dp"
                     android:text="@string/recommended_questions"

@@ -14,8 +14,8 @@ import com.gbmainframe.learnersindia.adapters.RecommendedQuestionsAdapter
 import com.gbmainframe.learnersindia.utils.ApiInterface
 import com.gbmainframe.learnersindia.utils.RetrofitUtils
 import com.gbmainframe.learnersindia.utils.sharedPrefManager
+import kotlinx.android.synthetic.main.ask_ans_toolbar.*
 import kotlinx.android.synthetic.main.layout_list_questions.*
-import kotlinx.android.synthetic.main.simple_toolbar.*
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
 
@@ -29,7 +29,9 @@ class QuestionListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         toolbarTitle.text = getString(R.string.questions)
-        backButton.setOnClickListener { (activity as Home).popBackStack() }
+
+        backButton.visibility = View.GONE
+        askQuestion.setOnClickListener{(activity as Home).loadAskQuestionFragment(false)}
 
         /**
          * Call API for recommended questions.
@@ -47,21 +49,25 @@ class QuestionListFragment : Fragment() {
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe({ questions ->
-                        progress?.visibility = View.GONE
-                        if (questions == null || questions.response_type == getString(R.string.response_type_error)) {
-                            textNoQuestionAvailable.visibility = View.VISIBLE
-                            return@subscribe
-                        }
-                        textNoQuestionAvailable.visibility = View.GONE
-                        recyclerRecommended.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-                        recyclerRecommended.addItemDecoration(DividerItemDecoration(context, LinearLayoutManager.VERTICAL))
-                        recyclerRecommended.adapter = RecommendedQuestionsAdapter(questions.questions_data){ questionId ->
-                            (activity as Home).loadAnswerListFragment(questionId)
+                        progress?.let{
+                            progress?.visibility = View.GONE
+                            if (questions == null || questions.response_type == getString(R.string.response_type_error)) {
+                                textNoQuestionAvailable.visibility = View.VISIBLE
+                                return@subscribe
+                            }
+                            textNoQuestionAvailable.visibility = View.GONE
+                            recyclerRecommended.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+                            recyclerRecommended.addItemDecoration(DividerItemDecoration(context, LinearLayoutManager.VERTICAL))
+                            recyclerRecommended.adapter = RecommendedQuestionsAdapter(questions.questions_data){ questionId ->
+                                (activity as Home).loadAnswerListFragment(questionId)
+                            }
                         }
                     }, { error ->
-                        progress?.visibility = View.GONE
-                        Snackbar.make(view, R.string.something_went_wrong, Snackbar.LENGTH_SHORT).show()
-                        error.printStackTrace()
+                        progress?.let {
+                            progress?.visibility = View.GONE
+                            Snackbar.make(view, R.string.something_went_wrong, Snackbar.LENGTH_SHORT).show()
+                            error.printStackTrace()
+                        }
                     })
         }
 

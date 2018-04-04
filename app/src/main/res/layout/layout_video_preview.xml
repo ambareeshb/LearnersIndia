@@ -7,7 +7,7 @@
 
     <FrameLayout
         android:layout_width="200dp"
-        android:layout_height="200dp">
+        android:layout_height="150dp">
 
         <ImageView
             android:id="@+id/videoPreview"

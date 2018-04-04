@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
+    android:minHeight="150dp"
     android:padding="15dp">
 
     <LinearLayout
@@ -34,6 +35,7 @@
         android:id="@+id/userImage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
         android:layout_below="@id/recommendedQuestionTopLayout"
         android:src="@drawable/avatar_female" />
 
@@ -43,6 +45,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/recommendedQuestionTopLayout"
         android:layout_centerVertical="true"
+        android:layout_margin="10dp"
         android:layout_marginBottom="20dp"
         android:layout_marginTop="20dp"
         android:layout_toRightOf="@+id/userImage"
@@ -56,6 +59,7 @@
         android:layout_below="@id/recommendedQuestionTopLayout"
         android:layout_centerVertical="true"
         android:layout_marginBottom="20dp"
+        android:layout_margin="10dp"
         android:layout_marginTop="20dp"
         android:layout_toRightOf="@+id/userImage"
         android:fontFamily="@font/nawabiat"
@@ -68,21 +72,24 @@
         android:layout_below="@id/recommendedQuestionTopLayout"
         android:layout_centerVertical="true"
         android:layout_marginBottom="20dp"
+        android:layout_margin="10dp"
         android:layout_marginTop="20dp"
         android:layout_toRightOf="@+id/userImage"
         android:fontFamily="@font/nawabiat"
         android:textSize="20sp" />
 
-    <Button
+    <TextView
         android:id="@+id/recommendedAddAnswer"
-        style="@style/StyleLoginButtonHollow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
+        android:clickable="true"
         android:fontFamily="@font/nawabiat"
         android:padding="3dp"
-        android:text="@string/add_answer"
+        android:layout_alignBaseline="@id/recommendedQuestionCount"
+        android:text="@string/more"
+        android:textColor="@color/colorPrimary"
         android:textSize="16sp" />
 
     <TextView
@@ -95,6 +102,6 @@
         android:text="No Answers Yet"
         android:layout_marginTop="20dp"
         android:textColor="@color/colorBlue"
-        android:textSize="22sp" />
+        android:textSize="16sp" />
 
 </RelativeLayout>

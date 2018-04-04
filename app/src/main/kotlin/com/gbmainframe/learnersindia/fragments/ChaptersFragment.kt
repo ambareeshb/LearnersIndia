@@ -22,6 +22,12 @@ import rx.schedulers.Schedulers
  * Created by ambareeshb on 27/03/18.
  */
 class ChaptersFragment : Fragment() {
+    companion object {
+        enum class CHAPTER { VIDEO, EXERCISE }
+
+        const val CHAPTER_BUNDLE = "BUNDLE_CHAPTER_LIST"
+    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
             inflater.inflate(R.layout.layout_chapters, container, false)
 
@@ -48,7 +54,14 @@ class ChaptersFragment : Fragment() {
                         textNoChaptersAvailable.visibility = View.GONE
                         recyclerChapters.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
                         recyclerChapters.addItemDecoration(DividerItemDecoration(context, LinearLayoutManager.VERTICAL))
-                        recyclerChapters.adapter = ChaptersAdapter(it.chapters_data)
+                        recyclerChapters.adapter = ChaptersAdapter(it.chapters_data, { chapterTitle,chapterId ->
+                            if (arguments?.getInt(CHAPTER_BUNDLE)?.equals(CHAPTER.VIDEO.ordinal)!!) {
+                                (activity as Home).loadVideoListFragment(chapterTitle,chapterId)
+                            }
+                            else if(arguments?.getInt(CHAPTER_BUNDLE)?.equals(CHAPTER.EXERCISE.ordinal)!!){
+                                (activity as Home).loadExerciseListFragment(chapterTitle,chapterId)
+                            }
+                        })
 
                     }, {
                         progress.visibility = View.GONE

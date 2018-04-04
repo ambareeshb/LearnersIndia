@@ -2,6 +2,7 @@ package com.gbmainframe.learnersindia.fragments
 
 import android.app.AlertDialog
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v4.app.Fragment
@@ -27,6 +28,14 @@ class ProfileFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        callUs?.setOnClickListener {
+            Intent(Intent.ACTION_DIAL).apply {
+                val phoneNumber = "0471 4015515"
+                val uri = "tel:$phoneNumber"
+                data = Uri.parse(uri)
+                startActivity(this)
+            }
+        }
         logout.setOnClickListener {
             AlertDialog.Builder(context).setTitle("Logout").setMessage(R.string.logoutMessage)
                     .setPositiveButton(R.string.yes, { _, _ ->

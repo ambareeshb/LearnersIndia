@@ -39,8 +39,8 @@ class ExerciseAdapter(private val exerciseList: ArrayList<Exercise>) : RecyclerV
             }
             val mimeType = "text/html"
             val encoding = "UTF-8"
-            itemView.exerciseTitle.loadDataWithBaseURL("", exercise.exercise_title, mimeType, encoding, "")
-            itemView.exerciseSolution.loadDataWithBaseURL("", exercise.exercise_title, mimeType, encoding, "")
+            itemView.exerciseTitle.loadDataWithBaseURL("", "<b>${exercise.exercise_title}</b>", mimeType, encoding, "")
+            itemView.exerciseSolution.loadDataWithBaseURL("", exercise.exercise_solution, mimeType, encoding, "")
         }
 
         private fun String.convertHtml() = Html.fromHtml(this)

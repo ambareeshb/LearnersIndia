@@ -10,7 +10,7 @@
         <RelativeLayout
             android:id="@+id/userProfileTop"
             android:layout_width="match_parent"
-            android:layout_height="250dp">
+            android:layout_height="230dp">
 
             <ImageView
                 android:id="@+id/profileBg"
@@ -19,7 +19,8 @@
                 android:scaleType="fitXY"
                 android:src="@drawable/top" />
 
-            <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+            <de.hdodenhof.circleimageview.CircleImageView
+                xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/profile_image"
                 android:layout_width="96dp"
                 android:layout_height="96dp"

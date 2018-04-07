@@ -1,63 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:divider="@drawable/divider_vertical"
         android:orientation="vertical"
         android:showDividers="middle">
 
         <include layout="@layout/toolbar" />
 
+
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@+id/toolbar"
             android:layout_gravity="center"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="1dp"
             android:divider="@drawable/divider_vertical"
             android:gravity="center"
             android:orientation="vertical"
-            android:padding="16dp"
+            android:padding="26dp"
+            android:paddingTop="10dp"
             android:showDividers="middle">
 
             <ImageView
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:src="@drawable/ic_launcher" />
+                android:layout_margin="20dp"
+                android:src="@drawable/splash_logo" />
 
-            <TextView
+
+            <EditText
+                android:id="@+id/userName"
                 style="@style/SignInText"
-                android:layout_marginBottom="5dp"
-                android:gravity="center"
-                android:lines="2"
-                android:text="@string/login_top_message" />
+                android:hint="@string/user_name"
+                android:theme="@style/Base.ThemeOverlay.AppCompat.Dark"
+                android:inputType="textEmailAddress"
+                android:textColor="@color/white" />
 
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/userNameLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/user_name">
 
-                <android.support.design.widget.TextInputEditText
-                    android:id="@+id/userName"
-                    style="@style/SignInText"
-                    android:inputType="textEmailAddress" />
-            </android.support.design.widget.TextInputLayout>
-
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/passwordLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/password">
-
-                <android.support.design.widget.TextInputEditText
-                    android:id="@+id/password"
-                    style="@style/SignInText" />
-            </android.support.design.widget.TextInputLayout>
+            <EditText
+                android:id="@+id/password"
+                style="@style/SignInText"
+                android:hint="@string/password"
+                android:theme="@style/Base.ThemeOverlay.AppCompat.Dark"
+                android:textColor="@color/white" />
 
             <android.support.v7.widget.AppCompatTextView
                 android:id="@+id/forgotPassword"
@@ -65,11 +57,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Forgot Password ?"
-                android:textColor="@color/colorBlue" />
+                android:textColor="@color/white"
+                android:textSize="18sp" />
 
             <android.support.v7.widget.AppCompatButton
                 android:id="@+id/buttonSignIn"
-                style="@style/StyleLoginButtonSolid"
+                style="@style/StyleLoginRectangleButtonHollow"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"

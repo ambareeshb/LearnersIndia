@@ -20,12 +20,10 @@
 
     <TextView
         android:id="@+id/toolbarTitle"
+        style="@style/ToolbarTextStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:fontFamily="@font/nawabiat"
-        android:textColor="@color/offWhite"
-        android:textSize="25sp"
         android:textStyle="bold" />
 
     <ImageView

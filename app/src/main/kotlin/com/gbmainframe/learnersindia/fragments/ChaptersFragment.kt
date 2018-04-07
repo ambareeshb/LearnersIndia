@@ -53,7 +53,7 @@ class ChaptersFragment : Fragment() {
                         }
                         textNoChaptersAvailable.visibility = View.GONE
                         recyclerChapters.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-                        recyclerChapters.addItemDecoration(DividerItemDecoration(context, LinearLayoutManager.VERTICAL))
+//                        recyclerChapters.addItemDecoration(DividerItemDecoration(context, LinearLayoutManager.VERTICAL))
                         recyclerChapters.adapter = ChaptersAdapter(it.chapters_data, { chapterTitle,chapterId ->
                             if (arguments?.getInt(CHAPTER_BUNDLE)?.equals(CHAPTER.VIDEO.ordinal)!!) {
                                 (activity as Home).loadVideoListFragment(chapterTitle,chapterId)

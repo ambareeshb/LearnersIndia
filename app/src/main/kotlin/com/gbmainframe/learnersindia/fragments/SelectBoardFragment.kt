@@ -38,7 +38,6 @@ class SelectBoardFragment : Fragment() {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ data ->
                     recyclerBoard.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-                    recyclerBoard.addItemDecoration(DividerItemDecoration(context, LinearLayoutManager.VERTICAL))
                     recyclerBoard.adapter = BoardsRecyclerAdapter(
                             data,
                             object : BoardsRecyclerAdapter.BoardSelectListener {

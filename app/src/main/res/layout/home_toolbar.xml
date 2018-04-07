@@ -22,10 +22,7 @@
         android:id="@+id/toolbarTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/nawabiat"
-        android:textColor="@color/offWhite"
-        android:textStyle="bold"
-        android:textSize="25sp"
+        style="@style/ToolbarTextStyle"
         android:layout_centerInParent="true" />
 
     <ImageView

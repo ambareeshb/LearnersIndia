@@ -6,72 +6,80 @@
     android:padding="15dp">
 
     <LinearLayout
+        android:id="@+id/top"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/answerTopLayout"
+        android:gravity="center_vertical"
         android:orientation="horizontal">
 
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/userImage"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_margin="10dp"
+            android:src="@drawable/avatar_common" />
 
-        <TextView
-            android:id="@+id/answerUserName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/nawabiat"
-            android:layout_marginRight="3dp"
-            android:textSize="16sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/answerTopText"
+        <LinearLayout
+            android:id="@+id/answerTopLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/nawabiat"
-            android:textSize="16sp" />
+            android:orientation="vertical">
+
+
+            <TextView
+                android:id="@+id/answerUserName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="3dp"
+                android:fontFamily="@font/nawabiat"
+                android:textSize="@dimen/answeredUserName"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/answerTopText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nawabiat"
+                android:textSize="@dimen/answeredUserName" />
+        </LinearLayout>
+
     </LinearLayout>
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/userImage"
-        android:src="@drawable/avatar_male"
-        android:layout_margin="10dp"
-        android:layout_below="@+id/answerTopLayout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-    <TextView
+    <WebView
         android:id="@+id/answerText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/recommendedQuestionTopLayout"
         android:layout_centerVertical="true"
-        android:layout_toRightOf="@+id/userImage"
-        android:fontFamily="@font/nawabiat"
         android:layout_marginBottom="20dp"
         android:layout_marginTop="20dp"
+        android:layout_toRightOf="@+id/top"
+        android:fontFamily="@font/nawabiat"
         android:textSize="20sp" />
 
     <!--<Button-->
-        <!--android:id="@+id/recommendedAddAnswer"-->
-        <!--style="@style/StyleLoginButtonHollow"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_below="@+id/recommendedQuestion"-->
-        <!--android:text="@string/add_answer"-->
-        <!--android:padding="3dp"-->
-        <!--android:fontFamily="@font/nawabiat"-->
-        <!--android:textSize="16sp"-->
-        <!--android:layout_alignParentRight="true"-->
-        <!--/>-->
+    <!--android:id="@+id/recommendedAddAnswer"-->
+    <!--style="@style/StyleLoginButtonHollow"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_below="@+id/recommendedQuestion"-->
+    <!--android:text="@string/add_answer"-->
+    <!--android:padding="3dp"-->
+    <!--android:fontFamily="@font/nawabiat"-->
+    <!--android:textSize="16sp"-->
+    <!--android:layout_alignParentRight="true"-->
+    <!--/>-->
 
     <!--<TextView-->
-        <!--android:id="@+id/recommendedQuestionCount"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_below="@+id/recommendedQuestion"-->
-        <!--android:layout_alignBaseline="@id/recommendedAddAnswer"-->
-        <!--android:layout_alignParentLeft="true"-->
-        <!--android:fontFamily="@font/nawabiat"-->
-        <!--android:text="No Answers Yet"-->
-        <!--android:textColor="@color/colorBlue"-->
-        <!--android:textSize="22sp" />-->
+    <!--android:id="@+id/recommendedQuestionCount"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_below="@+id/recommendedQuestion"-->
+    <!--android:layout_alignBaseline="@id/recommendedAddAnswer"-->
+    <!--android:layout_alignParentLeft="true"-->
+    <!--android:fontFamily="@font/nawabiat"-->
+    <!--android:text="No Answers Yet"-->
+    <!--android:textColor="@color/colorBlue"-->
+    <!--android:textSize="22sp" />-->
 
 </RelativeLayout>

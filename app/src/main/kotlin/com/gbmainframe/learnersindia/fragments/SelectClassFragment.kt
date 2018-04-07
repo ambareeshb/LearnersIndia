@@ -40,7 +40,6 @@ class SelectClassFragment : Fragment() {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ data ->
                     recyclerClass.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-                    recyclerClass.addItemDecoration(DividerItemDecoration(context, LinearLayoutManager.VERTICAL))
                     recyclerClass.adapter = ClassRecyclerAdapter(data, { classInfo ->
                         (activity as SignIn).loadSignUpFragment(board = arguments?.getParcelable(SignIn.BOARD_PARCEL) as Board, classInfo = classInfo)
                     })

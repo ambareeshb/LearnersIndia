@@ -55,6 +55,13 @@ class HomeFragment : Fragment() {
         toolbarSearch.setOnClickListener {
             startActivity(Intent(activity, SearchActivity::class.java))
         }
+        shareButton.setOnClickListener {
+            startActivity(Intent().apply {
+                action = Intent.ACTION_SEND
+                putExtra(Intent.EXTRA_TEXT, "Share Learners India")
+                type = "text/plain"
+            })
+        }
         /**
          * Home item click listeners.
          */

@@ -32,7 +32,7 @@ class VideosAdapter(private val videoList: ArrayList<VideoModel>,
     inner class VideoViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         fun bindView(video: VideoModel) {
             val videoId = video.ved_url.split("/").last()
-            itemView.videoNameText.text = video.ved_title
+            itemView.videoNameText.text = video.ved_title.replace("\\","")
             itemView.setOnClickListener {
 //                videoClicked(video.ved_id)
                 Toast.makeText(itemView.context,"Hold on loading video",Toast.LENGTH_SHORT).show()

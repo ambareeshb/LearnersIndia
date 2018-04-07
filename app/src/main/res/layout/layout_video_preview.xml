@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_margin="15dp"
@@ -14,27 +15,29 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@android:color/transparent"
-            android:scaleType="fitCenter"/>
+            android:scaleType="fitCenter" />
 
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/overlay" />
+            android:background="@android:color/transparent" />
 
         <ImageView
             android:id="@+id/videoPlayIcon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_gravity="center"
             android:background="@android:color/transparent"
             android:scaleType="fitStart"
-            android:src="@drawable/play" />
+            android:src="@drawable/play"
+            android:tint="@android:color/darker_gray" />
     </FrameLayout>
 
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:minHeight="60dp">
+        android:minHeight="60dp"
+        app:cardElevation="4dp">
 
         <TextView
             android:id="@+id/videoNameText"
@@ -44,7 +47,6 @@
             android:gravity="center"
             android:maxLines="5"
             android:paddingTop="3dp"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+            android:textSize="16sp" />
     </android.support.v7.widget.CardView>
 </LinearLayout>

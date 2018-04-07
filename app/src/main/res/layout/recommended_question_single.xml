@@ -2,92 +2,71 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
     android:minHeight="150dp"
+    android:orientation="vertical"
     android:padding="15dp">
 
+
     <LinearLayout
-        android:id="@+id/recommendedQuestionTopLayout"
+        android:id="@+id/topRecommended"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center_vertical"
         android:orientation="horizontal">
 
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/userImage"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/avatar_common" />
 
-        <TextView
-            android:id="@+id/recommendedQuestionUserName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="3dp"
-            android:fontFamily="@font/nawabiat"
-            android:textSize="16sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/recommendedQuestionTop"
+        <LinearLayout
+            android:id="@+id/recommendedQuestionTopLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/nawabiat"
-            android:textSize="16sp" />
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/userImage"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/recommendedQuestionUserName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="3dp"
+                android:fontFamily="@font/nawabiat"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/recommendedQuestionTop"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nawabiat"
+                android:textSize="14sp" />
+        </LinearLayout>
     </LinearLayout>
 
-
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/userImage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_below="@id/recommendedQuestionTopLayout"
-        android:src="@drawable/avatar_female" />
-
-    <ImageView
-        android:id="@+id/recommendedQuestion"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/recommendedQuestionTopLayout"
-        android:layout_centerVertical="true"
-        android:layout_margin="10dp"
-        android:layout_marginBottom="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_toRightOf="@+id/userImage"
-        android:fontFamily="@font/nawabiat"
-        android:textSize="20sp" />
-
-    <TextView
-        android:id="@+id/dummyCenterView"
-        android:layout_width="1dp"
-        android:layout_height="1dp"
-        android:layout_below="@id/recommendedQuestionTopLayout"
-        android:layout_centerVertical="true"
-        android:layout_marginBottom="20dp"
-        android:layout_margin="10dp"
-        android:layout_marginTop="20dp"
-        android:layout_toRightOf="@+id/userImage"
-        android:fontFamily="@font/nawabiat"
-        android:textSize="20sp" />
-
-    <TextView
+    <WebView
         android:id="@+id/recommendedQuestionTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/recommendedQuestionTopLayout"
-        android:layout_centerVertical="true"
-        android:layout_marginBottom="20dp"
+        android:layout_below="@+id/topRecommended"
         android:layout_margin="10dp"
+        android:layout_marginBottom="20dp"
         android:layout_marginTop="20dp"
-        android:layout_toRightOf="@+id/userImage"
         android:fontFamily="@font/nawabiat"
-        android:textSize="20sp" />
+        android:textSize="18sp" />
 
     <TextView
         android:id="@+id/recommendedAddAnswer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignBaseline="@id/recommendedQuestionCount"
         android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/recommendedQuestionTitle"
         android:clickable="true"
         android:fontFamily="@font/nawabiat"
         android:padding="3dp"
-        android:layout_alignBaseline="@id/recommendedQuestionCount"
         android:text="@string/more"
         android:textColor="@color/colorPrimary"
         android:textSize="16sp" />
@@ -97,11 +76,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentBottom="true"
-        android:fontFamily="@font/nawabiat"
-        android:text="No Answers Yet"
+        android:layout_below="@+id/recommendedQuestionTitle"
         android:layout_marginTop="20dp"
+        android:fontFamily="@font/nawabiat"
+        android:text="No Answers"
         android:textColor="@color/colorBlue"
         android:textSize="16sp" />
-
 </RelativeLayout>

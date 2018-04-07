@@ -8,24 +8,27 @@
     android:padding="20dp"
     android:showDividers="middle">
 
+
     <TextView
         android:id="@+id/selectroleText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/nawabiat"
         android:gravity="center"
+        android:textStyle="bold"
+        android:textAllCaps="true"
         android:padding="16dp"
         android:text="Select Role"
-        android:textSize="35sp" />
+        android:textSize="20sp" />
 
 
     <android.support.v4.view.ViewPager
         android:id="@+id/selectroleViewPager"
         android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:paddingRight="70dp"
         android:paddingLeft="70dp"
-        android:layout_height="wrap_content" />
+        android:paddingRight="70dp" />
 
     <ImageView
         android:id="@+id/arrowLeft"
@@ -33,10 +36,11 @@
         android:layout_height="60dp"
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
+        android:layout_margin="10dp"
         android:clickable="true"
         android:scaleType="fitXY"
-        android:layout_margin="10dp"
-        android:src="@drawable/ic_back" />
+        android:src="@drawable/ic_back"
+        android:tint="@color/colorPrimaryDark" />
 
     <ImageView
         android:id="@+id/arrowRight"
@@ -47,14 +51,16 @@
         android:layout_margin="10dp"
         android:clickable="true"
         android:scaleType="fitXY"
-        android:src="@drawable/ic_next" />
+        android:src="@drawable/ic_next"
+        android:tint="@color/colorPrimaryDark" />
 
     <android.support.v7.widget.AppCompatButton
         android:id="@+id/buttonNext"
-        style="@style/StyleLoginButtonHollow"
+        style="@style/StyleLoginRectangleButtonHollow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
+        android:background="@color/colorPrimary"
         android:text="Next" />
 </RelativeLayout>

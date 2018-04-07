@@ -3,27 +3,34 @@
     android:id="@+id/toolbar"
     android:layout_width="match_parent"
     android:layout_height="?attr/actionBarSize"
+    android:background="@color/colorPrimaryDark"
     android:orientation="horizontal"
     android:padding="5dp">
 
     <ImageView
         android:id="@+id/backButton"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
+        android:paddingLeft="10dp"
         android:clickable="true"
-        android:alpha=".6"
-        android:src="@drawable/ic_arrow_back"/>
+        android:src="@drawable/ic_arrow_back"
+        android:tint="@color/white" />
 
-    <Button
+    <TextView
         android:id="@+id/toolbarButton"
-        style="@style/StyleLoginButtonHollow"
-        android:layout_width="wrap_content"
+        android:textStyle="bold"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
-        android:text="Login" />
+        android:clickable="true"
+        android:fontFamily="@font/nawabiat"
+        android:textSize="19sp"
+        android:gravity="center"
+        android:text="Login"
+        android:textColor="@color/white" />
 
 
 </RelativeLayout>

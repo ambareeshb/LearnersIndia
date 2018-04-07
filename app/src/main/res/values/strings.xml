@@ -6,14 +6,14 @@
     <string name="email">Email</string>
     <string name="board">Board</string>
     <string name="student_class">Class</string>
-    <string name="sign_up">Sign Up</string>
+    <string name="sign_up">Join Now</string>
     <string name="login">Login</string>
     <string name="error_fields_empty">All fields must be filled</string>
     <string name="something_went_wrong">Something went wrong</string>
     <string name="user_name">Email / Phone</string>
     <string name="error_retype_password_again">Retype password again</string>
     <string name="mobile">Mobile number</string>
-    <string name="recommended_questions">Recommended questions</string>
+    <string name="recommended_questions">Recommended Questions</string>
     <string name="practise">Practise</string>
     <string name="videos">Videos</string>
     <string name="test">Test</string>
@@ -41,7 +41,7 @@
     <string name="no_chapters_available">No chapters available currently.</string>
     <string name="please_allow_permission">Please allow required permissions</string>
     <string name="let_s_get_started">Let\'s get started</string>
-    <string name="terms_and_conditions"><![CDATA[By signing up, you agree the T&C and authorise Learners India and its partners to call or sms you with reference to Learners India]]></string>
+    <string name="terms_and_conditions"><![CDATA[You agree to Learners India\'s User Agreement, Privacy Policy and Cookie Policy. For phone number and sign ups we will send a verification code via SMS]]></string>
     <string name="login_top_message">Login with your   Learners India Account details</string>
     <string name="no_questions_available">No questions available</string>
     <string name="questions">Questions</string>
@@ -49,7 +49,7 @@
     <string name="notification">Notifications</string>
     <string name="game">Games</string>
     <string name="ask_home">Ask doubt</string>
-    <string name="best_of_learners_india">Best Of Learners India</string>
+    <string name="best_of_learners_india">Best of Learners India</string>
     <string name="no_videos_available">No videos  available</string>
     <string name="add_answer">Add Answer</string>
     <string name="no_answers_available">No answers available</string>
@@ -58,5 +58,7 @@
     <string name="exercise">Exercises</string>
     <string name="video_lessons">Video lessons</string>
     <string name="more"><![CDATA[More >>]]></string>
+    <string name="agree_and_join"><![CDATA[Agree & Join]]></string>
+    <string name="share_app_caption">Brushing up your knowledge in Maths has never been easier.</string>
 
 </resources>

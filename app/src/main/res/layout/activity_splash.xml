@@ -9,6 +9,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
-        android:scaleType="fitXY"
-        android:src="@drawable/splash" />
+        android:background="@color/colorPrimary" />
+
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="180dp"
+        android:layout_gravity="center"
+        android:background="@drawable/splash_logo"
+        android:scaleType="fitStart" />
+
 </FrameLayout>

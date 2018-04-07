@@ -26,10 +26,9 @@
         android:ellipsize="marquee"
         android:gravity="center"
         android:layout_height="wrap_content"
+        style="@style/ToolbarTextStyle"
         android:layout_centerInParent="true"
-        android:fontFamily="@font/nawabiat"
         android:textColor="@color/white"
-        android:textSize="24sp"
         android:textStyle="bold" />
 
 </RelativeLayout>

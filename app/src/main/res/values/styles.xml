@@ -55,7 +55,7 @@
         <item name="android:lines">1</item>
     </style>
 
-    <style name="ProgressBarStyle" parent="@style/Theme.AppCompat.Light.Dialog">
+    <style name="ProgressBarStyle" parent="@android:style/Widget.ProgressBar.Small.Inverse">
         <item name="android:visibility">gone</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">wrap_content</item>

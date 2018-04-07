@@ -40,7 +40,7 @@ class SignInFragment : Fragment() {
             it.isEnabled = false
             progress.visibility = View.VISIBLE
 
-//            passwordLayout.error = ""
+            password.error = ""
             RetrofitUtils.initRetrofit(ApiInterface::class.java).signIn("student",
                     userName.textString(),
                     password.textString())
@@ -51,8 +51,7 @@ class SignInFragment : Fragment() {
                         progress.visibility = View.GONE
 
                         if (data.response_type == "error") {
-//                            Snackbar.make(view, data.response_text, Snackbar.LENGTH_SHORT).show()
-//                            passwordLayout.error = data.response_text
+                            password.error = data.response_text
                             return@subscribe
                         }
                         activity?.let {

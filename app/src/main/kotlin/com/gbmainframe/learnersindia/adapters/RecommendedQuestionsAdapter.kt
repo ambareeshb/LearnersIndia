@@ -52,8 +52,14 @@ class RecommendedQuestionsAdapter(private val recommendedQuestions: ArrayList<Re
             itemView.recommendedQuestionTop.text = "Asked in ${recommendedQuestion.subjectname} on " +
                     " ${dateFromTimeStamp(recommendedQuestion.qst_timestamp.toInt())}"
 //            itemView.recommendedQuestion.text = extractImageUrl(recommendedQuestion.qst_title)
-            val answerString = " ${recommendedQuestion.Total_answers} ${itemView.context.resources.getQuantityString(R.plurals.question_answers, recommendedQuestion.Total_answers)}"
-            itemView.recommendedQuestionCount.text = answerString
+            if (recommendedQuestion.Total_answers < 1) {
+                itemView.recommendedQuestionCount.text = "No answers"
+                itemView.recommendedAddAnswer.visibility = View.GONE
+            } else {
+                itemView.recommendedAddAnswer.visibility = View.VISIBLE
+                val answerString = " ${recommendedQuestion.Total_answers} ${itemView.context.resources.getQuantityString(R.plurals.question_answers, recommendedQuestion.Total_answers)}"
+                itemView.recommendedQuestionCount.text = answerString
+            }
 
 
             val questionTitle = "<font size = \"2\">${recommendedQuestion.qst_title}</font>".replace("\r\n", "").replace("\t", "").replace("\n", "").replace("\\", "")
@@ -64,11 +70,6 @@ class RecommendedQuestionsAdapter(private val recommendedQuestions: ArrayList<Re
                     questionTitle, mimeType, encoding, "")
 
             itemView.recommendedAddAnswer.setOnClickListener {
-                if (recommendedQuestion.Total_answers < 1) {
-                    itemView.recommendedQuestionCount.text = "No answers"
-                    Snackbar.make(itemView.rootView, "Answer not available now", Snackbar.LENGTH_SHORT).show()
-                    return@setOnClickListener
-                }
                 questionClicked(recommendedQuestion.qst_id)
             }
         }

@@ -33,6 +33,12 @@ class VideoVerticalListAdapter(val activity: FragmentActivity, private val video
         fun bindView(videoTopicResponse: VideoTopicResponse) {
             itemView.topicName.text = videoTopicResponse.topic_name
             itemView.recyclerVideo.layoutManager = LinearLayoutManager(itemView.context, LinearLayoutManager.HORIZONTAL, false)
+
+            if (videoTopicResponse.video_data.size == 0) {
+                itemView.textNoVideosAvailable.visibility = View.VISIBLE
+            } else {
+                itemView.textNoVideosAvailable.visibility = View.GONE
+            }
             itemView.recyclerVideo.adapter = VideosAdapter(videoTopicResponse.video_data) { videoId ->
                 Intent(activity, VideoPlayerActivity::class.java).apply {
                     putExtra(VideoPlayerActivity.VIDEO_URI_BUNDLE_ID, videoId)

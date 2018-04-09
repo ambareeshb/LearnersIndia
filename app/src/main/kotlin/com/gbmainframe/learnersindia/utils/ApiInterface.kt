@@ -89,6 +89,6 @@ interface ApiInterface {
                     @Query("syl_id") sylId: Int,
                     @Query("class_id") classId: Int,
                     @Query("sub_id") subId: Int = 1,
-                    @Query("chap_id") chapId: Int = 1):Observable<ExerciseResponse>
+                    @Query("chap_id") chapId: Int = 1):Observable<ExerciseResponsePaid>
 
 }

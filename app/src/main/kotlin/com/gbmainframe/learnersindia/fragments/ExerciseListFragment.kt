@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import com.gbmainframe.learnersindia.R
 import com.gbmainframe.learnersindia.activities.Home
 import com.gbmainframe.learnersindia.adapters.ExerciseAdapter
+import com.gbmainframe.learnersindia.adapters.ExerciseTopicAdapter
 import com.gbmainframe.learnersindia.fragments.VideoListFragment.Companion.CHAPTER_BUNDLE_ID
 import com.gbmainframe.learnersindia.fragments.VideoListFragment.Companion.CHAPTER_TITLE
 import com.gbmainframe.learnersindia.utils.ApiInterface
@@ -80,7 +81,7 @@ class ExerciseListFragment : Fragment() {
                         textNoExerciseAvailable.visibility = View.GONE
                         exerciseRecycler.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
                         exerciseRecycler.addItemDecoration(DividerItemDecoration(context, LinearLayoutManager.VERTICAL))
-                        exerciseRecycler.adapter = ExerciseAdapter(exerciseList = exercises.response_data)
+                        exerciseRecycler.adapter = ExerciseTopicAdapter(exerciseList = exercises.response_data)
                     }, { error ->
                         progressExerciseList?.visibility = View.GONE
                         textNoExerciseAvailable.visibility = View.VISIBLE

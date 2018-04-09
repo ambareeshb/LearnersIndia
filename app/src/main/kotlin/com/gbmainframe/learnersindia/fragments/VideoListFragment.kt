@@ -50,7 +50,7 @@ class VideoListFragment : Fragment() {
         textNoVideosAvailable.visibility = View.GONE
 
         toolbarTitle.text = chapterTitle
-        backButton.setOnClickListener { (activity as Home).popBackStack()}
+        backButton.setOnClickListener { (activity as Home).popBackStack() }
 
 
         activity?.let {
@@ -63,15 +63,17 @@ class VideoListFragment : Fragment() {
                     token = user.tocken
             ).subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe({
-                        progressVideoList.visibility = View.GONE
-                        if (it == null || it.response_type == getString(R.string.response_type_error) || it.response_data == null) {
-                            textNoVideosAvailable.visibility = View.VISIBLE
-                            return@subscribe
+                    .subscribe({videoRespose ->
+                        progressVideoList?.let {
+                            progressVideoList.visibility = View.GONE
+                            if (it == null || videoRespose.response_type == getString(R.string.response_type_error) || videoRespose.response_data == null) {
+                                textNoVideosAvailable.visibility = View.VISIBLE
+                                return@subscribe
+                            }
+                            videoListRecycler.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+                            videoListRecycler.adapter = VideoVerticalListAdapter(activity = activity!!,
+                                    videoTopicList = videoRespose.response_data)
                         }
-                        videoListRecycler.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-                        videoListRecycler.adapter = VideoVerticalListAdapter(activity = activity!!,
-                                videoTopicList = it.response_data)
                     }, { error ->
                         error.printStackTrace()
                     })

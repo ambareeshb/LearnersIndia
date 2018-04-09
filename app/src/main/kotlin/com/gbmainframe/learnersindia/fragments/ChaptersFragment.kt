@@ -46,6 +46,9 @@ class ChaptersFragment : Fragment() {
             ).subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe({
+                        if (progress == null) {
+                            return@subscribe
+                        }
                         progress.visibility = View.GONE
                         if (it == null || it.response_type == getString(R.string.response_type_error)) {
                             textNoChaptersAvailable.visibility = View.VISIBLE
@@ -54,12 +57,11 @@ class ChaptersFragment : Fragment() {
                         textNoChaptersAvailable.visibility = View.GONE
                         recyclerChapters.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
 //                        recyclerChapters.addItemDecoration(DividerItemDecoration(context, LinearLayoutManager.VERTICAL))
-                        recyclerChapters.adapter = ChaptersAdapter(it.chapters_data, { chapterTitle,chapterId ->
+                        recyclerChapters.adapter = ChaptersAdapter(it.chapters_data, { chapterTitle, chapterId ->
                             if (arguments?.getInt(CHAPTER_BUNDLE)?.equals(CHAPTER.VIDEO.ordinal)!!) {
-                                (activity as Home).loadVideoListFragment(chapterTitle,chapterId)
-                            }
-                            else if(arguments?.getInt(CHAPTER_BUNDLE)?.equals(CHAPTER.EXERCISE.ordinal)!!){
-                                (activity as Home).loadExerciseListFragment(chapterTitle,chapterId)
+                                (activity as Home).loadVideoListFragment(chapterTitle, chapterId)
+                            } else if (arguments?.getInt(CHAPTER_BUNDLE)?.equals(CHAPTER.EXERCISE.ordinal)!!) {
+                                (activity as Home).loadExerciseListFragment(chapterTitle, chapterId)
                             }
                         })
 

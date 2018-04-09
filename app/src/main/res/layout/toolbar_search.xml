@@ -17,7 +17,6 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
-            android:alpha=".6"
             android:clickable="true"
             android:src="@drawable/ic_arrow_back"
             android:tint="@color/white" />
@@ -30,7 +29,7 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:fontFamily="@font/nawabiat"
-            android:textSize="25sp"
+            android:textSize="20sp"
             android:textStyle="bold" />
 
 

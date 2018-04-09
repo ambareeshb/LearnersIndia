@@ -13,7 +13,6 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
-        android:alpha=".6"
         android:clickable="true"
         android:src="@drawable/ic_arrow_back"
         android:visibility="gone" />

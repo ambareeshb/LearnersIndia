@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include layout="@layout/simple_toolbar" />
+
+    <LinearLayout
+        android:id="@+id/layoutTest"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/toolbar"
+        android:padding="@dimen/marginAverage">
+
+        <WebView
+            android:id="@+id/testQuestion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/marginAverage"
+            tools:ignore="WebViewLayout" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/testRecycler"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/buttonNext"
+            style="@style/StyleLoginRectangleButtonHollow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Next" />
+    </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/progressTest"
+        style="@style/ProgressBarStyle" />
+
+</RelativeLayout>

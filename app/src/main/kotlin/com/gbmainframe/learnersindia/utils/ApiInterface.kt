@@ -90,5 +90,16 @@ interface ApiInterface {
                     @Query("class_id") classId: Int,
                     @Query("sub_id") subId: Int = 1,
                     @Query("chap_id") chapId: Int = 1):Observable<ExerciseResponsePaid>
+    //Test
+    @GET("get-testpapers")
+    fun getTests(@Query("tocken") token: String):Observable<TestResponse>
+
+
+    @GET("get-testpaper-questions")
+    fun getTestQuestions(@Query("tocken") token: String,
+                    @Query("syl_id") sylId: Int,
+                    @Query("class_id") classId: Int,
+                    @Query("sub_id") subId: Int = 1,
+                    @Query("chap_id") chapId: Int = 1):Observable<TestQuestionResponse>
 
 }

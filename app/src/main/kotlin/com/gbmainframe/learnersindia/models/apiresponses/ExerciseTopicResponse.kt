@@ -7,4 +7,4 @@ import com.gbmainframe.learnersindia.models.Exercise
  */
 data class ExerciseTopicResponse(val topic_id:Int,
                                  val topic_name:String,
-                                 val exercise_data:ArrayList<Exercise>)
+                                 val exercises_data:ArrayList<Exercise>)

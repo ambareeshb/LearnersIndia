@@ -60,5 +60,13 @@
     <string name="more"><![CDATA[More >>]]></string>
     <string name="agree_and_join"><![CDATA[Agree & Join]]></string>
     <string name="share_app_caption">Brushing up your knowledge in Maths has never been easier.</string>
+    <string name="number_of_questions">Number of Questions : %d</string>
+    <string name="instructions_for_the_test">Instructions for the Test</string>
+    <string name="test_instructions"><![CDATA[Please keep a pen and paper ready for rough work.
+    The test will start as soon as you click start button.
+    It is advised to turn off auto lock on your device,
+    although you can still resume the test from the previous stage.
+    \n\nThe correct answer of a question is displayed immediately after you answered a questions.
+     There are no time limits.]]></string>
 
 </resources>

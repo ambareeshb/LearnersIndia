@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import com.gbmainframe.learnersindia.R
+import com.gbmainframe.learnersindia.fragments.TestQuestionListFragment
 import com.gbmainframe.learnersindia.models.AnswerSelectModel
 import com.gbmainframe.learnersindia.models.TestQuestionModel
 import kotlinx.android.synthetic.main.test_question_single.view.*
@@ -15,13 +16,15 @@ import kotlinx.android.synthetic.main.test_question_single.view.*
 /**
  * Created by ambareeshb on 09/04/18.
  */
-class TestQuestionsRecyclerAdapter(private var question: TestQuestionModel) : RecyclerView.Adapter<TestQuestionsRecyclerAdapter.ViewHolder>() {
+class TestQuestionsRecyclerAdapter(private var question: TestQuestionModel,
+                                   private val showSolutions: (Boolean, String) -> Unit,
+                                   private val calculateTestStatus: (TestQuestionListFragment.AnswerStatus) -> Unit) : RecyclerView.Adapter<TestQuestionsRecyclerAdapter.ViewHolder>() {
     private var optionList: Array<String>
 
     private var answered: Boolean = false
 
     init {
-        optionList = arrayOf(question.option1, question.option2, question.option3, question.option3)
+        optionList = arrayOf(question.option1, question.option2, question.option3, question.option4)
 
     }
 
@@ -37,6 +40,7 @@ class TestQuestionsRecyclerAdapter(private var question: TestQuestionModel) : Re
     fun setNextOptions(question: TestQuestionModel) {
         this.question = question
         answered = false
+        showSolutions(false, "")
         optionList = arrayOf(question.option1, question.option2, question.option3, question.option3)
         notifyDataSetChanged()
     }
@@ -52,6 +56,7 @@ class TestQuestionsRecyclerAdapter(private var question: TestQuestionModel) : Re
                 itemView.answerTick.setImageDrawable(null)
             }
             if (answered && position + 1 == question.correct_answer) {
+                showSolutions(true, question.answer_solution)
                 itemView.answerTick.setImageDrawable(ContextCompat.getDrawable(itemView.context, R.drawable.answer_correct))
             }
 
@@ -78,10 +83,15 @@ class TestQuestionsRecyclerAdapter(private var question: TestQuestionModel) : Re
         /**
          * Function to answer question.
          */
-        fun answeredQuestion(position: Int) {
+        private fun answeredQuestion(position: Int) {
             answered = true
             if (question.correct_answer != position + 1) {
                 itemView.answerTick.setImageDrawable(ContextCompat.getDrawable(itemView.context, R.drawable.answer_wrong))
+                calculateTestStatus(TestQuestionListFragment
+                        .AnswerStatus(TestQuestionListFragment.TestAnswerStatus.WRONG, question.mark.toInt()))
+            } else {
+                calculateTestStatus(TestQuestionListFragment
+                        .AnswerStatus(TestQuestionListFragment.TestAnswerStatus.RIGHT, question.mark.toInt()))
             }
             notifyDataSetChanged()
         }

@@ -3,7 +3,6 @@ package com.gbmainframe.learnersindia.fragments
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v4.app.Fragment
-import android.support.v4.content.ContextCompat
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
@@ -13,7 +12,6 @@ import androidx.os.bundleOf
 import com.gbmainframe.learnersindia.R
 import com.gbmainframe.learnersindia.activities.TestActivity
 import com.gbmainframe.learnersindia.adapters.TestQuestionsRecyclerAdapter
-import com.gbmainframe.learnersindia.models.AnswerSelectModel
 import com.gbmainframe.learnersindia.models.TestModel
 import com.gbmainframe.learnersindia.models.TestQuestionModel
 import com.gbmainframe.learnersindia.utils.ApiInterface
@@ -28,6 +26,13 @@ import rx.schedulers.Schedulers
  * Created by ambareeshb on 09/04/18.
  */
 class TestQuestionListFragment : Fragment() {
+    private var correctAnswers = 0
+    private var wrongAnswers = 0
+    private var skippedAnswers = 0
+    private var totalMark = 0
+    private var testTotalMark = 0
+
+
     private var currentPostions = 0
     private lateinit var questions: ArrayList<TestQuestionModel>
 
@@ -56,14 +61,11 @@ class TestQuestionListFragment : Fragment() {
             layoutTest.visibility = View.GONE
             progressTest.visibility = View.VISIBLE
 
-            RetrofitUtils.initRetrofit(ApiInterface::class.java).getTestQuestions("c02a814cfd80a7d555e27ad831c93d85",
-                    classId = 10,
-                    sylId = 1,
-                    chapId = 1,
-                    subId = 1
-//                    user.syl_id.toInt(),
-//                    user.cls_id.toInt(),
-//                    test.chp_id.toInt()
+            RetrofitUtils.initRetrofit(ApiInterface::class.java).getTestQuestions(user.tocken,
+                    subId = 1,
+                    sylId = user.syl_id.toInt(),
+                    classId = user.cls_id.toInt(),
+                    chapId = test.chp_id.toInt()
 
             ).subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
@@ -73,13 +75,29 @@ class TestQuestionListFragment : Fragment() {
                             return@subscribe
                         }
                         questions = it.response_data
+                        testTotalMark = it.test_total_marks
                         val question = it.response_data[0]
                         val mimeType = "text/html"
                         val encoding = "UTF-8"
                         testQuestion.loadDataWithBaseURL("", "<b>${question.test_question}</b>", mimeType, encoding, "")
                         testRecycler.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
                         testRecycler.addItemDecoration(DividerItemDecoration(context, LinearLayoutManager.VERTICAL))
-                        testRecycler.adapter = TestQuestionsRecyclerAdapter(question)
+                        testRecycler.adapter = TestQuestionsRecyclerAdapter(question,
+                                { showAnswerField, answerData ->
+                                    if (showAnswerField) testQuestionAnswerLayout.visibility = View.VISIBLE
+                                    else testQuestionAnswerLayout.visibility = View.GONE
+                                    testQuestionSolution.loadDataWithBaseURL("", "<b>$answerData</b>", mimeType, encoding, "")
+                                }, { answerStatus ->
+                            when (answerStatus.answerStatus) {
+                                TestAnswerStatus.RIGHT -> {
+                                    correctAnswers++
+                                    totalMark += answerStatus.marks
+                                }
+                                TestAnswerStatus.SKIP -> skippedAnswers++
+                                TestAnswerStatus.WRONG -> wrongAnswers++
+                            }
+                        })
+
 
                         layoutTest.visibility = View.VISIBLE
                         progressTest.visibility = View.GONE
@@ -92,14 +110,49 @@ class TestQuestionListFragment : Fragment() {
         }
     }
 
-    fun loadNextQuestion() {
+    private fun loadNextQuestion() {
         currentPostions++
-        if (questions.size == currentPostions) {
-            (activity as TestActivity).loadTestFinishFragment()
-            return
+        if (questions.size <= currentPostions) {
+            val user = sharedPrefManager.getUser(activity!!)
+            val test = arguments?.getParcelable(BUNDLE_TEST_MODEL) as TestModel
+            RetrofitUtils.initRetrofit(ApiInterface::class.java).submitTestPaper(
+                    token = user.tocken,
+                    chapterId = test.chp_id.toInt(),
+                    testTotal = testTotalMark,
+                    studentTotal = totalMark,
+                    rightAnswer = correctAnswers,
+                    wrongAnswer = wrongAnswers,
+                    skipped = (questions.size - (correctAnswers + wrongAnswers)),
+                    testStatus = "end"
+            )
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe({
+                        if (it.response_type == getString(R.string.response_type_error)) {
+                            Snackbar.make(view!!, "Unable to submit test", Snackbar.LENGTH_SHORT).show()
+                            return@subscribe
+                        }
+                        (activity as TestActivity).loadTestFinishFragment(totalMark)
+                    }, {
+                        it.printStackTrace()
+                    })
+        } else {
+            val question = questions[currentPostions]
+            (testRecycler.adapter as TestQuestionsRecyclerAdapter).setNextOptions(question)
         }
-        val question = questions[currentPostions]
-        (testRecycler.adapter as TestQuestionsRecyclerAdapter).setNextOptions(question)
 
     }
+
+    /**
+     * Calculate Test answer status.
+     */
+    fun calculateTestStatus(answerStatus: AnswerStatus): Unit {
+    }
+
+
+    enum class TestAnswerStatus {
+        RIGHT, WRONG, SKIP
+    }
+
+    public data class AnswerStatus(val answerStatus: TestAnswerStatus, val marks: Int)
 }

@@ -1,7 +1,6 @@
 package com.gbmainframe.learnersindia.activities
 
 import android.os.Bundle
-import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v7.app.AppCompatActivity
 import com.gbmainframe.learnersindia.R
@@ -26,20 +25,20 @@ class TestActivity : AppCompatActivity() {
     fun loadTestStartFragment(test: TestModel) {
         FragmentUtils(supportFragmentManager).beginTransaction().replace(R.id.fragmentContainer,
                 TestStartFragment.newInstance(test))
-                .addToBackStack(true)
+                .addToBackStack(true, BASIC_TAG)
                 .commit()
     }
 
     fun loadTestListFragment() {
         FragmentUtils(supportFragmentManager).beginTransaction().replace(R.id.fragmentContainer, TestListFragment())
-                .addToBackStack(true, BASIC_TAG)
                 .commit()
     }
 
-    fun loadTestFinishFragment() {
-        popBackStack()
-        FragmentUtils(supportFragmentManager).beginTransaction().replace(R.id.fragmentContainer, TestFinishedFragment())
-                .addToBackStack(true, BASIC_TAG)
+    fun loadTestFinishFragment(totalMark: Int) {
+        supportFragmentManager.popBackStack()
+        FragmentUtils(supportFragmentManager).beginTransaction().replace(R.id.fragmentContainer,
+                TestFinishedFragment.newInstance(totalMarks = totalMark))
+                .addToBackStack(true)
                 .commit()
     }
 

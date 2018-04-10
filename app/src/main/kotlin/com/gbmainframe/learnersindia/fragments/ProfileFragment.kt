@@ -37,11 +37,12 @@ class ProfileFragment : Fragment() {
             }
         }
         logout.setOnClickListener {
-            AlertDialog.Builder(context,R.style.Base_Theme_AppCompat_Light_Dialog).setTitle("Logout").setMessage(R.string.logoutMessage)
+            AlertDialog.Builder(context, R.style.Base_Theme_AppCompat_Light_Dialog).setTitle("Logout").setMessage(R.string.logoutMessage)
                     .setPositiveButton(R.string.yes, { _, _ ->
                         context?.let {
                             sharedPrefManager.logoutUser(it)
                             startActivity(Intent(activity, SignIn::class.java))
+                            activity?.finish()
                         }
                     })
                     .setNegativeButton(R.string.no, { _, _ ->

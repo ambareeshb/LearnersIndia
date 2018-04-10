@@ -54,7 +54,7 @@ interface ApiInterface {
             @Query("sub_id") subId: Int): Observable<VideoResponse>
 
     @GET("videos/{video_id}")
-    fun getVimeoVideoMetadata(@Header("Authorization") vimeoToken:String,
+    fun getVimeoVideoMetadata(@Header("Authorization") vimeoToken: String,
                               @Path("video_id") videoId: String): Observable<VimeoVideoModel> //Video id should contain o/p format eg: 6271487.json
 
 
@@ -84,22 +84,35 @@ interface ApiInterface {
                @Query("syl_id") sylId: Int,
                @Query("class_id") classId: Int,
                @Query("sub_id") subId: Int): Observable<SearchModel>
+
     @GET("get-exercises")
     fun getExercises(@Query("tocken") token: String,
-                    @Query("syl_id") sylId: Int,
-                    @Query("class_id") classId: Int,
-                    @Query("sub_id") subId: Int = 1,
-                    @Query("chap_id") chapId: Int = 1):Observable<ExerciseResponsePaid>
+                     @Query("syl_id") sylId: Int,
+                     @Query("class_id") classId: Int,
+                     @Query("sub_id") subId: Int = 1,
+                     @Query("chap_id") chapId: Int = 1): Observable<ExerciseResponsePaid>
+
     //Test
     @GET("get-testpapers")
-    fun getTests(@Query("tocken") token: String):Observable<TestResponse>
+    fun getTests(@Query("tocken") token: String): Observable<TestResponse>
 
 
     @GET("get-testpaper-questions")
     fun getTestQuestions(@Query("tocken") token: String,
-                    @Query("syl_id") sylId: Int,
-                    @Query("class_id") classId: Int,
-                    @Query("sub_id") subId: Int = 1,
-                    @Query("chap_id") chapId: Int = 1):Observable<TestQuestionResponse>
+                         @Query("syl_id") sylId: Int,
+                         @Query("class_id") classId: Int,
+                         @Query("sub_id") subId: Int = 1,
+                         @Query("chap_id") chapId: Int = 1): Observable<TestQuestionResponse>
+    @GET("submit-testpaper")
+    fun submitTestPaper(
+            @Query("tocken") token: String = "ced19e81e72cf65b9fd872c3151aaaa2",
+            @Query("chap_id")chapterId:Int,
+            @Query("out_of_marks") testTotal: Int,
+            @Query("total_mark") studentTotal: Int,
+            @Query("right_answer") rightAnswer: Int,
+            @Query("wrong_answer") wrongAnswer: Int,
+            @Query("skipped") skipped: Int,
+            @Query("test_status") testStatus: String):Observable<BaseApiModel>
+
 
 }

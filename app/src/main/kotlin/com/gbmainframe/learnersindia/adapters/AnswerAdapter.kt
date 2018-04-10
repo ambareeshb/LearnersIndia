@@ -40,8 +40,6 @@ class AnswerAdapter(private val answerList: ArrayList<AnswerModel>) : RecyclerVi
             itemView.answerUserName.text = answer.full_name
             itemView.answerTopText.text = "Posted in ${answer.full_name_sub}," +
                     " ${dateFromTimeStamp(answer.asw_timestamp.toLong())}"
-
-
             val imageUrl = BASE_URL + answer.asw_image
             val requestOptions = RequestOptions()
             val placeholder = requestOptions.placeholder(ContextCompat

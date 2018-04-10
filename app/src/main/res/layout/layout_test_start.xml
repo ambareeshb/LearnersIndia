@@ -32,7 +32,7 @@
             android:id="@+id/numberOfQuestions"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="50dp"
+            android:layout_marginBottom="30dp"
             android:fontFamily="@font/nawabiat"
             android:textColor="@color/white"
             android:textSize="19sp" />
@@ -48,12 +48,13 @@
                 android:layout_height="wrap_content"
                 android:divider="@drawable/divider_vertical"
                 android:orientation="vertical"
-                android:padding="@dimen/marginAverage"
+                android:padding="20dp"
                 android:showDividers="middle">
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center"
                     android:layout_marginBottom="20dp"
                     android:fontFamily="@font/nawabiat"
                     android:lineSpacingExtra="2dp"

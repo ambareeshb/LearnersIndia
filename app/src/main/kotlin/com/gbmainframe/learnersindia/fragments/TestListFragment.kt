@@ -34,7 +34,7 @@ class TestListFragment : Fragment() {
         activity?.let {
             progress.visibility = View.VISIBLE
             val user = sharedPrefManager.getUser(it)
-            RetrofitUtils.initRetrofit(ApiInterface::class.java).getTests("ced19e81e72cf65b9fd872c3151aaaa2")
+            RetrofitUtils.initRetrofit(ApiInterface::class.java).getTests(user.tocken)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe({

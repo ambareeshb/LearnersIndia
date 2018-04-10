@@ -55,7 +55,7 @@
         <item name="android:lines">1</item>
     </style>
 
-    <style name="ProgressBarStyle" parent="@android:style/Widget.ProgressBar.Small.Inverse">
+    <style name="ProgressBarStyle" parent="@android:style/Widget.ProgressBar.Inverse">
         <item name="android:visibility">gone</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">wrap_content</item>
@@ -116,5 +116,9 @@
         <item name="android:textColor">@color/errorRed</item>
         <item name="android:fontFamily">@font/nawabiat</item>
 
+    </style>
+
+    <style name="RadioButton">
+        <item name="colorAccent">@color/colorPrimary</item>
     </style>
 </resources>

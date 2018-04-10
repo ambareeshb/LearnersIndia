@@ -7,8 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.os.bundleOf
 import com.gbmainframe.learnersindia.R
+import com.gbmainframe.learnersindia.activities.TestActivity
 import com.gbmainframe.learnersindia.models.TestModel
 import kotlinx.android.synthetic.main.layout_test_start.*
+import kotlinx.android.synthetic.main.simple_toolbar.*
 
 /**
  * Created by ambareeshb on 09/04/18.
@@ -22,17 +24,24 @@ class TestStartFragment : Fragment() {
                 }
     }
 
-
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
             inflater.inflate(R.layout.layout_test_start, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        toolbarTitle.text = "Tests"
+        backButton.setOnClickListener {
+            (activity as TestActivity).onBackPressed()
+        }
+
         val test = arguments?.getParcelable(BUNDLE_TEST_MODEL) as TestModel
-            numberOfQuestions.text = (String.format(getString(R.string.number_of_questions), test.test_total_questions))
+        numberOfQuestions.text = (String.format(getString(R.string.number_of_questions), test.test_total_questions))
         chapterTitle.text = test.chapter
+
+        buttonStartTest.setOnClickListener {
+            (activity as TestActivity).loadTestQuestionsFragment(test)
+        }
     }
 
 

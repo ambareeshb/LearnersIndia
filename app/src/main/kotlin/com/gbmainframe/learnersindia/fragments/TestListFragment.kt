@@ -14,6 +14,7 @@ import com.gbmainframe.learnersindia.utils.ApiInterface
 import com.gbmainframe.learnersindia.utils.RetrofitUtils
 import com.gbmainframe.learnersindia.utils.sharedPrefManager
 import kotlinx.android.synthetic.main.layout_test_list.*
+import kotlinx.android.synthetic.main.simple_toolbar.*
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
 
@@ -26,10 +27,14 @@ class TestListFragment : Fragment() {
             inflater.inflate(R.layout.layout_test_list, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        toolbarTitle.text = "Tests"
+        backButton.setOnClickListener {
+            (activity as TestActivity).onBackPressed()
+        }
         activity?.let {
             progress.visibility = View.VISIBLE
             val user = sharedPrefManager.getUser(it)
-            RetrofitUtils.initRetrofit(ApiInterface::class.java).getTests(user.tocken)
+            RetrofitUtils.initRetrofit(ApiInterface::class.java).getTests("ced19e81e72cf65b9fd872c3151aaaa2")
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe({
@@ -37,6 +42,7 @@ class TestListFragment : Fragment() {
                             textNoTestsAvailable.visibility = View.VISIBLE
                             return@subscribe
                         }
+                        progress.visibility = View.GONE
                         recyclerTest.layoutManager = LinearLayoutManager(activity!!, LinearLayoutManager.VERTICAL, false)
                         recyclerTest.adapter = TestListAdapter(it.response_data, { test ->
                             (activity as TestActivity).loadTestStartFragment(test)
@@ -44,7 +50,6 @@ class TestListFragment : Fragment() {
 
                     }, {
                         textNoTestsAvailable.visibility = View.VISIBLE
-
                     })
 
         }

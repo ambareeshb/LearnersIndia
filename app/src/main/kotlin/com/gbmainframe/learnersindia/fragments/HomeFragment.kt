@@ -12,6 +12,7 @@ import android.view.ViewGroup
 import com.gbmainframe.learnersindia.R
 import com.gbmainframe.learnersindia.activities.Home
 import com.gbmainframe.learnersindia.activities.SearchActivity
+import com.gbmainframe.learnersindia.activities.TestActivity
 import com.gbmainframe.learnersindia.activities.VideoPlayerActivity
 import com.gbmainframe.learnersindia.adapters.RecommendedQuestionsAdapter
 import com.gbmainframe.learnersindia.adapters.VideosAdapter
@@ -69,7 +70,10 @@ class HomeFragment : Fragment() {
             (activity as Home).loadChapterListFragment(ChaptersFragment.Companion.CHAPTER.EXERCISE)
         }
         homeItemTest.setOnClickListener {
-            Snackbar.make(view, "Test session will be available soon", Snackbar.LENGTH_SHORT).show()
+            startActivity(
+                    Intent(activity,TestActivity::class.java)
+            )
+//            Snackbar.make(view, "Test session will be available soon", Snackbar.LENGTH_SHORT).show()
         }
         homeItemVideo.setOnClickListener {
             (activity as Home).loadChapterListFragment(ChaptersFragment.Companion.CHAPTER.VIDEO)
@@ -79,7 +83,7 @@ class HomeFragment : Fragment() {
             Snackbar.make(view, "will be available soon", Snackbar.LENGTH_SHORT).show()
         }
         homeItemNotification.setOnClickListener {
-            Snackbar.make(view, "will be available soon", Snackbar.LENGTH_SHORT).show()
+            Snackbar.make(view, "Already subscribed to notifications", Snackbar.LENGTH_SHORT).show()
         }
         homeItemAsk.setOnClickListener {
             (activity as Home).loadAskQuestionFragment(true)

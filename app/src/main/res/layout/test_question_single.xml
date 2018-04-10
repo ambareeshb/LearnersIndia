@@ -1,23 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:background="@color/white"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:orientation="horizontal">
 
     <RadioButton
         android:id="@+id/questionSelectRadio"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_marginRight="5dp"
+        android:buttonTint="@color/colorPrimary"
+        android:clickable="false"
+        android:textColor="@color/colorPrimary"
+        android:theme="@style/RadioButton"
+        android:visibility="gone" />
 
     <WebView
         android:id="@+id/testQuestionOption"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginRight="5dp"
+        android:layout_toLeftOf="@+id/answerTick"
+        android:layout_alignBaseline="@+id/answerTick"
         tools:ignore="WebViewLayout" />
 
     <ImageView
         android:id="@+id/answerTick"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_width="30dp"
+        android:layout_alignParentRight="true"
+        android:background="@color/white"
+        android:padding="2dp"
+        android:layout_height="30dp" />
 
-</LinearLayout>
+</RelativeLayout>

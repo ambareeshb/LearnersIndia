@@ -1,4 +1,4 @@
-package com.gbmainframe.learnersindia.fragments
+package com.gbmainframe.learnersindia.fragments.game
 
 import android.graphics.Color
 import android.os.Bundle
@@ -9,18 +9,18 @@ import android.view.ViewGroup
 import androidx.os.bundleOf
 import com.gbmainframe.learnersindia.R
 import com.gbmainframe.learnersindia.activities.TestActivity
-import kotlinx.android.synthetic.main.layout_test_finished.*
+import kotlinx.android.synthetic.main.layout_game_finished.*
 import nl.dionsegijn.konfetti.models.Shape
 import nl.dionsegijn.konfetti.models.Size
 
 /**
- * Created by ambareeshb on 09/04/18.
+ * Created by ambareeshb on 11/04/18.
  */
-class TestFinishedFragment : Fragment() {
+class GameFinishFragment : Fragment() {
     companion object {
         const val BUNDLE_TEST_TOTAL_ANSWER = "TEST_TOTAL_ANSWER"
         fun newInstance(totalMarks: Int) =
-                TestFinishedFragment().apply {
+                GameFinishFragment().apply {
                     arguments = bundleOf(BUNDLE_TEST_TOTAL_ANSWER to totalMarks)
                 }
     }
@@ -43,7 +43,7 @@ class TestFinishedFragment : Fragment() {
 
         buttonTestFinished.setOnClickListener { (activity as TestActivity).finish() }
         arguments?.let {
-            testTotalMark.text = String.format(getString(R.string.your_score), it.getInt(BUNDLE_TEST_TOTAL_ANSWER))
+            gameTotalMark.text = String.format(getString(R.string.your_score), it.getInt(BUNDLE_TEST_TOTAL_ANSWER))
 
         }
     }

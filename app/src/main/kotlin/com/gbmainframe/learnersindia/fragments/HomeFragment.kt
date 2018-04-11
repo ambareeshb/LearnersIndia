@@ -10,10 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.gbmainframe.learnersindia.R
-import com.gbmainframe.learnersindia.activities.Home
-import com.gbmainframe.learnersindia.activities.SearchActivity
-import com.gbmainframe.learnersindia.activities.TestActivity
-import com.gbmainframe.learnersindia.activities.VideoPlayerActivity
+import com.gbmainframe.learnersindia.activities.*
 import com.gbmainframe.learnersindia.adapters.RecommendedQuestionsAdapter
 import com.gbmainframe.learnersindia.adapters.VideosAdapter
 import com.gbmainframe.learnersindia.utils.ApiInterface
@@ -80,7 +77,9 @@ class HomeFragment : Fragment() {
 //            Snackbar.make(view, "Video session will be available soon", Snackbar.LENGTH_SHORT).show()
         }
         homeItemGame.setOnClickListener {
-            Snackbar.make(view, "will be available soon", Snackbar.LENGTH_SHORT).show()
+            startActivity(
+                    Intent(activity,GameActivity::class.java)
+            )
         }
         homeItemNotification.setOnClickListener {
             Snackbar.make(view, "Already subscribed to notifications", Snackbar.LENGTH_SHORT).show()

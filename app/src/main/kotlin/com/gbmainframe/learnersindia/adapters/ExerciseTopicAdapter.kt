@@ -28,7 +28,7 @@ class ExerciseTopicAdapter(private val exerciseList: ArrayList<ExerciseTopicResp
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         fun bindView(topicResponse: ExerciseTopicResponse) {
-            itemView.recyclerExercise.layoutManager = LinearLayoutManager(itemView.context, LinearLayoutManager.HORIZONTAL, false)
+            itemView.recyclerExercise.layoutManager = LinearLayoutManager(itemView.context, LinearLayoutManager.VERTICAL, false)
             itemView.recyclerExercise.adapter = ExerciseAdapter(exerciseList = topicResponse.exercises_data)
             itemView.topicName.text = topicResponse.topic_name
             if (topicResponse.exercises_data.size == 0) {

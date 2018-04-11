@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:gravity="center_vertical"
+    android:orientation="horizontal">
+
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/gameCard"
+        android:layout_width="match_parent"
+        app:cardCornerRadius="15dp"
+        android:layout_margin="@dimen/marginAverage"
+        android:layout_height="wrap_content">
+
+        <WebView
+            android:id="@+id/gameOption"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/answerTick"
+            android:layout_marginRight="5dp"
+            android:layout_toLeftOf="@+id/answerTick"
+            tools:ignore="WebViewLayout" />
+    </android.support.v7.widget.CardView>
+
+
+</RelativeLayout>

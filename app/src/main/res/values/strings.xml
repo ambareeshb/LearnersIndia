@@ -69,5 +69,12 @@
     \n\nThe correct answer of a question is displayed immediately after you answered a questions.
      There are no time limits.]]></string>
     <string name="your_score">Your Score : %s</string>
+    <string name="game_instructions"><![CDATA[Please keep a pen and paper ready for rough work.
+    The test will start as soon as you click start button.
+    It is advised to turn off auto lock on your device,
+    although you can still resume the test from the previous stage.
+    \n\nThe correct answer of a question is displayed immediately after you answered a questions.
+     There are no time limits.]]></string>
+    <string name="you_reached">You Reached : %s</string>
 
 </resources>

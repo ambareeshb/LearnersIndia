@@ -103,16 +103,25 @@ interface ApiInterface {
                          @Query("class_id") classId: Int,
                          @Query("sub_id") subId: Int = 1,
                          @Query("chap_id") chapId: Int = 1): Observable<TestQuestionResponse>
+
     @GET("submit-testpaper")
     fun submitTestPaper(
             @Query("tocken") token: String = "ced19e81e72cf65b9fd872c3151aaaa2",
-            @Query("chap_id")chapterId:Int,
+            @Query("chap_id") chapterId: Int,
             @Query("out_of_marks") testTotal: Int,
             @Query("total_mark") studentTotal: Int,
             @Query("right_answer") rightAnswer: Int,
             @Query("wrong_answer") wrongAnswer: Int,
             @Query("skipped") skipped: Int,
-            @Query("test_status") testStatus: String):Observable<BaseApiModel>
+            @Query("test_status") testStatus: String): Observable<BaseApiModel>
+
+    //Game
+    @GET("get-game-level")
+    fun getGameLevel(): Observable<ArrayList<GameLevelModel>>
+
+    @GET("get-game-question")
+    fun getGameQuestion(@Query("tocken") tocken: String,
+                        @Query("level") level: Int): Observable<GameQuestionResponse>
 
 
 }

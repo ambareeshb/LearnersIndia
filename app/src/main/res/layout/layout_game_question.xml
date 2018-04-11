@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_margin="@dimen/marginAverage"
+        android:src="@drawable/logo_game" />
+
+    <WebView
+        android:id="@+id/gameQuestion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:padding="@dimen/marginAverage"
+        android:textColor="@color/white"
+        tools:ignore="WebViewLayout" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerGame"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/marginAverage" />
+    <ImageView
+        android:layout_marginTop="@dimen/marginAverage"
+        android:background="@android:color/darker_gray"
+        android:layout_width="200dp"
+        android:layout_height="1dp" />
+
+    <TextView
+        android:id="@+id/gameTimer"
+        android:layout_width="wrap_content"
+        android:textColor="@color/colorPrimaryDark"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:layout_height="wrap_content" />
+</LinearLayout>

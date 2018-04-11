@@ -41,7 +41,7 @@ class TestQuestionsRecyclerAdapter(private var question: TestQuestionModel,
         this.question = question
         answered = false
         showSolutions(false, "")
-        optionList = arrayOf(question.option1, question.option2, question.option3, question.option3)
+        optionList = arrayOf(question.option1, question.option2, question.option3, question.option4)
         notifyDataSetChanged()
     }
 

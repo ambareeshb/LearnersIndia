@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.os.bundleOf
 import com.gbmainframe.learnersindia.R
+import com.gbmainframe.learnersindia.activities.GameActivity
 import com.gbmainframe.learnersindia.activities.TestActivity
 import kotlinx.android.synthetic.main.layout_game_finished.*
 import nl.dionsegijn.konfetti.models.Shape
@@ -26,7 +27,7 @@ class GameFinishFragment : Fragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
-            inflater.inflate(R.layout.layout_test_finished, container, false)
+            inflater.inflate(R.layout.layout_game_finished, container, false)
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -41,10 +42,9 @@ class GameFinishFragment : Fragment() {
                 .setPosition(-50f, confettiView.width + 200f, -50f, -50f)
                 .stream(300, 5000L)
 
-        buttonTestFinished.setOnClickListener { (activity as TestActivity).finish() }
+        buttonTestFinished.setOnClickListener { (activity as GameActivity).loadGameStartFragment() }
         arguments?.let {
-            gameTotalMark.text = String.format(getString(R.string.your_score), it.getInt(BUNDLE_TEST_TOTAL_ANSWER))
-
+            gameTotalMark.text = String.format(getString(R.string.you_reached), it.getInt(BUNDLE_TEST_TOTAL_ANSWER))
         }
     }
 }

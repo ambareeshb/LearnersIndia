@@ -15,10 +15,15 @@ import kotlinx.android.synthetic.main.game_single_qustin.view.*
  * Created by ambareeshb on 11/04/18.
  */
 class GameQuestionAdapter(private var question: GameQuestionModel,
-                          private var nextQuestion: () -> Unit) : RecyclerView.Adapter<GameQuestionAdapter.ViewHolder>() {
+                          private var nextQuestion: (Boolean) -> Unit,
+                          private val extraLifeTryAgain: () -> Unit) : RecyclerView.Adapter<GameQuestionAdapter.ViewHolder>() {
     private var optionList: Array<String>
     private var answered: Boolean
 
+    private var fiftyFifty = false
+    private var fiftyFiftyCount = 0
+
+    private var extraLife = false
 
     init {
         optionList = arrayOf(question.option1, question.option2, question.option3, question.option4)
@@ -35,8 +40,14 @@ class GameQuestionAdapter(private var question: GameQuestionModel,
         holder?.bindView(optionList[position], position)
     }
 
+    fun applyFiftyFifty() {
+        fiftyFifty = true
+        notifyDataSetChanged()
+    }
+
     fun setNextOptions(question: GameQuestionModel) {
         answered = false
+        fiftyFifty = false
         this.question = question
         optionList = arrayOf(question.option1, question.option2, question.option3, question.option4)
         notifyDataSetChanged()
@@ -49,6 +60,14 @@ class GameQuestionAdapter(private var question: GameQuestionModel,
 
             itemView.gameOption.loadDataWithBaseURL("", "<b>${option}</b>", mimeType, encoding, "")
 
+            if (fiftyFifty) {
+                if (position + 1 != question.answer && fiftyFiftyCount < 2) {
+                    itemView.visibility = View.GONE
+                    fiftyFiftyCount++
+                }
+            } else {
+                itemView.visibility = View.VISIBLE
+            }
             if (!answered) {
                 itemView.gameCard.setCardBackgroundColor(ContextCompat.getColor(itemView.context, R.color.white))
                 itemView.gameOption.settings
@@ -80,21 +99,34 @@ class GameQuestionAdapter(private var question: GameQuestionModel,
 
         }
 
-        private fun loadNextQuestion(nextQuestion: () -> Unit) {
+        private fun loadNextQuestion(nextQuestion: (Boolean) -> Unit, answerStatus: Boolean) {
             val handler = Handler()
-            handler.postDelayed(nextQuestion, 2000)
+            handler.postDelayed({ nextQuestion(answerStatus) }, 1000)
         }
 
-        fun gameQuestionAnswered(position: Int) {
-            answered = true
+        private fun gameQuestionAnswered(position: Int) {
+
             if (position + 1 != question.answer) {
                 itemView.gameCard.setCardBackgroundColor(ContextCompat.getColor(itemView.context, android.R.color.holo_orange_light))
                 itemView.gameOption.settings
                 itemView.gameOption.setBackgroundColor(ContextCompat.getColor(itemView.context, android.R.color.holo_orange_light))
+                if (extraLife) {
+                    extraLifeTryAgain()
+                    extraLife = false
+                    Handler().postDelayed({ notifyDataSetChanged() }, 2000)
+                    return
+                }
+                loadNextQuestion(nextQuestion, false)
+            } else {
+                loadNextQuestion(nextQuestion, true)
             }
+            answered = true
             notifyDataSetChanged()
-            loadNextQuestion(nextQuestion)
         }
+    }
+
+    fun applyExtraLife() {
+        extraLife = true
     }
 
 }

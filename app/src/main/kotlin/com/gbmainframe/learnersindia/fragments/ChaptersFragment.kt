@@ -2,6 +2,7 @@ package com.gbmainframe.learnersindia.fragments
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
@@ -9,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.gbmainframe.learnersindia.R
 import com.gbmainframe.learnersindia.activities.Home
+import com.gbmainframe.learnersindia.activities.TestActivity
 import com.gbmainframe.learnersindia.adapters.ChaptersAdapter
 import com.gbmainframe.learnersindia.utils.ApiInterface
 import com.gbmainframe.learnersindia.utils.RetrofitUtils
@@ -23,7 +25,7 @@ import rx.schedulers.Schedulers
  */
 class ChaptersFragment : Fragment() {
     companion object {
-        enum class CHAPTER { VIDEO, EXERCISE }
+        enum class CHAPTER { VIDEO, EXERCISE, TEST }
 
         const val CHAPTER_BUNDLE = "BUNDLE_CHAPTER_LIST"
     }
@@ -34,7 +36,13 @@ class ChaptersFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         toolbarTitle.text = getString(R.string.chapters)
-        backButton.setOnClickListener { (activity as Home).popBackStack() }
+        backButton.setOnClickListener {
+            when (activity) {
+                is Home -> (activity as Home).onBackPressed()
+                is TestActivity -> (activity as TestActivity).onBackPressed()
+            }
+
+        }
         //Api to list chapters
         progress.visibility = View.VISIBLE
         activity?.let {
@@ -57,11 +65,11 @@ class ChaptersFragment : Fragment() {
                         textNoChaptersAvailable.visibility = View.GONE
                         recyclerChapters.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
 //                        recyclerChapters.addItemDecoration(DividerItemDecoration(context, LinearLayoutManager.VERTICAL))
-                        recyclerChapters.adapter = ChaptersAdapter(it.chapters_data, { chapterTitle, chapterId ->
-                            if (arguments?.getInt(CHAPTER_BUNDLE)?.equals(CHAPTER.VIDEO.ordinal)!!) {
-                                (activity as Home).loadVideoListFragment(chapterTitle, chapterId)
-                            } else if (arguments?.getInt(CHAPTER_BUNDLE)?.equals(CHAPTER.EXERCISE.ordinal)!!) {
-                                (activity as Home).loadExerciseListFragment(chapterTitle, chapterId)
+                        recyclerChapters.adapter = ChaptersAdapter(it.chapters_data, { chapter ->
+                            when (arguments?.getInt(CHAPTER_BUNDLE)) {
+                                CHAPTER.VIDEO.ordinal -> (activity as Home).loadVideoListFragment(chapter.chapter, chapter.chp_id)
+                                CHAPTER.EXERCISE.ordinal -> (activity as Home).loadExerciseListFragment(chapter.chapter, chapter.chp_id)
+                                CHAPTER.TEST.ordinal -> (activity as TestActivity).loadTestStartFragment(chapter)
                             }
                         })
 

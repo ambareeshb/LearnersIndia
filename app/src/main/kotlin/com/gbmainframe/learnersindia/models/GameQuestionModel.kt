@@ -11,4 +11,5 @@ data class GameQuestionModel(val question_id: Int,
                              val option4: String,
                              val answer: Int,
                              val voice1: String,
+                             val duration: Long,
                              val voice2: String)

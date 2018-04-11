@@ -4,10 +4,8 @@ import android.os.Bundle
 import android.support.v4.app.FragmentManager
 import android.support.v7.app.AppCompatActivity
 import com.gbmainframe.learnersindia.R
-import com.gbmainframe.learnersindia.fragments.TestFinishedFragment
-import com.gbmainframe.learnersindia.fragments.TestListFragment
-import com.gbmainframe.learnersindia.fragments.TestQuestionListFragment
-import com.gbmainframe.learnersindia.fragments.TestStartFragment
+import com.gbmainframe.learnersindia.fragments.*
+import com.gbmainframe.learnersindia.models.ChapterModel
 import com.gbmainframe.learnersindia.models.TestModel
 import com.gbmainframe.learnersindia.utils.FragmentUtils
 
@@ -19,12 +17,22 @@ class TestActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_test)
-        loadTestListFragment()
+        loadChapterListFragment(ChaptersFragment.Companion.CHAPTER.TEST)
     }
 
-    fun loadTestStartFragment(test: TestModel) {
+    fun loadChapterListFragment(chapterChoice: ChaptersFragment.Companion.CHAPTER) {
+        val bundle = Bundle()
+        bundle.putInt(ChaptersFragment.CHAPTER_BUNDLE, chapterChoice.ordinal)
+        val fragment = ChaptersFragment()
+        fragment.arguments = bundle
+        FragmentUtils(supportFragmentManager).beginTransaction()
+                .replace(R.id.fragmentContainer, fragment)
+                .commit()
+    }
+
+    fun loadTestStartFragment(chapter: ChapterModel) {
         FragmentUtils(supportFragmentManager).beginTransaction().replace(R.id.fragmentContainer,
-                TestStartFragment.newInstance(test))
+                TestStartFragment.newInstance(chapter))
                 .addToBackStack(true, BASIC_TAG)
                 .commit()
     }
@@ -42,9 +50,9 @@ class TestActivity : AppCompatActivity() {
                 .commit()
     }
 
-    fun loadTestQuestionsFragment(test: TestModel) {
+    fun loadTestQuestionsFragment(chapter: ChapterModel) {
         FragmentUtils(supportFragmentManager).beginTransaction().replace(R.id.fragmentContainer,
-                TestQuestionListFragment.newInstance(test))
+                TestQuestionListFragment.newInstance(chapter))
                 .addToBackStack(true)
                 .commit()
     }

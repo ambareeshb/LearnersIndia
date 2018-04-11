@@ -45,7 +45,7 @@ class TestListFragment : Fragment() {
                         progress.visibility = View.GONE
                         recyclerTest.layoutManager = LinearLayoutManager(activity!!, LinearLayoutManager.VERTICAL, false)
                         recyclerTest.adapter = TestListAdapter(it.response_data, { test ->
-                            (activity as TestActivity).loadTestStartFragment(test)
+//                            (activity as TestActivity).loadTestStartFragment(test)
                         })
 
                     }, {

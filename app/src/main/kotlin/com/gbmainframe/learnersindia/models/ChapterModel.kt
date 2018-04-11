@@ -1,8 +1,12 @@
 package com.gbmainframe.learnersindia.models
 
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
 /**
  * Created by ambareeshb on 27/03/18.
  */
+@Parcelize
 data class ChapterModel(
         val response_type: String,
         val response_code: String,
@@ -12,4 +16,4 @@ data class ChapterModel(
         val sub_id: Int,
         val chp_id: Int,
         val chapter: String
-)
+) : Parcelable

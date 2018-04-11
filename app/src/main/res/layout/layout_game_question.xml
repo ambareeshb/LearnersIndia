@@ -1,42 +1,131 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:gravity="center"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
-    <ImageView
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_margin="@dimen/marginAverage"
-        android:src="@drawable/logo_game" />
-
-    <WebView
-        android:id="@+id/gameQuestion"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/layoutGame"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="30dp">
+
+            <ImageView
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_centerInParent="true"
+                android:layout_margin="@dimen/marginAverage"
+                android:src="@drawable/logo_game" />
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/fiftyFifty"
+                android:layout_width="80dp"
+                android:layout_height="40dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginBottom="15dp"
+                app:cardCornerRadius="20dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="3dp"
+                    android:text="50 : 50"
+                    android:textColor="@color/darkViolet"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/fiftyFiftyOverlay"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/overlay"
+                    android:src="@drawable/ic_close"
+                    android:visibility="gone" />
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/extraLife"
+                android:layout_width="80dp"
+                android:layout_height="40dp"
+                android:layout_alignParentRight="true"
+                android:layout_below="@id/fiftyFifty"
+                app:cardCornerRadius="20dp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="3dp"
+                    android:src="@drawable/extra_life"
+                    android:textStyle="bold"
+                    android:tint="@color/darkViolet" />
+
+                <ImageView
+                    android:id="@+id/extraLifeOverlay"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/overlay"
+                    android:src="@drawable/ic_close"
+                    android:visibility="gone" />
+            </android.support.v7.widget.CardView>
+        </RelativeLayout>
+
+        <WebView
+            android:id="@+id/gameQuestion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:padding="20dp"
+            android:textColor="@color/white"
+            tools:ignore="WebViewLayout" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerGame"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/marginAverage" />
+
+        <ImageView
+            android:layout_width="200dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/marginAverage"
+            android:background="@android:color/darker_gray" />
+
+        <TextView
+            android:id="@+id/gameTimer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/progressGame"
+        style="@style/ProgressBarStyle" />
+
+    <LinearLayout
+        android:id="@+id/levelLabel"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:background="@color/colorPrimary"
-        android:padding="@dimen/marginAverage"
-        android:textColor="@color/white"
-        tools:ignore="WebViewLayout" />
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerGame"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/marginAverage" />
-    <ImageView
-        android:layout_marginTop="@dimen/marginAverage"
-        android:background="@android:color/darker_gray"
-        android:layout_width="200dp"
-        android:layout_height="1dp" />
+        <TextView
+            android:id="@+id/textLevelLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nawabiat"
+            android:textColor="@color/white"
+            android:textSize="30sp" />
 
-    <TextView
-        android:id="@+id/gameTimer"
-        android:layout_width="wrap_content"
-        android:textColor="@color/colorPrimaryDark"
-        android:textStyle="bold"
-        android:textSize="20sp"
-        android:layout_height="wrap_content" />
-</LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

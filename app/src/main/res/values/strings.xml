@@ -49,7 +49,7 @@
     <string name="notification">Notifications</string>
     <string name="game">Games</string>
     <string name="ask_home">Ask doubt</string>
-    <string name="best_of_learners_india">Best of Learners India</string>
+    <string name="best_of_learners_india">Demo Videos</string>
     <string name="no_videos_available">No videos  available</string>
     <string name="add_answer">Add Answer</string>
     <string name="no_answers_available">No answers available</string>
@@ -75,6 +75,9 @@
     although you can still resume the test from the previous stage.
     \n\nThe correct answer of a question is displayed immediately after you answered a questions.
      There are no time limits.]]></string>
-    <string name="you_reached">You Reached : %s</string>
+    <string name="you_reached">You Scored: %s</string>
+    <string name="extra_life_text">You got an extra life</string>
+    <string name="extra_life_lost">Extra life lost</string>
+    <string name="already_used">already_used</string>
 
 </resources>

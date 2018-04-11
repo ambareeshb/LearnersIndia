@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.os.bundleOf
 import com.gbmainframe.learnersindia.R
 import com.gbmainframe.learnersindia.activities.TestActivity
+import com.gbmainframe.learnersindia.models.ChapterModel
 import com.gbmainframe.learnersindia.models.TestModel
 import kotlinx.android.synthetic.main.layout_test_start.*
 import kotlinx.android.synthetic.main.simple_toolbar.*
@@ -18,9 +19,9 @@ import kotlinx.android.synthetic.main.simple_toolbar.*
 class TestStartFragment : Fragment() {
     companion object {
         private const val BUNDLE_TEST_MODEL = "BUNDLE_TEST"
-        fun newInstance(test: TestModel) =
+        fun newInstance(chapter: ChapterModel) =
                 TestStartFragment().apply {
-                    arguments = bundleOf(BUNDLE_TEST_MODEL to test)
+                    arguments = bundleOf(BUNDLE_TEST_MODEL to chapter)
                 }
     }
 
@@ -35,8 +36,9 @@ class TestStartFragment : Fragment() {
             (activity as TestActivity).onBackPressed()
         }
 
-        val test = arguments?.getParcelable(BUNDLE_TEST_MODEL) as TestModel
-        numberOfQuestions.text = (String.format(getString(R.string.number_of_questions), test.test_total_questions))
+        val test = arguments?.getParcelable(BUNDLE_TEST_MODEL) as ChapterModel
+//        numberOfQuestions.text = (String.format(getString(R.string.number_of_questions), test.test_total_questions))
+        numberOfQuestions.text = ""
         chapterTitle.text = test.chapter
 
         buttonStartTest.setOnClickListener {

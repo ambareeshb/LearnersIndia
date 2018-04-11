@@ -12,6 +12,7 @@ import androidx.os.bundleOf
 import com.gbmainframe.learnersindia.R
 import com.gbmainframe.learnersindia.activities.TestActivity
 import com.gbmainframe.learnersindia.adapters.TestQuestionsRecyclerAdapter
+import com.gbmainframe.learnersindia.models.ChapterModel
 import com.gbmainframe.learnersindia.models.TestModel
 import com.gbmainframe.learnersindia.models.TestQuestionModel
 import com.gbmainframe.learnersindia.utils.ApiInterface
@@ -38,9 +39,9 @@ class TestQuestionListFragment : Fragment() {
 
     companion object {
         private const val BUNDLE_TEST_MODEL = "BUNDLE_TEST"
-        fun newInstance(test: TestModel) =
+        fun newInstance(chapter: ChapterModel) =
                 TestQuestionListFragment().apply {
-                    arguments = bundleOf(BUNDLE_TEST_MODEL to test)
+                    arguments = bundleOf(BUNDLE_TEST_MODEL to chapter)
                 }
     }
 
@@ -56,7 +57,7 @@ class TestQuestionListFragment : Fragment() {
         }
         activity?.let {
             val user = sharedPrefManager.getUser(it)
-            val test = arguments?.getParcelable(BUNDLE_TEST_MODEL) as TestModel
+            val test = arguments?.getParcelable(BUNDLE_TEST_MODEL) as ChapterModel
 
             layoutTest.visibility = View.GONE
             progressTest.visibility = View.VISIBLE
@@ -65,7 +66,7 @@ class TestQuestionListFragment : Fragment() {
                     subId = 1,
                     sylId = user.syl_id.toInt(),
                     classId = user.cls_id.toInt(),
-                    chapId = test.chp_id.toInt()
+                    chapId = test.chp_id
 
             ).subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
@@ -114,10 +115,10 @@ class TestQuestionListFragment : Fragment() {
         currentPostions++
         if (questions.size <= currentPostions) {
             val user = sharedPrefManager.getUser(activity!!)
-            val test = arguments?.getParcelable(BUNDLE_TEST_MODEL) as TestModel
+            val test = arguments?.getParcelable(BUNDLE_TEST_MODEL) as ChapterModel
             RetrofitUtils.initRetrofit(ApiInterface::class.java).submitTestPaper(
                     token = user.tocken,
-                    chapterId = test.chp_id.toInt(),
+                    chapterId = test.chp_id,
                     testTotal = testTotalMark,
                     studentTotal = totalMark,
                     rightAnswer = correctAnswers,

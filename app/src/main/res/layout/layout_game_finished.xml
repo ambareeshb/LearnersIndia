@@ -13,7 +13,6 @@ android:orientation="vertical">
     android:layout_alignParentTop="true"
     android:layout_marginTop="100dp"
     android:visibility="gone"
-    android:text="Test Completed"
     android:textSize="25sp" />
 
 <TextView

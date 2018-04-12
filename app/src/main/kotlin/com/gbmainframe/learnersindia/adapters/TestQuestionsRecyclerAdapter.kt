@@ -50,7 +50,6 @@ class TestQuestionsRecyclerAdapter(private var question: TestQuestionModel,
             val mimeType = "text/html"
             val encoding = "UTF-8"
 
-
             itemView.testQuestionOption.loadDataWithBaseURL("", "<b>${option}</b>", mimeType, encoding, "")
             if (!answered) {
                 itemView.answerTick.setImageDrawable(null)

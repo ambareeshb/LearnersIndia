@@ -3,6 +3,7 @@ package com.gbmainframe.learnersindia.adapters
 import android.support.design.widget.Snackbar
 import android.support.v4.content.ContextCompat
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -50,7 +51,7 @@ class RecommendedQuestionsAdapter(private val recommendedQuestions: ArrayList<Re
 
             itemView.recommendedQuestionUserName.text = recommendedQuestion.student
             itemView.recommendedQuestionTop.text = "Asked in ${recommendedQuestion.subjectname} on " +
-                    " ${dateFromTimeStamp(recommendedQuestion.qst_timestamp.toInt())}"
+                    " ${dateFromTimeStamp(recommendedQuestion.qst_timestamp.toLong())}"
 //            itemView.recommendedQuestion.text = extractImageUrl(recommendedQuestion.qst_title)
             if (recommendedQuestion.Total_answers < 1) {
                 itemView.recommendedQuestionCount.text = "No answers"
@@ -74,9 +75,14 @@ class RecommendedQuestionsAdapter(private val recommendedQuestions: ArrayList<Re
             }
         }
 
-        private fun dateFromTimeStamp(timeStamp: Int): String {
-            val date = SimpleDateFormat("dd/mm/yyy", Locale.US)
-            return date.format(timeStamp)
+        private fun dateFromTimeStamp(timeStamp: Long): String {
+            val calendar = Calendar.getInstance()
+            calendar.timeZone = TimeZone.getDefault()
+            calendar.timeInMillis = timeStamp * 1000
+
+            val date = SimpleDateFormat("dd/MM/yyyy",Locale.getDefault())
+            return date.format(calendar.timeInMillis)
+
         }
 
         private fun extractImageUrl(html: String): String {

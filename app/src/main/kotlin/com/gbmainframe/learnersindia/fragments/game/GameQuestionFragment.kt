@@ -52,7 +52,6 @@ class GameQuestionFragment : Fragment() {
                 (recyclerGame.adapter as GameQuestionAdapter).applyFiftyFifty()
             }
             fiftyFiftyAvailable = false
-            Snackbar.make(view, R.string.already_used, Snackbar.LENGTH_LONG).show()
         }
         extraLife.setOnClickListener {
             if (extraLifeAvailable) {
@@ -61,7 +60,6 @@ class GameQuestionFragment : Fragment() {
                 Snackbar.make(view, R.string.extra_life_text, Snackbar.LENGTH_LONG).show()
             }
             extraLifeAvailable = false
-            Snackbar.make(view, R.string.already_used, Snackbar.LENGTH_LONG).show()
         }
 
         mediaPlayer?.let {

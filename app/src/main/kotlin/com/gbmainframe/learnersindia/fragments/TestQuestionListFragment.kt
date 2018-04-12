@@ -139,6 +139,9 @@ class TestQuestionListFragment : Fragment() {
                     })
         } else {
             val question = questions[currentPostions]
+            val mimeType = "text/html"
+            val encoding = "UTF-8"
+            testQuestion.loadDataWithBaseURL("", "<b>${question.test_question}</b>", mimeType, encoding, "")
             (testRecycler.adapter as TestQuestionsRecyclerAdapter).setNextOptions(question)
         }
 

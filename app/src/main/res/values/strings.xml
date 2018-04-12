@@ -80,5 +80,6 @@
     <string name="extra_life_lost">Extra life lost</string>
     <string name="already_used">already_used</string>
     <string name="question_count">Question %d</string>
+    <string name="question_marks">Marks : %d</string>
 
 </resources>

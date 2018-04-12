@@ -123,5 +123,16 @@ interface ApiInterface {
     fun getGameQuestion(@Query("tocken") tocken: String,
                         @Query("level") level: Int): Observable<GameQuestionResponse>
 
+    @GET("submit-game-result")
+    fun submitGameResult(@Query("tocken") token: String,
+                         @Query("game_status") gameStatus: String,
+                         @Query("total_point") point: Int,
+                         @Query("life_line1") lifeLine1: Int,
+                         @Query("life_line2") lifeLine2: Int): Observable<BaseApiModel>
+
+    //Payment gateway
+    @GET("get-packages")
+    fun getPackages(): Observable<PaymentResponse>
+
 
 }

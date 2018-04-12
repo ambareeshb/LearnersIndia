@@ -42,10 +42,16 @@ class TestActivity : AppCompatActivity() {
                 .commit()
     }
 
-    fun loadTestFinishFragment(totalMark: Int) {
+    fun loadTestFinishFragment(totalMark: Int,
+                               rightAnswer: Int,
+                               wrongAnswer: Int,
+                               skippedAnswer: Int) {
         supportFragmentManager.popBackStack()
         FragmentUtils(supportFragmentManager).beginTransaction().replace(R.id.fragmentContainer,
-                TestFinishedFragment.newInstance(totalMarks = totalMark))
+                TestFinishedFragment.newInstance(totalMarks = totalMark,
+                        rightAnswer = rightAnswer,
+                        wrongAnswer = wrongAnswer,
+                        skippedAnswer = skippedAnswer))
                 .addToBackStack(true)
                 .commit()
     }

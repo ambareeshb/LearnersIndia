@@ -16,6 +16,12 @@
         android:padding="@dimen/marginAverage"
         android:showDividers="middle">
 
+        <TextView
+            android:id="@+id/questionMarks"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right|center_vertical" />
+
         <WebView
             android:id="@+id/testQuestion"
             android:layout_width="wrap_content"

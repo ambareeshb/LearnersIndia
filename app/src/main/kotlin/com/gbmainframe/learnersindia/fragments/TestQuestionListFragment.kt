@@ -133,7 +133,10 @@ class TestQuestionListFragment : Fragment() {
                             Snackbar.make(view!!, "Unable to submit test", Snackbar.LENGTH_SHORT).show()
                             return@subscribe
                         }
-                        (activity as TestActivity).loadTestFinishFragment(totalMark)
+                        (activity as TestActivity).loadTestFinishFragment(totalMark,
+                                correctAnswers,
+                                wrongAnswers,
+                                (questions.size - (correctAnswers + wrongAnswers)))
                     }, {
                         it.printStackTrace()
                     })
@@ -141,6 +144,7 @@ class TestQuestionListFragment : Fragment() {
             val question = questions[currentPostions]
             val mimeType = "text/html"
             val encoding = "UTF-8"
+            questionMarks.text = String.format(getString(R.string.question_marks), question.mark.toInt())
             testQuestion.loadDataWithBaseURL("", "<b>${question.test_question}</b>", mimeType, encoding, "")
             (testRecycler.adapter as TestQuestionsRecyclerAdapter).setNextOptions(question)
         }

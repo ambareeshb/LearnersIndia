@@ -134,5 +134,11 @@ interface ApiInterface {
     @GET("get-packages")
     fun getPackages(): Observable<PaymentResponse>
 
+    //user profile
+    @GET("get-user-profile")
+
+    fun getUserProfile(@Query("usertype") userType: String = "student",
+                       @Query("tocken") token: String):Observable<UserResponse>
+
 
 }

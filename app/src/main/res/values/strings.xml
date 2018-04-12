@@ -81,5 +81,8 @@
     <string name="already_used">already_used</string>
     <string name="question_count">Question %d</string>
     <string name="question_marks">Marks : %d</string>
+    <string name="my_videos">My Videos</string>
+    <string name="profile">Profile</string>
+    <string name="game_quit">Do you really want to quit the game</string>
 
 </resources>

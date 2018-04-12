@@ -63,7 +63,7 @@ class VideoListFragment : Fragment() {
                     token = user.tocken
             ).subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe({videoRespose ->
+                    .subscribe({ videoRespose ->
                         progressVideoList?.let {
                             progressVideoList.visibility = View.GONE
                             if (it == null || videoRespose.response_type == getString(R.string.response_type_error) || videoRespose.response_data == null) {
@@ -72,7 +72,10 @@ class VideoListFragment : Fragment() {
                             }
                             videoListRecycler.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
                             videoListRecycler.adapter = VideoVerticalListAdapter(activity = activity!!,
-                                    videoTopicList = videoRespose.response_data)
+                                    videoTopicList = videoRespose.response_data,
+                                    goToPremium = {
+                                        (activity as Home).loadGoToPremiumFragment()
+                                    })
                         }
                     }, { error ->
                         error.printStackTrace()

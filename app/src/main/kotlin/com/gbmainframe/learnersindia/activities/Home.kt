@@ -73,6 +73,24 @@ class Home : AppCompatActivity() {
     }
 
     /**
+     * Load user profile fragment.
+     */
+     fun loadGoToPremiumFragment() {
+        supportFragmentManager.popBackStack(TAG, FragmentManager.POP_BACK_STACK_INCLUSIVE)
+        FragmentUtils(supportFragmentManager).beginTransaction()
+                .addToBackStack(true)
+                .replace(R.id.fragmentContainer, GoToPremiumFragment()).commit()
+    }
+
+    /**
+     * Load user profile fragment.
+     */
+    fun loadShowProfileFragment() {
+        supportFragmentManager.popBackStack(TAG, FragmentManager.POP_BACK_STACK_INCLUSIVE)
+        FragmentUtils(supportFragmentManager).beginTransaction().replace(R.id.fragmentContainer, ShowProfile()).commit()
+    }
+
+    /**
      * Load user Premium features fragment.
      */
     private fun loadPremiumFragment() {

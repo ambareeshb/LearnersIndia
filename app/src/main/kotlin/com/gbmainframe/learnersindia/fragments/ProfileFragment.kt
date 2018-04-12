@@ -10,6 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.gbmainframe.learnersindia.R
+import com.gbmainframe.learnersindia.activities.Home
 import com.gbmainframe.learnersindia.activities.SignIn
 import com.gbmainframe.learnersindia.utils.ApiInterface
 import com.gbmainframe.learnersindia.utils.RetrofitUtils
@@ -39,15 +40,24 @@ class ProfileFragment : Fragment() {
         logout.setOnClickListener {
             AlertDialog.Builder(context, R.style.Base_Theme_AppCompat_Light_Dialog).setTitle("Logout").setMessage(R.string.logoutMessage)
                     .setPositiveButton(R.string.yes, { _, _ ->
-                        context?.let {
+                        activity?.let {
                             sharedPrefManager.logoutUser(it)
-                            startActivity(Intent(activity, SignIn::class.java))
+                            startActivity(Intent(it, SignIn::class.java))
                             activity?.finish()
                         }
                     })
                     .setNegativeButton(R.string.no, { _, _ ->
                         //Do noting means to dismiss the dialog.
                     }).show()
+        }
+        inviteFriends.setOnClickListener {
+            (activity as Home).loadQuestionsListFragment()
+        }
+        feedback.setOnClickListener {
+            (activity as Home).loadChapterListFragment(ChaptersFragment.Companion.CHAPTER.VIDEO)
+        }
+        editProfile.setOnClickListener {
+            (activity as Home).loadShowProfileFragment()
         }
         //Show user info in the profile display.
         context?.let {
@@ -58,7 +68,6 @@ class ProfileFragment : Fragment() {
                 3 -> "Kerala"
                 4 -> "TN"
                 else -> "CBSE"
-
             }
             className.text = ("$board - Class ${user.cls_id}")
             //Checking paid status of user

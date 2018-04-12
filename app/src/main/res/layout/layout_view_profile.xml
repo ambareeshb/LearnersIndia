@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/profileView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <RelativeLayout
+                android:id="@+id/userProfileTop"
+                android:layout_width="match_parent"
+                android:layout_height="250dp">
+
+                <ImageView
+                    android:id="@+id/profileBg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/top" />
+
+
+            </RelativeLayout>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/topCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="200dp"
+                android:minHeight="100dp"
+                android:padding="5dp"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="5dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <LinearLayout
+                        android:id="@+id/profilePhone"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:gravity="center_vertical"
+                        android:minHeight="80dp"
+                        android:padding="10dp"
+                        android:visibility="visible">
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_marginLeft="10dp"
+                            android:src="@drawable/ic_call_us" />
+
+                        <TextView
+                            android:id="@+id/textProfilePhoneNumber"
+                            style="@style/UserProfileTextStyles"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="20dp"
+                            android:gravity="center_vertical" />
+                    </LinearLayout>
+
+                    <ImageView
+                        android:id="@+id/verticalDivider1"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_below="@+id/profilePhone"
+                        android:layout_marginLeft="50dp"
+                        android:layout_marginRight="5dp"
+                        android:alpha=".6"
+                        android:background="@android:color/darker_gray" />
+
+                    <LinearLayout
+                        android:id="@+id/profileEmail"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/verticalDivider1"
+                        android:background="@color/white"
+                        android:gravity="center_vertical"
+                        android:minHeight="80dp"
+                        android:padding="10dp"
+                        android:visibility="visible">
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_marginLeft="10dp"
+                            android:src="@drawable/ic_mail_black_24dp" />
+
+                        <TextView
+                            android:id="@+id/textProfileEmail"
+                            style="@style/UserProfileTextStyles"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="20dp"
+                            android:gravity="center_vertical" />
+                    </LinearLayout>
+
+                    <ImageView
+                        android:id="@+id/verticalDivider2"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_below="@+id/profileEmail"
+                        android:layout_marginLeft="50dp"
+                        android:layout_marginRight="5dp"
+                        android:alpha=".6"
+                        android:background="@android:color/darker_gray" />
+
+                    <LinearLayout
+                        android:id="@+id/profileAddress"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/verticalDivider2"
+                        android:background="@color/white"
+                        android:gravity="center_vertical"
+                        android:minHeight="80dp"
+                        android:padding="10dp"
+                        android:visibility="visible">
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_marginLeft="10dp"
+                            android:src="@drawable/ic_home_black_24dp" />
+
+                        <TextView
+                            android:id="@+id/textProfileAddress"
+                            style="@style/UserProfileTextStyles"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:gravity="center_vertical" />
+                    </LinearLayout>
+
+                    <ImageView
+                        android:id="@+id/verticalDivider3"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_below="@+id/profileAddress"
+                        android:layout_marginLeft="50dp"
+                        android:layout_marginRight="5dp"
+                        android:alpha=".6"
+                        android:background="@android:color/darker_gray" />
+
+                    <LinearLayout
+                        android:id="@+id/profileDob"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/verticalDivider3"
+                        android:background="@color/white"
+                        android:gravity="center_vertical"
+                        android:minHeight="80dp"
+                        android:padding="10dp"
+                        android:visibility="visible">
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_marginLeft="10dp"
+                            android:src="@drawable/ic_dob" />
+
+                        <TextView
+                            android:id="@+id/textProfileDob"
+                            style="@style/UserProfileTextStyles"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="20dp"
+                            android:gravity="center_vertical" />
+                    </LinearLayout>
+                </RelativeLayout>
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:layout_below="@id/topCard"
+                android:layout_margin="10dp"
+                android:padding="5dp"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="5dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:divider="@drawable/divider_vertical"
+                    android:orientation="vertical"
+                    android:showDividers="middle">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp"
+                        android:src="@drawable/premi" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
+                        android:fontFamily="@font/nawabiat"
+                        android:gravity="center"
+                        android:text="Unlock the the rest of the list with Premium"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:background="@color/colorPrimary"
+                        android:fontFamily="@font/nawabiat"
+                        android:padding="10dp"
+                        android:text="TRY PREMIUM"
+                        android:textColor="@color/white"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+            <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/profile_image"
+                android:layout_width="96dp"
+                android:layout_height="96dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="30dp"
+                android:elevation="6dp"
+                android:src="@drawable/face"
+                app:civ_border_color="#FFFFFF"
+                app:civ_border_width="2dp" />
+
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/profile_image"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="10dp"
+                android:fontFamily="@font/nawabiat"
+                android:text="Ambareesh"
+                android:textColor="@color/offWhite"
+                android:textSize="21sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/className"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/name"
+                android:layout_below="@+id/name"
+                android:fontFamily="@font/nawabiat"
+                android:text="CBSE Class 10"
+                android:textColor="@color/offWhite"
+                android:textSize="19sp" />
+
+        </RelativeLayout>
+
+        <ProgressBar
+            android:id="@+id/progressProfile"
+            style="@style/ProgressBarStyle"
+            android:layout_gravity="center"
+            android:visibility="visible" />
+    </FrameLayout>
+</ScrollView>

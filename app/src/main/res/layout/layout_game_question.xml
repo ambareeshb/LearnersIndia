@@ -74,6 +74,22 @@
                     android:src="@drawable/ic_close"
                     android:visibility="gone" />
             </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/quit"
+                android:layout_width="80dp"
+                android:layout_height="40dp"
+                android:layout_alignParentLeft="true"
+                app:cardCornerRadius="20dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="Quit"
+                    android:fontFamily="@font/nawabiat"
+                    android:textColor="@color/paleBrown" />
+            </android.support.v7.widget.CardView>
         </RelativeLayout>
 
         <WebView

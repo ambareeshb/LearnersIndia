@@ -30,21 +30,24 @@ class VideosAdapter(private val videoList: ArrayList<VideoModel>,
     }
 
     inner class VideoViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        fun bindView(video: VideoModel) {
-            val videoId = video.ved_url.split("/").last()
-            itemView.videoNameText.text = video.ved_title.replace("\\","")
+        fun bindView(videoFile: VideoModel) {
+            val videoId = videoFile.ved_url.split("/").last()
+            itemView.videoNameText.text = videoFile.ved_title.replace("\\", "")
             itemView.setOnClickListener {
-//                videoClicked(video.ved_id)
-                Toast.makeText(itemView.context,"Hold on loading video",Toast.LENGTH_SHORT).show()
+                //                videoClicked(video.ved_id)
+                Toast.makeText(itemView.context, "Hold on loading video", Toast.LENGTH_SHORT).show()
             }
             val vimeoToken = "Bearer ${itemView.context.getString(R.string.vimeo_access_token)}"
             RetrofitUtils.initRetrofit(ApiInterface::class.java, "https://api.vimeo.com/")
-                    .getVimeoVideoMetadata(vimeoToken,videoId)
+                    .getVimeoVideoMetadata(vimeoToken, videoId)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe({
-                        video ->
+                    .subscribe({ video ->
                         itemView.setOnClickListener {
+                            if (videoFile.ved_category == "paid") {
+                                videoClicked("")
+                                return@setOnClickListener
+                            }
                             videoClicked(video.files[2].link)
                         }
                         if (video.pictures.sizes[4] != null)

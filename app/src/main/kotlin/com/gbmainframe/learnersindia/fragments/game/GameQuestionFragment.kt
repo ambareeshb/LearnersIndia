@@ -6,6 +6,7 @@ import android.os.CountDownTimer
 import android.os.Handler
 import android.support.design.widget.Snackbar
 import android.support.v4.app.Fragment
+import android.support.v7.app.AlertDialog
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
@@ -46,6 +47,15 @@ class GameQuestionFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        quit.setOnClickListener {
+            AlertDialog.Builder(context!!, R.style.Base_Theme_AppCompat_Light_Dialog).setTitle("Quit Game").setMessage(R.string.game_quit)
+                    .setNegativeButton(R.string.no, { _, _ -> })
+                    .setPositiveButton(R.string.yes, { _, _ ->
+                        this?.let {
+                            (activity as GameActivity).loadGameFinish(--levelValue)
+                        }
+                    }).show()
+        }
         fiftyFifty.setOnClickListener {
             if (fiftyFiftyAvailable) {
                 fiftyFiftyOverlay.visibility = View.VISIBLE

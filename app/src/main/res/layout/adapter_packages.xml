@@ -63,21 +63,29 @@
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:id="@+id/priceUsdOfferActualPrice"
+                    android:id="@+id/priceUsdActualPrice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:fontFamily="@font/nawabiat"
                     android:text="100"
                     android:textColor="@android:color/black"
                     android:textSize="18sp" />
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:background="@color/paleViolet" />
             </FrameLayout>
 
             <TextView
                 android:id="@+id/priceUsdOfferPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
                 android:fontFamily="@font/nawabiat"
-                android:text="USD"
+                android:text="50"
                 android:textSize="18sp" />
         </LinearLayout>
 

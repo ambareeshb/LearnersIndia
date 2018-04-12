@@ -16,5 +16,11 @@ data class UserData(val full_name: String,
                     val profile_pic: String,
                     val verification_key: String,
                     val tocken: String,
-                    val paidstatus: String
-)
+                    val address: String,
+                    val city: String,
+                    val state: String,
+                    val dob: String,
+                    val gender: String,
+                    val paidstatus: String)
+
+data class UserResponse(val user_data: UserData) : BaseApiModel()

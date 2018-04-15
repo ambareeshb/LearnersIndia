@@ -95,7 +95,7 @@ class GameQuestionFragment : Fragment() {
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe({
                         if (it.response_type == getString(R.string.response_type_error)) {
-                            (activity as GameActivity).loadGameFinish(levelValue)
+                            Snackbar.make(view!!,it.response_text,Snackbar.LENGTH_SHORT).show()
                             return@subscribe
                         }
                         Single.fromCallable {
@@ -176,7 +176,7 @@ class GameQuestionFragment : Fragment() {
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe({
                         if (it.response_type == getString(R.string.response_type_error)) {
-                            (activity as GameActivity).loadGameFinish(levelValue)
+                            Snackbar.make(view!!,it.response_text,Snackbar.LENGTH_SHORT).show()
                             return@subscribe
                         }
                         (recyclerGame.adapter as GameQuestionAdapter).setNextOptions(it.question_data)

@@ -56,6 +56,7 @@
     </style>
 
     <style name="ProgressBarStyle" parent="@android:style/Widget.ProgressBar.Inverse">
+        <item name="android:progressTint">@color/colorPrimary</item>
         <item name="android:visibility">gone</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">wrap_content</item>

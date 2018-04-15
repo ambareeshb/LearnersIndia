@@ -3,8 +3,10 @@ package com.gbmainframe.learnersindia.activities
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v4.app.FragmentManager
 import android.support.v7.app.AlertDialog
 import com.gbmainframe.learnersindia.R
+import com.gbmainframe.learnersindia.fragments.GoToPremiumFragment
 import com.gbmainframe.learnersindia.fragments.game.GameFinishFragment
 import com.gbmainframe.learnersindia.fragments.game.GameLevelFragment
 import com.gbmainframe.learnersindia.fragments.game.GameQuestionFragment
@@ -18,6 +20,12 @@ class GameActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game)
         loadGameStartFragment()
+    }
+
+    fun loadGoToPremiumFragment() {
+        FragmentUtils(supportFragmentManager).beginTransaction()
+                .addToBackStack(true)
+                .replace(R.id.fragmentContainer, GoToPremiumFragment()).commit()
     }
 
     fun loadGameFinish(level: Int) {

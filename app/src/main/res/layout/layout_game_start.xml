@@ -20,9 +20,10 @@
 
         <ImageView
             android:layout_width="100dp"
-            android:src="@drawable/splash_logo"
+            android:layout_height="100dp"
             android:layout_marginBottom="@dimen/marginAverage"
-            android:layout_height="100dp" />
+            android:src="@drawable/splash_logo" />
+
         <android.support.v7.widget.CardView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -37,12 +38,13 @@
                 android:orientation="vertical"
                 android:padding="20dp"
                 android:showDividers="middle">
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="How To Play"
-                    android:gravity="center"
                     android:layout_marginBottom="10dp"
+                    android:gravity="center"
+                    android:text="How To Play"
                     android:textColor="@android:color/black"
                     android:textSize="20sp" />
 
@@ -65,5 +67,6 @@
             android:layout_marginTop="30dp"
             android:text="Start" />
     </LinearLayout>
+
 
 </LinearLayout>

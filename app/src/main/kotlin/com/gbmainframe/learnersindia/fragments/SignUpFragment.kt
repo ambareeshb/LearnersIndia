@@ -1,16 +1,13 @@
 package com.gbmainframe.learnersindia.fragments
 
-import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v4.app.Fragment
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import com.gbmainframe.learnersindia.R
-import com.gbmainframe.learnersindia.activities.Home
 import com.gbmainframe.learnersindia.activities.SignIn
 import com.gbmainframe.learnersindia.models.Board
 import com.gbmainframe.learnersindia.models.ClassInfo
@@ -47,10 +44,11 @@ class SignUpFragment : Fragment() {
             (passwordText.text.toString() == passwordRetype.text.toString()).not() -> Snackbar.make(view!!, R.string.error_retype_password_again, Snackbar.LENGTH_SHORT).show()
             else -> {
                 signUpErrorText.text = ""
-                signUpErrorText.visibility = View.GONE
+                //signUpErrorText.visibility = View.GONE
                 buttonSignUp.isEnabled = false
                 progress.visibility = View.VISIBLE
 
+                val countryCode = "+" + countryPhoneNumber.selectedCountryCode
                 val apiInterface = RetrofitUtils.initRetrofit(ApiInterface::class.java)
                 arguments?.let {
                     apiInterface.signUp("student",
@@ -59,11 +57,14 @@ class SignUpFragment : Fragment() {
                             textPhoneNumber.textString(),
                             passwordText.textString(),
                             it.getParcelable<Board>(SignIn.BOARD_PARCEL).syl_id,
-                            it.getParcelable<ClassInfo>(SignIn.CLASS_PARCEL).cls_id)
+                            it.getParcelable<ClassInfo>(SignIn.CLASS_PARCEL).cls_id,
+                            countryCode)
                             .flatMap { data ->
                                 if (data.response_type == "error") {
-                                    signUpErrorText.text = data.response_text
-                                    signUpErrorText.visibility = View.VISIBLE
+                                    signUpErrorText.post {
+                                        signUpErrorText.text = data.response_text
+                                        signUpErrorText.visibility = View.VISIBLE
+                                    }
 //                                    Snackbar.make(view!!, data.response_text, Snackbar.LENGTH_LONG).show()
                                 }
                                 apiInterface.signIn("student", data.email
@@ -81,15 +82,13 @@ class SignUpFragment : Fragment() {
                                 }
                                 activity?.let {
                                     sharedPrefManager.putUserInfo(it, data.user_data)
-                                    startActivity(Intent(activity, Home::class.java))
-                                    activity?.finish()
+                                    (activity as SignIn).loadOtpFragment()
                                 }
                             }, { error ->
                                 buttonSignUp.isEnabled = true
                                 progress.visibility = View.GONE
                                 error.printStackTrace()
                                 Snackbar.make(view!!, "Something went wrong", Snackbar.LENGTH_SHORT).show()
-
                             })
                 }
             }

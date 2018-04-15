@@ -56,7 +56,7 @@ class HomeFragment : Fragment() {
         shareButton.setOnClickListener {
             startActivity(Intent().apply {
                 action = Intent.ACTION_SEND
-                putExtra(Intent.EXTRA_TEXT, "Share Learners India")
+                putExtra(Intent.EXTRA_TEXT, getString(R.string.play_store_link))
                 type = "text/plain"
             })
         }

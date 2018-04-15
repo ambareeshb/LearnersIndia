@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="marginAverage">10dp</dimen>
-    <dimen name="noContentAvailable">22sp</dimen>
+    <dimen name="noContentAvailable">19sp</dimen>
     <dimen name="answeredUserName">14sp</dimen>
     <dimen name="exerciseTitle">22sp</dimen>
     <dimen name="exersiseContent">23sp</dimen>

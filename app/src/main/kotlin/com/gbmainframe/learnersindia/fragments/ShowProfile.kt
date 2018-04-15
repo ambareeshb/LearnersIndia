@@ -53,7 +53,11 @@ class ShowProfile : Fragment() {
     private fun updateProfile(user: UserResponse?) {
         user?.let {
             textProfileEmail.text = it.user_data.email_id
-            textProfileAddress.text = "${it.user_data.address}\n${it.user_data.city}\n${it.user_data.state}"
+            it.user_data.address?.apply {
+                if(this != null){
+                    textProfileAddress.text = "${it.user_data.address}\n${it.user_data.city}\n${it.user_data.state}"
+                }
+            }
             textProfilePhoneNumber.text = it.user_data.phoneno
             textProfileDob.text = it.user_data.dob
             name.text = it.user_data.full_name

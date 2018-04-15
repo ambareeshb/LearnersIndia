@@ -73,7 +73,7 @@ class Home : AppCompatActivity() {
     }
 
     /**
-     * Load user profile fragment.
+     * Load go to premium fragment.
      */
      fun loadGoToPremiumFragment() {
         supportFragmentManager.popBackStack(TAG, FragmentManager.POP_BACK_STACK_INCLUSIVE)

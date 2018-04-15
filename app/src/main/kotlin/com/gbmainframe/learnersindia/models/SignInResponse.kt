@@ -20,6 +20,7 @@ data class UserData(val full_name: String,
                     val city: String,
                     val state: String,
                     val dob: String,
+                    val otpVerified: Boolean = false,
                     val gender: String,
                     val paidstatus: String)
 

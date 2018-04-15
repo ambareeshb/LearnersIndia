@@ -84,5 +84,7 @@
     <string name="my_videos">My Videos</string>
     <string name="profile">Profile</string>
     <string name="game_quit">Do you really want to quit the game</string>
+    <string name="play_store_link">https://play.google.com/store/apps/details?id=com.gbmainframe.learnersindia</string>
+    <string name="otp_hint">An SMS with 6 digit OTP has been sent to your registered mobile number please enter it below.</string>
 
 </resources>

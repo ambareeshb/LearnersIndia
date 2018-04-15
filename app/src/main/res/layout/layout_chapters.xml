@@ -27,5 +27,5 @@
         android:fontFamily="@font/nawabiat"
         android:gravity="center"
         android:text="@string/no_chapters_available"
-        android:textSize="25sp" />
+        android:textSize="@dimen/noContentAvailable" />
 </RelativeLayout>

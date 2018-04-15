@@ -21,7 +21,7 @@ class SignIn : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        window.setFlags(WindowManager.LayoutParams.FLAG_SECURE,WindowManager.LayoutParams.FLAG_SECURE)
+        window.setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE)
         setContentView(R.layout.activity_sign_in)
         loadTutorialView()
     }
@@ -36,14 +36,20 @@ class SignIn : AppCompatActivity() {
         bundle.putInt(LOGIN_DECISION_KEY, decision.ordinal)
         val fragment = SelectRoleFragment()
         fragment.arguments = bundle
-        FragmentUtils(supportFragmentManager).beginTransaction().
-                replace(R.id.fragmentContainer, fragment)
+        FragmentUtils(supportFragmentManager).beginTransaction().replace(R.id.fragmentContainer, fragment)
                 .commit()
     }
 
     fun loadSignInFragment() {
         supportFragmentManager.popBackStack(SIGN_UP_FLOW_INIT, FragmentManager.POP_BACK_STACK_INCLUSIVE)
         FragmentUtils(supportFragmentManager).beginTransaction().replace(R.id.fragmentContainer, SignInFragment()).commit()
+    }
+
+    fun loadOtpFragment() {
+        supportFragmentManager.popBackStack(SIGN_UP_FLOW_INIT, FragmentManager.POP_BACK_STACK_INCLUSIVE)
+        FragmentUtils(supportFragmentManager).beginTransaction()
+                .replace(R.id.fragmentContainer, EnterOtpFragment())
+                .commit()
     }
 
     fun loadSelectBoardFragment() {

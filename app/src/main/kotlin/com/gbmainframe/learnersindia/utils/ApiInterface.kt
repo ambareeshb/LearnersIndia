@@ -26,7 +26,9 @@ interface ApiInterface {
                @Query("mobile") phone: String,
                @Query("password") password: String,
                @Query("board") board: String,
-               @Query("class") classInfo: String
+               @Query("class") classInfo: String,
+               @Query("country_tel_code") telCode: String
+
     ): rx.Observable<SignUpResponse>
 
     @GET("signin")
@@ -138,7 +140,14 @@ interface ApiInterface {
     @GET("get-user-profile")
 
     fun getUserProfile(@Query("usertype") userType: String = "student",
-                       @Query("tocken") token: String):Observable<UserResponse>
+                       @Query("tocken") token: String): Observable<UserResponse>
 
+    //Otp
+    @GET("validate-otp-student-signup")
+    fun submitOtp(@Query("tocken") token: String,
+                  @Query("otp") otp:String): Observable<BaseApiModel>
+
+    @GET("resend-otp-student-signup")
+    fun resendOtp(@Query("tocken") token: String): Observable<BaseApiModel>
 
 }

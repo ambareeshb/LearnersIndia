@@ -56,6 +56,10 @@ class SignInFragment : Fragment() {
                         }
                         activity?.let {
                             sharedPrefManager.putUserInfo(it, data.user_data)
+                            if (data.user_data.verified == 0) {
+                                (activity as SignIn).loadOtpFragment()
+                                return@subscribe
+                            }
                             startActivity(Intent(activity, Home::class.java))
                             activity?.finish()
                         }

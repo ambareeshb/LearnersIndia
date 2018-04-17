@@ -4,10 +4,13 @@ import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v4.app.FragmentManager
 import android.support.v7.app.AppCompatActivity
+import android.view.View
 import android.view.WindowManager
 import com.gbmainframe.learnersindia.R
+import com.gbmainframe.learnersindia.activities.SignIn.Companion.SIGN_UP_FLOW_INIT
 import com.gbmainframe.learnersindia.fragments.*
 import com.gbmainframe.learnersindia.utils.FragmentUtils
+import com.gbmainframe.learnersindia.utils.sharedPrefManager
 import kotlinx.android.synthetic.main.activity_home.*
 
 
@@ -22,6 +25,12 @@ class Home : AppCompatActivity() {
         window.setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE)
         setContentView(R.layout.activity_home)
         homeBottomNavigation.selectedItemId = R.id.feed
+
+        if (sharedPrefManager.getUser(this).verified == 0) {
+            homeBottomNavigation.visibility = View.GONE
+            loadOtpFragment()
+            return
+        }
         loadHomeFeedFragment()
 
         /**
@@ -75,14 +84,15 @@ class Home : AppCompatActivity() {
     /**
      * Load package list fragment.
      */
-     fun loadPackageListFragment() {
+    fun loadPackageListFragment() {
         supportFragmentManager.popBackStack(TAG, FragmentManager.POP_BACK_STACK_INCLUSIVE)
         FragmentUtils(supportFragmentManager).beginTransaction().replace(R.id.fragmentContainer, PaymentPackagesFragment()).commit()
     }
+
     /**
      * Load go to premium fragment.
      */
-     fun loadGoToPremiumFragment() {
+    fun loadGoToPremiumFragment() {
         supportFragmentManager.popBackStack(TAG, FragmentManager.POP_BACK_STACK_INCLUSIVE)
         FragmentUtils(supportFragmentManager).beginTransaction()
                 .addToBackStack(true)
@@ -120,6 +130,12 @@ class Home : AppCompatActivity() {
                 .commit()
     }
 
+    fun loadOtpFragment() {
+        supportFragmentManager.popBackStack(SIGN_UP_FLOW_INIT, FragmentManager.POP_BACK_STACK_INCLUSIVE)
+        FragmentUtils(supportFragmentManager).beginTransaction()
+                .replace(R.id.fragmentContainer, EnterOtpFragment())
+                .commit()
+    }
 
     /**
      * Add asks question fragment to container.

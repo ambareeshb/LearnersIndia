@@ -30,7 +30,8 @@ class GameStartFragment : Fragment() {
             (activity as GameActivity).onBackPressed()
         }
         buttonStartGame.setOnClickListener {
-            checkPaymentStatusAndProceed()
+//            checkPaymentStatusAndProceed()
+            (activity as GameActivity).loadGameQuestionFragment()
         }
     }
 

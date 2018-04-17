@@ -1,76 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <include layout="@layout/simple_toolbar" />
-
-    <LinearLayout
-        android:id="@+id/layoutTest"
+    <RelativeLayout xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/toolbar"
-        android:divider="@drawable/divider_vertical"
-        android:orientation="vertical"
-        android:padding="@dimen/marginAverage"
-        android:showDividers="middle">
+        android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/questionMarks"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="right|center_vertical" />
-
-        <WebView
-            android:id="@+id/testQuestion"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/marginAverage"
-            tools:ignore="WebViewLayout" />
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/testRecycler"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-        <android.support.v7.widget.AppCompatButton
-            android:id="@+id/buttonNext"
-            style="@style/StyleLoginRectangleButtonHollow"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:background="@color/colorPrimary"
-            android:text="Next" />
+        <include layout="@layout/simple_toolbar" />
 
         <LinearLayout
-            android:id="@+id/testQuestionAnswerLayout"
-            android:layout_width="wrap_content"
+            android:id="@+id/layoutTest"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="@dimen/marginAverage"
+            android:layout_below="@+id/toolbar"
+            android:divider="@drawable/divider_vertical"
             android:orientation="vertical"
-            android:visibility="gone">
+            android:padding="@dimen/marginAverage"
+            android:showDividers="middle">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:id="@+id/questionMarks"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/nawabiat"
-                android:text="Solution"
-                android:textSize="20sp" />
+                android:gravity="right|center_vertical" />
 
             <WebView
-                android:id="@+id/testQuestionSolution"
+                android:id="@+id/testQuestion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/marginAverage"
+                tools:ignore="WebViewLayout" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/testRecycler"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/buttonNext"
+                style="@style/StyleLoginRectangleButtonHollow"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="20dp"
-                tools:ignore="WebViewLayout" />
+                android:background="@color/colorPrimary"
+                android:text="Next" />
+
+            <LinearLayout
+                android:id="@+id/testQuestionAnswerLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/marginAverage"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nawabiat"
+                    android:text="Solution"
+                    android:textSize="20sp" />
+
+                <WebView
+                    android:id="@+id/testQuestionSolution"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp"
+                    tools:ignore="WebViewLayout" />
+            </LinearLayout>
         </LinearLayout>
-    </LinearLayout>
 
-    <ProgressBar
-        android:id="@+id/progressTest"
-        style="@style/ProgressBarStyle" />
+        <ProgressBar
+            android:id="@+id/progressTest"
+            style="@style/ProgressBarStyle" />
 
-</RelativeLayout>
+    </RelativeLayout>
+</ScrollView>

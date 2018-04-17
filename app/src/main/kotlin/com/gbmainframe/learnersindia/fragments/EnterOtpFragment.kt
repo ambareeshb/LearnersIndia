@@ -12,9 +12,11 @@ import android.view.ViewGroup
 import com.gbmainframe.learnersindia.R
 import com.gbmainframe.learnersindia.activities.Home
 import com.gbmainframe.learnersindia.activities.SignIn
+import com.gbmainframe.learnersindia.models.UserData
 import com.gbmainframe.learnersindia.utils.ApiInterface
 import com.gbmainframe.learnersindia.utils.RetrofitUtils
 import com.gbmainframe.learnersindia.utils.sharedPrefManager
+import com.vimeo.networking.model.User
 import kotlinx.android.synthetic.main.enter_otp_fragment.*
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
@@ -49,6 +51,14 @@ class EnterOtpFragment : Fragment() {
                                         Snackbar.make(view, it.response_text, Snackbar.LENGTH_SHORT).show()
                                         return@subscribe
                                     }
+                                    activity?.let {
+                                        val user = sharedPrefManager.getUser(it)
+                                        val verifiedUser = UserData(user.full_name, user.email_id, user.phoneno, user.cls_id,
+                                                1, user.syl_id, user.profile_pic ?: "", user.verification_key, user.tocken,
+                                                user.address, user.city, user.state, user.dob, user.otpVerified, user.gender, user.paidstatus)
+                                        sharedPrefManager.putUserInfo(it, verifiedUser)
+
+                                    }
                                     startActivity(Intent(activity, Home::class.java))
                                     activity.finish()
                                 },
@@ -59,30 +69,30 @@ class EnterOtpFragment : Fragment() {
 
             }
 
-            resendOtp.setOnClickListener {
-                startTimer()
-                activity?.let { activity ->
-                    val user = sharedPrefManager.getUser(activity)
-                    otpView.otp = ""
-                    otpView.setFocus()
-                    RetrofitUtils.initRetrofit(ApiInterface::class.java).resendOtp(user.tocken)
-                            .subscribeOn(Schedulers.io())
-                            .observeOn(AndroidSchedulers.mainThread())
-                            .subscribe(
-                                    {
-                                        if (it.response_type == getString(R.string.response_type_error)) {
-                                            Snackbar.make(view, it.response_text, Snackbar.LENGTH_SHORT).show()
-                                            return@subscribe
-                                        }
-                                    },
-                                    {
-                                        it.printStackTrace()
-                                        Snackbar.make(view, "Something went wrong", Snackbar.LENGTH_SHORT).show()
-                                    })
+        }
 
-                }
+        resendOtp.setOnClickListener {
+            startTimer()
+            activity?.let { activity ->
+                val user = sharedPrefManager.getUser(activity)
+                otpView.otp = ""
+                otpView.setFocus()
+                RetrofitUtils.initRetrofit(ApiInterface::class.java).resendOtp(user.tocken)
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe(
+                                {
+                                    if (it.response_type == getString(R.string.response_type_error)) {
+                                        Snackbar.make(view, it.response_text, Snackbar.LENGTH_SHORT).show()
+                                        return@subscribe
+                                    }
+                                },
+                                {
+                                    it.printStackTrace()
+                                    Snackbar.make(view, "Something went wrong", Snackbar.LENGTH_SHORT).show()
+                                })
+
             }
-
         }
 
     }

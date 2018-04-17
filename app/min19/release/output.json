@@ -1,1 +1,1 @@
-[{"outputType":{"type":"APK"},"apkInfo":{"type":"MAIN","splits":[],"versionCode":2},"path":"app-min19-release.apk","properties":{"packageId":"com.gbmainframe.learnersindia","split":"","minSdkVersion":"19"}}]
+[{"outputType":{"type":"APK"},"apkInfo":{"type":"MAIN","splits":[],"versionCode":3,"versionName":"1","enabled":true,"outputFile":"app-min19-release.apk","fullName":"min19Release","baseName":"min19-release"},"path":"app-min19-release.apk","properties":{}}]

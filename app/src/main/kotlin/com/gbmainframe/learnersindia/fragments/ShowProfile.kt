@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.gbmainframe.learnersindia.R
+import com.gbmainframe.learnersindia.activities.Home
 import com.gbmainframe.learnersindia.models.UserResponse
 import com.gbmainframe.learnersindia.utils.ApiInterface
 import com.gbmainframe.learnersindia.utils.RetrofitUtils
@@ -24,6 +25,9 @@ class ShowProfile : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        tryPremium.setOnClickListener {
+            (activity as Home).loadPackageListFragment()
+        }
         profileView.visibility = View.INVISIBLE
         progressProfile.visibility = View.VISIBLE
         activity?.let {
@@ -54,7 +58,7 @@ class ShowProfile : Fragment() {
         user?.let {
             textProfileEmail.text = it.user_data.email_id
             it.user_data.address?.apply {
-                if(this != null){
+                if (this != null) {
                     textProfileAddress.text = "${it.user_data.address}\n${it.user_data.city}\n${it.user_data.state}"
                 }
             }

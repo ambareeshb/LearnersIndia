@@ -16,6 +16,8 @@ data class VideoModel(val ved_id: Int,
                       val ved_desc: String,
                       val ved_tags: String,
                       val chapter: String,
+                      val private_url:String,
+                      val video_image:String,
                       val boardname: String,
                       val gradename: String,
                       val subjectname: String)

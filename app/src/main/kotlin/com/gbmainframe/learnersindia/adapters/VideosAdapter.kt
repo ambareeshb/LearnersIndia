@@ -31,33 +31,22 @@ class VideosAdapter(private val videoList: ArrayList<VideoModel>,
 
     inner class VideoViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         fun bindView(videoFile: VideoModel) {
-            val videoId = videoFile.ved_url.split("/").last()
             itemView.videoNameText.text = videoFile.ved_title.replace("\\", "")
             itemView.setOnClickListener {
                 //                videoClicked(video.ved_id)
                 Toast.makeText(itemView.context, "Hold on loading video", Toast.LENGTH_SHORT).show()
             }
-            val vimeoToken = "Bearer ${itemView.context.getString(R.string.vimeo_access_token)}"
-            RetrofitUtils.initRetrofit(ApiInterface::class.java, "https://api.vimeo.com/")
-                    .getVimeoVideoMetadata(vimeoToken, videoId)
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe({ video ->
-                        itemView.setOnClickListener {
-                            if (videoFile.ved_category == "paid") {
-                                videoClicked("")
-                                return@setOnClickListener
-                            }
-                            videoClicked(video.files[2].link)
-                        }
-                        if (video.pictures.sizes[4] != null)
-                            Glide.with(itemView.context)
-                                    .load(video.pictures.sizes[3].link)
-                                    .into(itemView.videoPreview)
-                    }, {
-                        it.printStackTrace()
-                    })
-
+            itemView.setOnClickListener {
+                if (videoFile.ved_category == "paid") {
+                    videoClicked("")
+                    return@setOnClickListener
+                }
+                videoClicked(videoFile.private_url)
+            }
+            if (!videoFile.video_image.isEmpty())
+                Glide.with(itemView.context)
+                        .load(videoFile.video_image)
+                        .into(itemView.videoPreview)
         }
     }
 }

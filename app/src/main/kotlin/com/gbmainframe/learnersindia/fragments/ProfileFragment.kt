@@ -37,6 +37,9 @@ class ProfileFragment : Fragment() {
                 startActivity(this)
             }
         }
+        tryPremium.setOnClickListener {
+            (activity as Home).loadPackageListFragment()
+        }
         logout.setOnClickListener {
             AlertDialog.Builder(context, R.style.Base_Theme_AppCompat_Light_Dialog).setTitle("Logout").setMessage(R.string.logoutMessage)
                     .setPositiveButton(R.string.yes, { _, _ ->

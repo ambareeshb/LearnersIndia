@@ -6,4 +6,5 @@
     <dimen name="exerciseTitle">22sp</dimen>
     <dimen name="exersiseContent">23sp</dimen>
     <dimen name="homeItemText">18sp</dimen>
+    <dimen name="price_strike_line_length">30dp</dimen>
 </resources>

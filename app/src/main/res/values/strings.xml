@@ -11,7 +11,7 @@
     <string name="error_fields_empty">All fields must be filled</string>
     <string name="something_went_wrong">Something went wrong</string>
     <string name="user_name">Email / Phone</string>
-    <string name="error_retype_password_again">Retype password again</string>
+    <string name="error_retype_password_again">Passwords do not match</string>
     <string name="mobile">Mobile number</string>
     <string name="recommended_questions">Recommended Questions</string>
     <string name="practise">Practise</string>

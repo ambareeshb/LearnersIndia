@@ -34,7 +34,8 @@ class HomeFragment : Fragment() {
         retainInstance = true
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? = inflater.inflate(R.layout.layout_home_fragment, container, false)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
+            inflater.inflate(R.layout.layout_home_fragment, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -53,6 +54,9 @@ class HomeFragment : Fragment() {
         toolbarSearch.setOnClickListener {
             startActivity(Intent(activity, SearchActivity::class.java))
         }
+        tryPremium.setOnClickListener {
+            (activity as Home).loadPackageListFragment()
+        }
         shareButton.setOnClickListener {
             startActivity(Intent().apply {
                 action = Intent.ACTION_SEND
@@ -68,17 +72,15 @@ class HomeFragment : Fragment() {
         }
         homeItemTest.setOnClickListener {
             startActivity(
-                    Intent(activity,TestActivity::class.java)
+                    Intent(activity, TestActivity::class.java)
             )
-//            Snackbar.make(view, "Test session will be available soon", Snackbar.LENGTH_SHORT).show()
         }
         homeItemVideo.setOnClickListener {
             (activity as Home).loadChapterListFragment(ChaptersFragment.Companion.CHAPTER.VIDEO)
-//            Snackbar.make(view, "Video session will be available soon", Snackbar.LENGTH_SHORT).show()
         }
         homeItemGame.setOnClickListener {
             startActivity(
-                    Intent(activity,GameActivity::class.java)
+                    Intent(activity, GameActivity::class.java)
             )
         }
         homeItemNotification.setOnClickListener {
@@ -150,7 +152,7 @@ class HomeFragment : Fragment() {
                         }
                         recyclerBestVideos.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
                         recyclerBestVideos.adapter = VideosAdapter(it.video_data) { videoId ->
-                            if(videoId.isEmpty()){
+                            if (videoId.isEmpty()) {
 
                                 return@VideosAdapter
                             }
@@ -165,4 +167,30 @@ class HomeFragment : Fragment() {
         }
     }
 
+    //Calls check payment status API
+    fun checkPaymentStatusAndProceed(action: () -> Unit) {
+        activity?.let {
+            val user = sharedPrefManager.getUser(it)
+            RetrofitUtils.initRetrofit(ApiInterface::class.java)
+                    .checkPaidStatus(user.tocken)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe({
+                        if (it.response_type == getString(R.string.response_type_error)) {
+                            (activity as Home).loadGoToPremiumFragment()
+                            return@subscribe
+                        }
+                        if (it.payment_status == "unpaid")
+                            (activity as Home).loadGoToPremiumFragment()
+                        else {
+                            action()
+                        }
+                    },
+                            { error ->
+                                error.printStackTrace()
+                                Snackbar.make(view!!, "Something went wrong", Snackbar.LENGTH_SHORT).show()
+                            }
+                    )
+        }
+    }
 }

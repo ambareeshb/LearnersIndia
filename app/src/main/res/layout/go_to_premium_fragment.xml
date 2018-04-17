@@ -36,11 +36,13 @@
                 android:textSize="14sp" />
 
             <TextView
+                android:id="@+id/tryPremium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:background="@color/colorPrimary"
                 android:fontFamily="@font/nawabiat"
+                android:clickable="true"
                 android:padding="10dp"
                 android:text="TRY PREMIUM"
                 android:textColor="@color/white"

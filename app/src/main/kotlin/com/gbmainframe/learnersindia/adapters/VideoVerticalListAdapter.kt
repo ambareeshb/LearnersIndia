@@ -39,8 +39,10 @@ class VideoVerticalListAdapter(val activity: FragmentActivity,
 
             if (videoTopicResponse.video_data.size == 0) {
                 itemView.textNoVideosAvailable.visibility = View.VISIBLE
+                itemView.visibility = View.GONE
             } else {
                 itemView.textNoVideosAvailable.visibility = View.GONE
+                itemView.visibility = View.VISIBLE
             }
             itemView.recyclerVideo.adapter = VideosAdapter(videoTopicResponse.video_data) { videoId ->
                 if (videoId.isEmpty()) {

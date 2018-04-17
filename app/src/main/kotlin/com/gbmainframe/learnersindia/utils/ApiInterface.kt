@@ -134,7 +134,7 @@ interface ApiInterface {
 
     //Payment gateway
     @GET("get-packages")
-    fun getPackages(): Observable<PaymentResponse>
+    fun getPackages(): Observable<ArrayList<PaymentPackage>>
 
     //user profile
     @GET("get-user-profile")

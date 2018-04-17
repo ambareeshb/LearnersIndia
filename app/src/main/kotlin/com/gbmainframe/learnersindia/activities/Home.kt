@@ -73,6 +73,13 @@ class Home : AppCompatActivity() {
     }
 
     /**
+     * Load package list fragment.
+     */
+     fun loadPackageListFragment() {
+        supportFragmentManager.popBackStack(TAG, FragmentManager.POP_BACK_STACK_INCLUSIVE)
+        FragmentUtils(supportFragmentManager).beginTransaction().replace(R.id.fragmentContainer, PaymentPackagesFragment()).commit()
+    }
+    /**
      * Load go to premium fragment.
      */
      fun loadGoToPremiumFragment() {

@@ -29,18 +29,27 @@
 
     <Button
         android:id="@+id/otpSubmitOtpButton"
-        android:layout_width="wrap_content"
-        android:text="Submit"
-        android:background="@color/colorPrimary"
         style="@style/StyleLoginRectangleButtonHollow"
-        android:layout_height="wrap_content" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:text="Submit" />
+
     <TextView
         android:id="@+id/resendOtp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/marginAverage"
+        android:padding="@dimen/marginAverage"
+        android:gravity="center"
         android:clickable="true"
-        android:textColor="@color/colorPrimary"
         android:text="Resend OTP"
-        />
+        android:textColor="@color/colorPrimary" />
+
+    <TextView
+        android:id="@+id/timerOtp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:textColor="@android:color/black" />
 </LinearLayout>

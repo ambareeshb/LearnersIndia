@@ -136,6 +136,10 @@ interface ApiInterface {
     @GET("get-packages")
     fun getPackages(): Observable<ArrayList<PaymentPackage>>
 
+    @GET("generate-payuhash")
+    fun generatePayuHash(@Query("tocken") token: String,
+                         @Query("package_id") packageId: Int): Observable<PaymentHashResponse>
+
     //user profile
     @GET("get-user-profile")
 
@@ -145,7 +149,7 @@ interface ApiInterface {
     //Otp
     @GET("validate-otp-student-signup")
     fun submitOtp(@Query("tocken") token: String,
-                  @Query("otp") otp:String): Observable<BaseApiModel>
+                  @Query("otp") otp: String): Observable<BaseApiModel>
 
     @GET("resend-otp-student-signup")
     fun resendOtp(@Query("tocken") token: String): Observable<BaseApiModel>

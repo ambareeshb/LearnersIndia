@@ -11,6 +11,9 @@ import com.gbmainframe.learnersindia.R
 import com.gbmainframe.learnersindia.adapters.PaymentPackagesAdapter
 import com.gbmainframe.learnersindia.utils.ApiInterface
 import com.gbmainframe.learnersindia.utils.RetrofitUtils
+import com.gbmainframe.learnersindia.utils.sharedPrefManager
+import com.payumoney.core.PayUmoneySdkInitializer
+import com.payumoney.sdkui.ui.utils.PayUmoneyFlowManager
 import kotlinx.android.synthetic.main.payment_package_list.*
 import kotlinx.android.synthetic.main.simple_toolbar.*
 import rx.android.schedulers.AndroidSchedulers
@@ -36,7 +39,51 @@ class PaymentPackagesFragment : Fragment() {
                     progress.visibility = View.GONE
                     recyclerPaymentPackages.layoutManager =
                             LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-                    recyclerPaymentPackages.adapter = PaymentPackagesAdapter(it)
+                    recyclerPaymentPackages.adapter = PaymentPackagesAdapter(it) {
+
+                        paymentPackage ->
+                        activity?.let {
+                            val user = sharedPrefManager.getUser(it)
+                            progress.visibility = View.VISIBLE
+                            RetrofitUtils.initRetrofit(ApiInterface::class.java).generatePayuHash(user.tocken, paymentPackage.package_id)
+                                    .subscribeOn(Schedulers.io())
+                                    .observeOn(AndroidSchedulers.mainThread())
+                                    .subscribe({
+                                        progress.visibility = View.GONE
+                                        if (it.response_type == getString(R.string.response_type_error)) {
+                                            Snackbar.make(view, it.response_text, Snackbar.LENGTH_SHORT).show()
+                                            return@subscribe
+                                        }
+                                        val paymentParam = PayUmoneySdkInitializer.PaymentParam.Builder()
+                                                .setTxnId(it.txnId)
+                                                .setPhone(user.phoneno)
+                                                .setProductName(it.productName)
+                                                .setFirstName(it.firstName)
+                                                .setAmount(it.amount.toDouble())
+                                                .setEmail(it.email)
+                                                .setsUrl("https://www.payumoney.com/mobileapp/payumoney/success.php")
+                                                .setfUrl("https://www.payumoney.com/mobileapp/payumoney/failure.php")
+                                                .setUdf1(it.udf1)
+                                                .setUdf2(it.udf2)
+                                                .setUdf3(it.udf3)
+                                                .setUdf4(it.udf4)
+                                                .setUdf5(it.udf5)
+                                                .setIsDebug(false)
+                                                .setKey(it.key)
+                                                .setMerchantId(6161925.toString())
+                                                .build()
+                                        paymentParam.setMerchantHash(it.response_data.result)
+
+                                        PayUmoneyFlowManager.startPayUMoneyFlow(paymentParam,
+                                                activity, R.style.AppTheme, false)
+                                    },
+                                            {
+                                                progress.visibility = View.GONE
+                                                it.printStackTrace()
+                                            })
+                        }
+
+                    }
                 }, {
                     Snackbar.make(view, getString(R.string.something_went_wrong), Snackbar.LENGTH_SHORT).show()
                     it.printStackTrace()

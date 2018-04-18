@@ -9,7 +9,8 @@ import com.gbmainframe.learnersindia.R
 import com.gbmainframe.learnersindia.models.PaymentPackage
 import kotlinx.android.synthetic.main.payment_packages.view.*
 
-class PaymentPackagesAdapter(private val packageList: ArrayList<PaymentPackage>) : RecyclerView.Adapter<PaymentPackagesAdapter.ViewHolder>() {
+class PaymentPackagesAdapter(private val packageList: ArrayList<PaymentPackage>,
+                             private val packageSelected:(PaymentPackage)-> Unit) : RecyclerView.Adapter<PaymentPackagesAdapter.ViewHolder>() {
     companion object {
         const val domain = "learnersindia.com/"
     }
@@ -28,6 +29,9 @@ class PaymentPackagesAdapter(private val packageList: ArrayList<PaymentPackage>)
             itemView.paymentPackageName.text = paymentPackage.package_title
             Glide.with(itemView.paymentPackageLogo)
                     .load(domain + paymentPackage.package_image)
+            itemView.buttonCheckout.setOnClickListener {
+                packageSelected(paymentPackage)
+            }
             //USD
             when (paymentPackage.package_price_usd_offer) {
                 0 -> {

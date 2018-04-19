@@ -7,6 +7,9 @@ import java.security.NoSuchAlgorithmException;
 
 public class Hash {
     public static String hashCal(PaymentHashResponse response,String type, String hashString) {
+//        String hashSequence = response.getKey()|response.getTxnId()|response.getAmount()
+//                |response.getProductName()|response.getFirstName()|response.getEmail()|
+//                response.getUdf1()|response.getUdf2()|response.getUdf3()|response.getUdf4()|response.getUdf5()||||||salt;
         StringBuilder hash = new StringBuilder();
         MessageDigest messageDigest = null;
         try {

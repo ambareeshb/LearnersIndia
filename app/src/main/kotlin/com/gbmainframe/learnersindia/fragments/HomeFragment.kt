@@ -18,6 +18,7 @@ import com.gbmainframe.learnersindia.utils.RetrofitUtils
 import com.gbmainframe.learnersindia.utils.sharedPrefManager
 import kotlinx.android.synthetic.main.home_toolbar.*
 import kotlinx.android.synthetic.main.layout_home_fragment.*
+import kotlinx.android.synthetic.main.premium_card.*
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
 

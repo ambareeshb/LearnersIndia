@@ -16,6 +16,7 @@ import com.gbmainframe.learnersindia.utils.ApiInterface
 import com.gbmainframe.learnersindia.utils.RetrofitUtils
 import com.gbmainframe.learnersindia.utils.sharedPrefManager
 import kotlinx.android.synthetic.main.layout_user_profile.*
+import kotlinx.android.synthetic.main.premium_card.*
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
 

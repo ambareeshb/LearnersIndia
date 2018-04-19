@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.gbmainframe.learnersindia.R
 import com.gbmainframe.learnersindia.adapters.PaymentPackagesAdapter
+import com.gbmainframe.learnersindia.models.PaymentPackage
 import com.gbmainframe.learnersindia.utils.ApiInterface
 import com.gbmainframe.learnersindia.utils.RetrofitUtils
 import com.gbmainframe.learnersindia.utils.sharedPrefManager
@@ -23,6 +24,10 @@ import rx.schedulers.Schedulers
  * Created by ambareeshb on 13/04/18.
  */
 class PaymentPackagesFragment : Fragment() {
+    companion object {
+        const val TAG = "PAYMENT_PACKAGE"
+        var selectedPackage : PaymentPackage? = null
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
             inflater.inflate(R.layout.payment_package_list, container, false)
@@ -56,7 +61,7 @@ class PaymentPackagesFragment : Fragment() {
                                         }
                                         val paymentParam = PayUmoneySdkInitializer.PaymentParam.Builder()
                                                 .setTxnId(it.txnId)
-                                                .setPhone(user.phoneno)
+                                                .setPhone(it.phone)
                                                 .setProductName(it.productName)
                                                 .setFirstName(it.firstName)
                                                 .setAmount(it.amount.toDouble())
@@ -70,12 +75,14 @@ class PaymentPackagesFragment : Fragment() {
                                                 .setUdf5(it.udf5)
                                                 .setIsDebug(false)
                                                 .setKey(it.key)
-                                                .setMerchantId(6161925.toString())
+                                                .setMerchantId(getString(R.string.merchant_id))
                                                 .build()
-                                        paymentParam.setMerchantHash(it.response_data.result)
 
+                                        //Caching selected package statically.
+                                        selectedPackage = paymentPackage
+                                        paymentParam.setMerchantHash(it.response_data.result)
                                         PayUmoneyFlowManager.startPayUMoneyFlow(paymentParam,
-                                                activity, R.style.AppTheme, false)
+                                                activity, R.style.PaymentGatewayTheme, false)
                                     },
                                             {
                                                 progress.visibility = View.GONE

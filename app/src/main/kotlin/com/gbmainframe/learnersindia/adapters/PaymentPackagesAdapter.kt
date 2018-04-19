@@ -32,6 +32,9 @@ class PaymentPackagesAdapter(private val packageList: ArrayList<PaymentPackage>,
             itemView.buttonCheckout.setOnClickListener {
                 packageSelected(paymentPackage)
             }
+            itemView.setOnClickListener {
+                packageSelected(paymentPackage)
+            }
             //USD
             when (paymentPackage.package_price_usd_offer) {
                 0 -> {

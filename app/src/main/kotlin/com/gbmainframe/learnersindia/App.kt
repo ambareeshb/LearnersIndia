@@ -11,7 +11,6 @@ class App : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        VimeoClient.initialize(Configuration.Builder(getString(R.string.vimeo_access_token)).build())
         val uri = "/262504336"
 
 

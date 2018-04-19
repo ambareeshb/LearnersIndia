@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.gbmainframe.learnersindia.R
 import com.gbmainframe.learnersindia.utils.FragmentUtils
-import kotlinx.android.synthetic.main.go_to_premium_fragment.*
+import kotlinx.android.synthetic.main.premium_card.*
 
 /**
  * Created by ambareeshb on 13/04/18.

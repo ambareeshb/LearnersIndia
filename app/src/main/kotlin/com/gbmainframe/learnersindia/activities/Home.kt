@@ -1,16 +1,23 @@
 package com.gbmainframe.learnersindia.activities
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v4.app.FragmentManager
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import android.view.View
 import android.view.WindowManager
 import com.gbmainframe.learnersindia.R
 import com.gbmainframe.learnersindia.activities.SignIn.Companion.SIGN_UP_FLOW_INIT
 import com.gbmainframe.learnersindia.fragments.*
+import com.gbmainframe.learnersindia.models.PayUResponse
 import com.gbmainframe.learnersindia.utils.FragmentUtils
+import com.gbmainframe.learnersindia.utils.PaymentApiCall
 import com.gbmainframe.learnersindia.utils.sharedPrefManager
+import com.payumoney.core.entity.TransactionResponse
+import com.payumoney.sdkui.ui.utils.PayUmoneyFlowManager
 import kotlinx.android.synthetic.main.activity_home.*
 
 
@@ -59,6 +66,42 @@ class Home : AppCompatActivity() {
                     true
                 }
             }
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (requestCode == PayUmoneyFlowManager.REQUEST_CODE_PAYMENT && resultCode == Activity.RESULT_OK
+                && data != null) {
+            val transactionResponse = data.getParcelableExtra<TransactionResponse>(PayUmoneyFlowManager.INTENT_EXTRA_TRANSACTION_RESPONSE)
+            transactionResponse?.let {
+                if (it.payuResponse != null && it.transactionStatus == TransactionResponse.TransactionStatus.SUCCESSFUL) {
+                    //Payment success
+                    val user = sharedPrefManager.getUser(this)
+                    PaymentPackagesFragment.selectedPackage?.let { paymentPackage ->
+                        val response = PayUResponse(response_type = "success",
+                                response_date = it.payuResponse,
+                                token = user.tocken,
+                                package_id = paymentPackage.package_id)
+
+                        PaymentApiCall.submitPaymentResponse(this, response = response)
+                    }
+                    sharedPrefManager.paymentSuccess(this)
+                    Log.d(TAG, "Transaction success ${it.getPayuResponse()}")
+
+                } else {
+                    //Payment failure
+                    val user = sharedPrefManager.getUser(this)
+                    PaymentPackagesFragment.selectedPackage?.let { paymentPackage ->
+                        val response = PayUResponse(response_type = "success",
+                                response_date = it.payuResponse,
+                                token = user.tocken,
+                                package_id = paymentPackage.package_id)
+                        PaymentApiCall.submitPaymentResponse(this, response = response)
+                    }
+                    Log.d(TAG, "Transaction failure")
+                }
+            }
+
         }
     }
 
@@ -130,6 +173,9 @@ class Home : AppCompatActivity() {
                 .commit()
     }
 
+    /**
+     * Load sign up OTP fragment.
+     */
     fun loadOtpFragment() {
         supportFragmentManager.popBackStack(SIGN_UP_FLOW_INIT, FragmentManager.POP_BACK_STACK_INCLUSIVE)
         FragmentUtils(supportFragmentManager).beginTransaction()

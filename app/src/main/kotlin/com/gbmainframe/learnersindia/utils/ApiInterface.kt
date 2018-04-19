@@ -2,10 +2,8 @@ package com.gbmainframe.learnersindia.utils
 
 import com.gbmainframe.learnersindia.models.*
 import com.gbmainframe.learnersindia.models.apiresponses.*
-import retrofit2.http.GET
-import retrofit2.http.Header
-import retrofit2.http.Path
-import retrofit2.http.Query
+import com.payumoney.core.response.PayumoneyResponse
+import retrofit2.http.*
 import rx.Observable
 
 /**
@@ -139,6 +137,8 @@ interface ApiInterface {
     @GET("generate-payuhash")
     fun generatePayuHash(@Query("tocken") token: String,
                          @Query("package_id") packageId: Int): Observable<PaymentHashResponse>
+    @POST("payu-payment-success")
+    fun payUMoneyResult(@Body response:PayUResponse):Observable<BaseApiModel>
 
     //user profile
     @GET("get-user-profile")

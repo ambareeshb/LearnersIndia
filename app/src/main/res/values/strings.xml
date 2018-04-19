@@ -1,5 +1,5 @@
 <resources>
-    <string name="vimeo_access_token">f975e748b7fccb6e3db8b06d152879fd</string>
+    <string name="merchant_id">6161925</string>
     <string name="app_name">LearnersIndia</string>
     <string name="password">Password</string>
     <string name="retype_password">Retype password</string>
@@ -86,5 +86,7 @@
     <string name="game_quit">Do you really want to quit the game</string>
     <string name="play_store_link">https://play.google.com/store/apps/details?id=com.gbmainframe.learnersindia</string>
     <string name="otp_hint">An SMS with 6 digit OTP has been sent to your registered mobile number please enter it below.</string>
+    <string name="unlock_rest_premium">Unlock the the rest of the list with Premium</string>
+    <string name="you_are_premium">You are premium member</string>
 
 </resources>

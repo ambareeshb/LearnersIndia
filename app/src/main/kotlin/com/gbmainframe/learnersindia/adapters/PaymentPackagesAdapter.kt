@@ -1,6 +1,7 @@
 package com.gbmainframe.learnersindia.adapters
 
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,9 +11,9 @@ import com.gbmainframe.learnersindia.models.PaymentPackage
 import kotlinx.android.synthetic.main.payment_packages.view.*
 
 class PaymentPackagesAdapter(private val packageList: ArrayList<PaymentPackage>,
-                             private val packageSelected:(PaymentPackage)-> Unit) : RecyclerView.Adapter<PaymentPackagesAdapter.ViewHolder>() {
+                             private val packageSelected: (PaymentPackage) -> Unit) : RecyclerView.Adapter<PaymentPackagesAdapter.ViewHolder>() {
     companion object {
-        const val domain = "learnersindia.com/"
+        const val domain = "https://learnersindia.com/"
     }
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ViewHolder =
@@ -28,7 +29,8 @@ class PaymentPackagesAdapter(private val packageList: ArrayList<PaymentPackage>,
         fun bindView(paymentPackage: PaymentPackage) {
             itemView.paymentPackageName.text = paymentPackage.package_title
             Glide.with(itemView.paymentPackageLogo)
-                    .load(domain + paymentPackage.package_image)
+                    .load("$domain${paymentPackage.package_image}")
+                    .into(itemView.paymentPackageLogo)
             itemView.buttonCheckout.setOnClickListener {
                 packageSelected(paymentPackage)
             }

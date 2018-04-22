@@ -7,6 +7,8 @@ import android.view.WindowManager
 import com.gbmainframe.learnersindia.R
 import com.gbmainframe.learnersindia.constants.Constants
 import com.gbmainframe.learnersindia.fragments.*
+import com.gbmainframe.learnersindia.fragments.forgot_password.EnterPhoneNumberFragment
+import com.gbmainframe.learnersindia.fragments.forgot_password.ResetPassword
 import com.gbmainframe.learnersindia.models.Board
 import com.gbmainframe.learnersindia.models.ClassInfo
 import com.gbmainframe.learnersindia.utils.FragmentUtils
@@ -45,10 +47,26 @@ class SignIn : AppCompatActivity() {
         FragmentUtils(supportFragmentManager).beginTransaction().replace(R.id.fragmentContainer, SignInFragment()).commit()
     }
 
-    fun loadOtpFragment() {
+    fun loadOtpFragment(choice: EnterOtpFragment.Companion.CHOICE) {
         supportFragmentManager.popBackStack(SIGN_UP_FLOW_INIT, FragmentManager.POP_BACK_STACK_INCLUSIVE)
         FragmentUtils(supportFragmentManager).beginTransaction()
-                .replace(R.id.fragmentContainer, EnterOtpFragment())
+                .replace(R.id.fragmentContainer, EnterOtpFragment.newInstance(choice))
+                .commit()
+    }
+
+    fun loadEnterPhoneNumberFragment() {
+        supportFragmentManager.popBackStack(SIGN_UP_FLOW_INIT, FragmentManager.POP_BACK_STACK_INCLUSIVE)
+        FragmentUtils(supportFragmentManager).beginTransaction()
+                .replace(R.id.fragmentContainer, EnterPhoneNumberFragment.newInstance())
+                .addToBackStack(true)
+                .commit()
+    }
+
+    fun loadResetPassword() {
+        supportFragmentManager.popBackStack(SIGN_UP_FLOW_INIT, FragmentManager.POP_BACK_STACK_INCLUSIVE)
+        FragmentUtils(supportFragmentManager).beginTransaction()
+                .replace(R.id.fragmentContainer, ResetPassword.newInstance())
+                .addToBackStack(true)
                 .commit()
     }
 
@@ -80,5 +98,6 @@ class SignIn : AppCompatActivity() {
                 .addToBackStack(true)
                 .commit()
     }
+
 
 }

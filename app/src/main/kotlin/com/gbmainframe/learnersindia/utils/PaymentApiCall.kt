@@ -14,12 +14,7 @@ class PaymentApiCall {
             RetrofitUtils.initRetrofit(ApiInterface::class.java)
                     .payUMoneyResult(response = response)
                     .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe({
-                        if (it.response_type == context.getString(R.string.response_type_error)) {
-                        }
-
-                    }, {
+                    .subscribe({}, {
                         it.printStackTrace()
                     })
 

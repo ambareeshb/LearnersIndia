@@ -33,6 +33,9 @@ class SignInFragment : Fragment() {
             toolbarButton.setText(R.string.sign_up)
             setOnClickListener { (activity as SignIn).loadSelectBoardFragment() }
         }
+        forgotPassword.setOnClickListener {
+            (activity as SignIn).loadEnterPhoneNumberFragment()
+        }
         password.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
         backButton.visibility = View.GONE
 
@@ -57,7 +60,7 @@ class SignInFragment : Fragment() {
                         activity?.let {
                             sharedPrefManager.putUserInfo(it, data.user_data)
                             if (data.user_data.verified == 0) {
-                                (activity as SignIn).loadOtpFragment()
+                                (activity as SignIn).loadOtpFragment(EnterOtpFragment.Companion.CHOICE.HOME)
                                 return@subscribe
                             }
                             startActivity(Intent(activity, Home::class.java))

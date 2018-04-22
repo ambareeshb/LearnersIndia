@@ -19,7 +19,7 @@ import rx.schedulers.Schedulers
  * Created by ambareeshb on 30/03/18.
  */
 class VideosAdapter(private val videoList: ArrayList<VideoModel>,
-                    private val videoClicked: (String) -> Unit) : RecyclerView.Adapter<VideosAdapter.VideoViewHolder>() {
+                    private val videoClicked: (String,String) -> Unit) : RecyclerView.Adapter<VideosAdapter.VideoViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): VideoViewHolder =
             VideoViewHolder(LayoutInflater.from(parent?.context).inflate(R.layout.layout_video_preview, parent, false))
 
@@ -37,11 +37,7 @@ class VideosAdapter(private val videoList: ArrayList<VideoModel>,
                 Toast.makeText(itemView.context, "Hold on loading video", Toast.LENGTH_SHORT).show()
             }
             itemView.setOnClickListener {
-                if (videoFile.ved_category == "paid") {
-                    videoClicked("")
-                    return@setOnClickListener
-                }
-                videoClicked(videoFile.private_url)
+                videoClicked(videoFile.private_url,videoFile.ved_category)
             }
             if (!videoFile.video_image.isEmpty())
                 Glide.with(itemView.context)

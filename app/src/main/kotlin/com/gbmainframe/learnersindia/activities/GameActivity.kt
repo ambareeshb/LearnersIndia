@@ -39,7 +39,7 @@ class GameActivity : AppCompatActivity() {
                     val user = sharedPrefManager.getUser(this)
                     PaymentPackagesFragment.selectedPackage?.let { paymentPackage ->
                         val response = PayUResponse(response_type = "success",
-                                response_date = it.payuResponse,
+                                response_data = it.payuResponse,
                                 token = user.tocken,
                                 package_id = paymentPackage.package_id)
 
@@ -53,7 +53,7 @@ class GameActivity : AppCompatActivity() {
                     val user = sharedPrefManager.getUser(this)
                     PaymentPackagesFragment.selectedPackage?.let { paymentPackage ->
                         val response = PayUResponse(response_type = "success",
-                                response_date = it.payuResponse,
+                                response_data = it.payuResponse,
                                 token = user.tocken,
                                 package_id = paymentPackage.package_id)
                         PaymentApiCall.submitPaymentResponse(this, response = response)

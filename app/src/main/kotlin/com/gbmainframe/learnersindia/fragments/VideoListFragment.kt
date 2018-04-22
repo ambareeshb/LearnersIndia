@@ -1,13 +1,17 @@
 package com.gbmainframe.learnersindia.fragments
 
+import android.content.Intent
 import android.os.Bundle
+import android.support.design.widget.Snackbar
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import com.gbmainframe.learnersindia.R
 import com.gbmainframe.learnersindia.activities.Home
+import com.gbmainframe.learnersindia.activities.VideoPlayerActivity
 import com.gbmainframe.learnersindia.adapters.VideoVerticalListAdapter
 import com.gbmainframe.learnersindia.adapters.VideosAdapter
 import com.gbmainframe.learnersindia.utils.ApiInterface
@@ -73,8 +77,41 @@ class VideoListFragment : Fragment() {
                             videoListRecycler.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
                             videoListRecycler.adapter = VideoVerticalListAdapter(activity = activity!!,
                                     videoTopicList = videoRespose.response_data,
-                                    goToPremium = {
-                                        (activity as Home).loadGoToPremiumFragment()
+                                    goToPremium = { videoUrl, videoCategory ->
+
+                                        if (videoCategory == "free") {
+
+                                            Intent(activity, VideoPlayerActivity::class.java).apply {
+                                                putExtra(VideoPlayerActivity.VIDEO_URI_BUNDLE_ID, videoUrl)
+                                                activity?.startActivity(this)
+                                            }
+                                            return@VideoVerticalListAdapter
+                                        }
+
+                                        RetrofitUtils.initRetrofit(ApiInterface::class.java)
+                                                .checkPaidStatus(user.tocken)
+                                                .subscribeOn(Schedulers.io())
+                                                .observeOn(AndroidSchedulers.mainThread())
+                                                .subscribe({
+                                                    if (it.response_type == context?.getString(R.string.response_type_error)) {
+                                                        Snackbar.make(view, it.response_text, Snackbar.LENGTH_SHORT).show()
+                                                        return@subscribe
+                                                    }
+                                                    if (it.payment_status != "paid") {
+                                                        (activity as Home).loadGoToPremiumFragment()
+                                                        return@subscribe
+                                                    }
+                                                    Intent(activity, VideoPlayerActivity::class.java).apply {
+                                                        putExtra(VideoPlayerActivity.VIDEO_URI_BUNDLE_ID, videoUrl)
+                                                        activity?.startActivity(this)
+                                                    }
+
+                                                },
+                                                        { error ->
+                                                            error.printStackTrace()
+                                                            Snackbar.make(view, "Something went wrong", Snackbar.LENGTH_SHORT).show()
+                                                        }
+                                                )
                                     })
                         }
                     }, { error ->

@@ -152,9 +152,8 @@ class HomeFragment : Fragment() {
                             return@subscribe
                         }
                         recyclerBestVideos.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-                        recyclerBestVideos.adapter = VideosAdapter(it.video_data) { videoId ->
+                        recyclerBestVideos.adapter = VideosAdapter(it.video_data) { videoId, category ->
                             if (videoId.isEmpty()) {
-
                                 return@VideosAdapter
                             }
                             Intent(activity, VideoPlayerActivity::class.java).apply {

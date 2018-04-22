@@ -1,55 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="center"
-    android:orientation="vertical"
-    android:padding="@dimen/marginAverage">
+    android:layout_height="match_parent">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/nawabiat"
-        android:lineSpacingExtra="5sp"
-        android:padding="@dimen/marginAverage"
-        android:text="@string/otp_hint"
-        android:textSize="20sp" />
-
-    <com.hololo.library.otpview.OTPView
-        android:id="@+id/otpView"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:gravity="center"
-        app:count="6"
-        app:hintColor="@android:color/holo_blue_bright"
-        app:inputType="number"
-        app:otpHint="_"
-        app:textColor="@color/colorPrimary" />
+        android:orientation="vertical"
+        android:padding="@dimen/marginAverage">
 
-    <Button
-        android:id="@+id/otpSubmitOtpButton"
-        style="@style/StyleLoginRectangleButtonHollow"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
-        android:text="Submit" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nawabiat"
+            android:lineSpacingExtra="5sp"
+            android:padding="@dimen/marginAverage"
+            android:text="@string/otp_hint"
+            android:textSize="20sp" />
 
-    <TextView
-        android:id="@+id/resendOtp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/marginAverage"
-        android:padding="@dimen/marginAverage"
-        android:gravity="center"
-        android:clickable="true"
-        android:text="Resend OTP"
-        android:textColor="@color/colorPrimary" />
+        <com.hololo.library.otpview.OTPView
+            android:id="@+id/otpView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            app:count="6"
+            app:hintColor="@android:color/holo_blue_bright"
+            app:inputType="number"
+            app:otpHint="_"
+            app:textColor="@color/colorPrimary" />
 
-    <TextView
-        android:id="@+id/timerOtp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        android:textColor="@android:color/black" />
-</LinearLayout>
+        <Button
+            android:id="@+id/otpSubmitOtpButton"
+            style="@style/StyleLoginRectangleButtonHollow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:text="Submit" />
+
+        <TextView
+            android:id="@+id/resendOtp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/marginAverage"
+            android:clickable="true"
+            android:gravity="center"
+            android:padding="@dimen/marginAverage"
+            android:text="Resend OTP"
+            android:textColor="@color/colorPrimary" />
+
+        <TextView
+            android:id="@+id/timerOtp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:textColor="@android:color/black" />
+    </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/progress"
+        style="@style/ProgressBarStyleWhite" />
+</RelativeLayout>

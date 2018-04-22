@@ -31,21 +31,28 @@ class GoPremiumView : RelativeLayout {
     private fun init() {
         View.inflate(context, R.layout.premium_card, this)
         val user = sharedPrefManager.getUser(context)
+        progress.visibility = View.VISIBLE
+        premiumText.visibility = View.GONE
+        tryPremium.visibility = View.GONE
 
         RetrofitUtils.initRetrofit(ApiInterface::class.java)
                 .checkPaidStatus(user.tocken)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
+                    progress.visibility = View.GONE
                     if (it.response_type == context.getString(R.string.response_type_error)) {
-                        return@subscribe
                         premiumText.text = context.getString(R.string.unlock_rest_premium)
+                        premiumText.visibility = View.VISIBLE
                         tryPremium.visibility = View.VISIBLE
+                        return@subscribe
                     }
                     if (it.payment_status != "unpaid") {
                         premiumText.text = context.getString(R.string.you_are_premium)
+                        premiumText.visibility = View.VISIBLE
                         tryPremium.visibility = View.GONE
                     } else {
+                        progress.visibility = View.GONE
                         premiumText.text = context.getString(R.string.unlock_rest_premium)
                         tryPremium.visibility = View.VISIBLE
                     }

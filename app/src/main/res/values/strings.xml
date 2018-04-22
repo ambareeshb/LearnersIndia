@@ -88,5 +88,6 @@
     <string name="otp_hint">An SMS with 6 digit OTP has been sent to your registered mobile number please enter it below.</string>
     <string name="unlock_rest_premium">Unlock the the rest of the list with Premium</string>
     <string name="you_are_premium">You are premium member</string>
+    <string name="reset_password">Reset Password</string>
 
 </resources>

@@ -46,30 +46,35 @@
                 android:background="@color/colorPrimary"
                 android:text="Next" />
 
-            <LinearLayout
-                android:id="@+id/testQuestionAnswerLayout"
+            <ScrollView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="@dimen/marginAverage"
-                android:orientation="vertical"
-                android:visibility="gone">
+                android:layout_height="wrap_content">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/nawabiat"
-                    android:text="Solution"
-                    android:textSize="20sp" />
-
-                <WebView
-                    android:id="@+id/testQuestionSolution"
+                <LinearLayout
+                    android:id="@+id/testQuestionAnswerLayout"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginTop="20dp"
-                    tools:ignore="WebViewLayout" />
-            </LinearLayout>
+                    android:layout_marginTop="@dimen/marginAverage"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/nawabiat"
+                        android:text="Solution"
+                        android:textSize="20sp" />
+
+                    <WebView
+                        android:id="@+id/testQuestionSolution"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="20dp"
+                        tools:ignore="WebViewLayout" />
+                </LinearLayout>
+            </ScrollView>
         </LinearLayout>
 
         <ProgressBar

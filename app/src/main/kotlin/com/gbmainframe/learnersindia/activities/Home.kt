@@ -35,7 +35,7 @@ class Home : AppCompatActivity() {
 
         if (sharedPrefManager.getUser(this).verified == 0) {
             homeBottomNavigation.visibility = View.GONE
-            loadOtpFragment()
+            loadOtpFragment(EnterOtpFragment.Companion.CHOICE.HOME)
             return
         }
         loadHomeFeedFragment()
@@ -79,21 +79,22 @@ class Home : AppCompatActivity() {
                     val user = sharedPrefManager.getUser(this)
                     PaymentPackagesFragment.selectedPackage?.let { paymentPackage ->
                         val response = PayUResponse(response_type = "success",
-                                response_date = it.payuResponse,
+                                response_data = it.payuResponse.replace("\\", ""),
                                 token = user.tocken,
                                 package_id = paymentPackage.package_id)
 
                         PaymentApiCall.submitPaymentResponse(this, response = response)
                     }
                     sharedPrefManager.paymentSuccess(this)
-                    Log.d(TAG, "Transaction success ${it.getPayuResponse()}")
+
+                    startActivity(Intent(this, Home::class.java))
 
                 } else {
                     //Payment failure
                     val user = sharedPrefManager.getUser(this)
                     PaymentPackagesFragment.selectedPackage?.let { paymentPackage ->
-                        val response = PayUResponse(response_type = "success",
-                                response_date = it.payuResponse,
+                        val response = PayUResponse(response_type = "failure",
+                                response_data = it.payuResponse,
                                 token = user.tocken,
                                 package_id = paymentPackage.package_id)
                         PaymentApiCall.submitPaymentResponse(this, response = response)
@@ -146,8 +147,10 @@ class Home : AppCompatActivity() {
      * Load user profile fragment.
      */
     fun loadShowProfileFragment() {
-        supportFragmentManager.popBackStack(TAG, FragmentManager.POP_BACK_STACK_INCLUSIVE)
-        FragmentUtils(supportFragmentManager).beginTransaction().replace(R.id.fragmentContainer, ShowProfile()).commit()
+//        supportFragmentManager.popBackStack(TAG, FragmentManager.POP_BACK_STACK_INCLUSIVE)
+        FragmentUtils(supportFragmentManager).beginTransaction().replace(R.id.fragmentContainer, ShowProfile())
+                .addToBackStack(true, TAG)
+                .commit()
     }
 
     /**
@@ -176,10 +179,10 @@ class Home : AppCompatActivity() {
     /**
      * Load sign up OTP fragment.
      */
-    fun loadOtpFragment() {
+    fun loadOtpFragment(choice: EnterOtpFragment.Companion.CHOICE) {
         supportFragmentManager.popBackStack(SIGN_UP_FLOW_INIT, FragmentManager.POP_BACK_STACK_INCLUSIVE)
         FragmentUtils(supportFragmentManager).beginTransaction()
-                .replace(R.id.fragmentContainer, EnterOtpFragment())
+                .replace(R.id.fragmentContainer, EnterOtpFragment.newInstance(choice))
                 .commit()
     }
 

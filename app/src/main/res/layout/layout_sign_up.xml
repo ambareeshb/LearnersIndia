@@ -148,6 +148,6 @@
 
         <ProgressBar
             android:id="@+id/progress"
-            style="@style/ProgressBarStyle" />
+            style="@style/ProgressBarStyleWhite" />
     </RelativeLayout>
 </ScrollView>

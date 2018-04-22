@@ -137,8 +137,9 @@ interface ApiInterface {
     @GET("generate-payuhash")
     fun generatePayuHash(@Query("tocken") token: String,
                          @Query("package_id") packageId: Int): Observable<PaymentHashResponse>
+
     @POST("payu-payment-success")
-    fun payUMoneyResult(@Body response:PayUResponse):Observable<BaseApiModel>
+    fun payUMoneyResult(@Body response: PayUResponse): Observable<BaseApiModel>
 
     //user profile
     @GET("get-user-profile")
@@ -154,4 +155,13 @@ interface ApiInterface {
     @GET("resend-otp-student-signup")
     fun resendOtp(@Query("tocken") token: String): Observable<BaseApiModel>
 
+    //Forgot password.
+    @GET("send-otp-student-password-recovery")
+    fun sendOtpForgotPassWord(@Query("tocken") token: String, @Query("mobile") mobile: String): Observable<BaseApiModel>
+
+    @GET("validate-otp-student-password-recovery")
+    fun submitForgotPasswordOtp(@Query("tocken") token: String, @Query("otp") otp: String): Observable<BaseApiModel>
+
+    @GET("reset-password-student")
+    fun resetPassword(@Query("tocken") token: String, @Query("new_passcode") passcode: String): Observable<BaseApiModel>
 }

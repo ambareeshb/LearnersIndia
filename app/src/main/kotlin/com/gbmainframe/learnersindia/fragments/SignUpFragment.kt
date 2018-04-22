@@ -82,7 +82,7 @@ class SignUpFragment : Fragment() {
                                 }
                                 activity?.let {
                                     sharedPrefManager.putUserInfo(it, data.user_data)
-                                    (activity as SignIn).loadOtpFragment()
+                                    (activity as SignIn).loadOtpFragment(EnterOtpFragment.Companion.CHOICE.HOME)
                                 }
                             }, { error ->
                                 buttonSignUp.isEnabled = true

@@ -3,6 +3,7 @@ package com.gbmainframe.learnersindia.activities
 import android.os.Bundle
 import android.support.v4.app.FragmentManager
 import android.support.v7.app.AppCompatActivity
+import android.view.WindowManager
 import com.gbmainframe.learnersindia.R
 import com.gbmainframe.learnersindia.fragments.*
 import com.gbmainframe.learnersindia.models.ChapterModel
@@ -16,6 +17,7 @@ class TestActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        window.setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE)
         setContentView(R.layout.activity_test)
         loadChapterListFragment(ChaptersFragment.Companion.CHAPTER.TEST)
     }
